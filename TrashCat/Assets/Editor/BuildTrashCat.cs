@@ -8,20 +8,15 @@ public class BuildTrashCat
 {
 
 
-    [MenuItem("Build/Windows")]
-    static void WindowsBuildInspector()
-    {
-        WindowsBuildFromCommandLine(false);
-    }
 
     [MenuItem("Build/WindowsInspectorWithAltunity")]
     static void WindowsBuildInspectorWithAltUnity()
     {
-        WindowsBuildFromCommandLine(true, 13001);
+        WindowsBuildFromCommandLine(true, 13000);
     }
     static void WindowsBuildFromCommandLine(bool withAltunity, int port = 13000)
     {
-        // SetPlayerSettingsForInspector();
+        SetPlayerSettings();
 
         Debug.Log("Starting Windows build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
@@ -33,12 +28,12 @@ public class BuildTrashCat
         };
         if (withAltunity)
         {
-            buildPlayerOptions.locationPathName = "AltUnityInspectorWindowsTest/AltUnityInspector.exe";
+            buildPlayerOptions.locationPathName = "TrashCatWindowsTest/TrashCat.exe";
 
         }
         else
         {
-            buildPlayerOptions.locationPathName = "AltUnityInspectorWindows/AltUnityInspector.exe";
+            buildPlayerOptions.locationPathName = "TrashCatWindows/TrashCat.exe";
 
         }
         buildPlayerOptions.target = BuildTarget.StandaloneWindows;
@@ -51,72 +46,23 @@ public class BuildTrashCat
 
     }
 
-    private static void SetPlayerSettingsForInspector()
+    private static void SetPlayerSettings()
     {
-        using (StreamReader reader = new StreamReader("Assets/version.txt"))
-        {
             string versionNumber = reader.ReadLine();
             PlayerSettings.companyName = "Altom";
-            PlayerSettings.productName = "AltUnityInspectorAlpha";
-            PlayerSettings.bundleVersion = versionNumber;
+            PlayerSettings.productName = "TrashCat";
+            PlayerSettings.bundleVersion = "1.0";
             PlayerSettings.resizableWindow = true;
             PlayerSettings.defaultScreenHeight = 900;
             PlayerSettings.defaultScreenWidth = 1200;
             PlayerSettings.fullScreenMode = FullScreenMode.Windowed;
-            Texture2D icon = (Texture2D)AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Images/icon.png");
             PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
-            PlayerSettings.SetIconsForTargetGroup(BuildTargetGroup.Unknown, new Texture2D[] { icon });
-            PlayerSettings.SetIconsForTargetGroup(BuildTargetGroup.Standalone, new Texture2D[] { icon, icon, icon, icon, icon, icon, icon, icon });
             PlayerSettings.runInBackground = true;
-        }
+        
     }
 
     
-
-    [MenuItem("Build/WindowsSampleSceneWithAltunity")]
-    static void BuildWindowsSampleScenesWithAltunity()
-    {
-        SetPlayerSettingForSampleScenes();
-
-        Debug.Log("Starting Windows build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-        buildPlayerOptions = SetScenesForSampleScene(buildPlayerOptions);
-
-        buildPlayerOptions.locationPathName = "SampleScene/TrashCat.exe";
-        buildPlayerOptions.target = BuildTarget.StandaloneWindows;
-        buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
-        buildPlayerOptions.options = BuildOptions.Development;
-
-        BuildGame(buildPlayerOptions, true);
-
-    }
     
-    private static BuildPlayerOptions SetScenesForSampleScene(BuildPlayerOptions buildPlayerOptions)
-    {
-        buildPlayerOptions.scenes = new string[]
-         {
-            "Assets/Plugins/AltUnityTester/Assets/AltUnityTester/Examples/Scenes/Scene 1 AltUnityDriverTestScene.unity",
-            "Assets/Plugins/AltUnityTester/Assets/AltUnityTester/Examples/Scenes/Scene 2 Draggable Panel.unity",
-            "Assets/Plugins/AltUnityTester/Assets/AltUnityTester/Examples/Scenes/Scene 3 Drag And Drop.unity"
-
-        };
-        return buildPlayerOptions;
-    }
-
-    private static void SetPlayerSettingForSampleScenes()
-    {
-        string versionNumber = DateTime.Now.ToString("yyMMddHHss");
-        PlayerSettings.companyName = "Altom";
-        PlayerSettings.productName = "sampleGame";
-        PlayerSettings.bundleVersion = versionNumber;
-        PlayerSettings.Android.bundleVersionCode = int.Parse(versionNumber);
-        PlayerSettings.resizableWindow = true;
-        PlayerSettings.defaultScreenHeight = 900;
-        PlayerSettings.defaultScreenWidth = 1200;
-        PlayerSettings.fullScreenMode = FullScreenMode.Windowed;
-        PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
-        PlayerSettings.runInBackground = true;
-    }
 
     static void BuildGame(BuildPlayerOptions buildPlayerOptions, bool withAltUnity, int port = 13000)
     {
