@@ -10,7 +10,7 @@ build-windows-with-altunity:
     stage: build-with-altunity
     tags:
       - unity
-      - mac
+      - windows
     script:
     - git submodule update --init --force
     - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.WindowsBuildInspectorWithAltUnity -logFile buildWindows.log -quit
