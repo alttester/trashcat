@@ -48,7 +48,6 @@ public class BuildTrashCat
 
     private static void SetPlayerSettings()
     {
-            string versionNumber = reader.ReadLine();
             PlayerSettings.companyName = "Altom";
             PlayerSettings.productName = "TrashCat";
             PlayerSettings.bundleVersion = "1.0";
