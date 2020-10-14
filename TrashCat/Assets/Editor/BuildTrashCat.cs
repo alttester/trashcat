@@ -53,7 +53,7 @@ public class BuildTrashCat
     }
     private static void MacOSBuildFromCommandLine(bool withAltUnity, int port = 13000)
     {
-        SetPlayerSettingsForInspector();
+        SetPlayerSettings();
         PlayerSettings.macRetinaSupport = true;
 
         Debug.Log("Starting Mac build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
