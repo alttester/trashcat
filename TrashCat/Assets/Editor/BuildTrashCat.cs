@@ -45,6 +45,47 @@ public class BuildTrashCat
         BuildGame(buildPlayerOptions, withAltunity, port);
 
     }
+    
+    [MenuItem("Build/macOSWithAltUnity")]
+    static void MacOSBuildInspectorWithAltUnity()
+    {
+        MacOSBuildFromCommandLine(true, 13000);
+    }
+    private static void MacOSBuildFromCommandLine(bool withAltUnity, int port = 13000)
+    {
+        SetPlayerSettingsForInspector();
+        PlayerSettings.macRetinaSupport = true;
+
+        Debug.Log("Starting Mac build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
+        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+        buildPlayerOptions.scenes = new string[]
+        {
+            "Assets/Scenes/Main.unity",
+            "Assets/Scenes/Shop.unity",
+            "Assets/Scenes/Start.unity"
+        };
+        if (withAltUnity)
+        {
+            buildPlayerOptions.locationPathName = "TrashCatTest.app";
+
+        }
+        else
+        {
+            buildPlayerOptions.locationPathName = "TrashCat.app";
+
+        }
+        buildPlayerOptions.target = BuildTarget.StandaloneOSX;
+        buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
+        if (withAltUnity)
+        {
+            buildPlayerOptions.options = BuildOptions.Development;
+        }
+
+        BuildGame(buildPlayerOptions, withAltUnity, port);
+
+    }
+
+
 
     private static void SetPlayerSettings()
     {
