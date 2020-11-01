@@ -55,23 +55,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Editor\AltUnityBuilder.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Editor\AltUnityEditorConfiguration.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Editor\AltUnityMyDevices.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Editor\AltUnityMyScenes.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Editor\AltUnityMyTest.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Editor\AltUnityPlatform.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Editor\AltUnityPortHandler.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Editor\AltUnityTesterEditor.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Editor\AltUnityTestRunListener.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Editor\AltUnityTestRunner.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Examples\Test\Editor\Testforscene1TestSample.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Examples\Test\Editor\TestForScene1WithOldSearch.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Examples\Test\Editor\TestForscene2DraggablePanel.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Examples\Test\Editor\TestForScene3DragAndDrop.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Examples\Test\Editor\TestForScene4NoCameras.cs" />
-     <Compile Include="Assets\altunitytester\Assets\AltUnityTester\Examples\Test\Editor\TestForScene5KeyboardAndMouseInput.cs" />
-     <Compile Include="Assets\altunitytester\Assets\Editor\BuildAltUnityTester.cs" />
      <Compile Include="Assets\AssetBundleManager\Editor\AssetbundlesMenuItems.cs" />
      <Compile Include="Assets\AssetBundleManager\Editor\BuildScript.cs" />
      <Compile Include="Assets\AssetBundleManager\Editor\ExecuteInternalMono.cs" />
@@ -93,39 +76,38 @@
      <Compile Include="Assets\Services\Analytics\Tracker\Trigger\Editor\TrackableTriggerDrawer.cs" />
      <Compile Include="Assets\Services\Analytics\Tracker\Trigger\Editor\TriggerListContainerDrawer.cs" />
      <Compile Include="Assets\Services\Analytics\Tracker\Trigger\Editor\TriggerRuleDrawer.cs" />
-     <None Include="Assets\altunitytester\Assets\AltUnityTester\Editor\DefaultTestExample.txt" />
  <Reference Include="UnityEditor.TestRunner">
- <HintPath>C:/Users/Andra Cardas/Desktop/TrashCat/trashcat/TrashCat/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+ <HintPath>C:/Users/Andra Cardas/Desktop/da/trashcat/TrashCat/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>C:/Users/Andra Cardas/Desktop/TrashCat/trashcat/TrashCat/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+ <HintPath>C:/Users/Andra Cardas/Desktop/da/trashcat/TrashCat/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/Andra Cardas/Desktop/TrashCat/trashcat/TrashCat/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Users/Andra Cardas/Desktop/da/trashcat/TrashCat/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/Andra Cardas/Desktop/TrashCat/trashcat/TrashCat/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>C:/Users/Andra Cardas/Desktop/da/trashcat/TrashCat/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/Andra Cardas/Desktop/TrashCat/trashcat/TrashCat/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/Andra Cardas/Desktop/da/trashcat/TrashCat/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/Andra Cardas/Desktop/TrashCat/trashcat/TrashCat/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/Andra Cardas/Desktop/da/trashcat/TrashCat/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/Andra Cardas/Desktop/TrashCat/trashcat/TrashCat/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/Andra Cardas/Desktop/da/trashcat/TrashCat/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/Andra Cardas/Desktop/TrashCat/trashcat/TrashCat/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>C:/Users/Andra Cardas/Desktop/da/trashcat/TrashCat/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/Andra Cardas/Desktop/TrashCat/trashcat/TrashCat/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/Users/Andra Cardas/Desktop/da/trashcat/TrashCat/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/Andra Cardas/Desktop/TrashCat/trashcat/TrashCat/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/Andra Cardas/Desktop/da/trashcat/TrashCat/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/Andra Cardas/Desktop/TrashCat/trashcat/TrashCat/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/Andra Cardas/Desktop/da/trashcat/TrashCat/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -313,11 +295,8 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="Newtonsoft.Json">
- <HintPath>C:/Users/Andra Cardas/Desktop/TrashCat/trashcat/TrashCat/Assets/altunitytester/Assets/AltUnityTester/3rdParty/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
- </Reference>
  <Reference Include="nunit.framework">
- <HintPath>C:/Users/Andra Cardas/Desktop/TrashCat/trashcat/TrashCat/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>C:/Users/Andra Cardas/Desktop/da/trashcat/TrashCat/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
