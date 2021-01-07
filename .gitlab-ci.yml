@@ -10,7 +10,7 @@ build-windows-with-altunity:
     script:
     - git submodule update --init --force
     - cd TrashCat/Assets/altunitytester
-    - git checkout d69e887d395cfd0aab2f0937f3cf3ae7376a3d70
+    - git checkout master
     - git pull
     - cd ../../..
     - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.WindowsBuildInspectorWithAltUnity -logFile buildWindows.log -quit
@@ -30,7 +30,7 @@ build-mac-with-altunity:
     script:
     - git submodule update --init --force
     - cd TrashCat/Assets/altunitytester
-    - git checkout d69e887d395cfd0aab2f0937f3cf3ae7376a3d70
+    - git checkout master
     - git pull
     - cd ../../..
     - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.MacOSBuildInspectorWithAltUnity -logFile buildMac.log -quit
