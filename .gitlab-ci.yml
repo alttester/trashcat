@@ -12,6 +12,7 @@ build-windows-with-altunity:
     - cd TrashCat/Assets/altunitytester
     - git checkout master
     - git pull
+    - git log -1
     - cd ../../..
     - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.WindowsBuildInspectorWithAltUnity -logFile buildWindows.log -quit
     - ls
@@ -32,6 +33,7 @@ build-mac-with-altunity:
     - cd TrashCat/Assets/altunitytester
     - git checkout master
     - git pull
+    - git log -1
     - cd ../../..
     - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.MacOSBuildInspectorWithAltUnity -logFile buildMac.log -quit
     - ls
