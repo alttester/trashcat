@@ -1,8 +1,9 @@
-﻿﻿using System;
+﻿﻿sing System;
 using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using Altom.Editor;
 
 public class BuildTrashCat
 {
@@ -45,7 +46,7 @@ public class BuildTrashCat
         BuildGame(buildPlayerOptions, withAltunity, port);
 
     }
-    
+
     [MenuItem("Build/macOSWithAltUnity")]
     static void MacOSBuildInspectorWithAltUnity()
     {
@@ -89,20 +90,20 @@ public class BuildTrashCat
 
     private static void SetPlayerSettings()
     {
-            PlayerSettings.companyName = "Altom";
-            PlayerSettings.productName = "TrashCat";
-            PlayerSettings.bundleVersion = "1.0";
-            PlayerSettings.resizableWindow = true;
-            PlayerSettings.defaultScreenHeight = 900;
-            PlayerSettings.defaultScreenWidth = 1200;
-            PlayerSettings.fullScreenMode = FullScreenMode.Windowed;
-            PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
-            PlayerSettings.runInBackground = true;
-        
+        PlayerSettings.companyName = "Altom";
+        PlayerSettings.productName = "TrashCat";
+        PlayerSettings.bundleVersion = "1.0";
+        PlayerSettings.resizableWindow = true;
+        PlayerSettings.defaultScreenHeight = 900;
+        PlayerSettings.defaultScreenWidth = 1200;
+        PlayerSettings.fullScreenMode = FullScreenMode.Windowed;
+        PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
+        PlayerSettings.runInBackground = true;
+
     }
 
-    
-    
+
+
 
     static void BuildGame(BuildPlayerOptions buildPlayerOptions, bool withAltUnity, int port = 13000)
     {
@@ -152,6 +153,6 @@ public class BuildTrashCat
         AltUnityBuilder.RemoveAltUnityTesterFromScriptingDefineSymbols(buildTargetGroup);
     }
 
-    
-    
+
+
 }
