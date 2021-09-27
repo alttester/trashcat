@@ -1,13 +1,12 @@
 stages:
-    - build-with-altunity
-   
+  - build-with-altunity
 
 build-windows-with-altunity:
-    stage: build-with-altunity
-    tags:
-      - unity
-      - mac
-    script:
+  stage: build-with-altunity
+  tags:
+    - unity
+    - mac
+  script:
     - git submodule update --init --force
     - cd TrashCat/Assets/altunitytester
     - git checkout master
@@ -16,19 +15,19 @@ build-windows-with-altunity:
     - cd ../../..
     - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.WindowsBuildInspectorWithAltUnity -logFile buildWindows.log -quit
     - ls
-    artifacts:
-      when: always
-      expire_in: 60 days
-      paths:
-        - TrashCat/TrashCatWindowsTest
-        - buildWindows.log
+  artifacts:
+    when: always
+    expire_in: 60 days
+    paths:
+      - TrashCat/TrashCatWindowsTest
+      - buildWindows.log
 
 build-mac-with-altunity:
-    stage: build-with-altunity
-    tags:
-      - unity
-      - mac
-    script:
+  stage: build-with-altunity
+  tags:
+    - unity
+    - mac
+  script:
     - git submodule update --init --force
     - cd TrashCat/Assets/altunitytester
     - git checkout master
@@ -37,9 +36,30 @@ build-mac-with-altunity:
     - cd ../../..
     - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.MacOSBuildInspectorWithAltUnity -logFile buildMac.log -quit
     - ls
-    artifacts:
-      when: always
-      expire_in: 60 days
-      paths:
-        - TrashCat/TrashCatTest.app
-        - buildMac.log
+  artifacts:
+    when: always
+    expire_in: 60 days
+    paths:
+      - TrashCat/TrashCatTest.app
+      - buildMac.log
+
+build-windows-with-proxy:
+  stage: build-with-altunity
+  tags:
+    - unity
+    - mac
+  script:
+    - git submodule update --init --force
+    - cd TrashCat/Assets/altunitytester
+    - git checkout master
+    - git pull
+    - git log -1
+    - cd ../../..
+    - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.WindowsBuildWithProxy -logFile buildWindows.log -quit
+    - ls
+  artifacts:
+    when: always
+    expire_in: 60 days
+    paths:
+      - TrashCat/TrashCatWindowsTest
+      - buildWindows.log

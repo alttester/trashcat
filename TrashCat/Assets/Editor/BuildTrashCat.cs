@@ -4,18 +4,22 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using Altom.Editor;
+using Altom.AltUnity.Instrumentation;
 
 public class BuildTrashCat
 {
 
-
-
     [MenuItem("Build/WindowsInspectorWithAltunity")]
     static void WindowsBuildInspectorWithAltUnity()
     {
-        WindowsBuildFromCommandLine(true, 13000);
+        WindowsBuildFromCommandLine(true, false, 13000);
     }
-    static void WindowsBuildFromCommandLine(bool withAltunity, int port = 13000)
+    [MenuItem("Build/WindowsBuildWithProxy")]
+    static void WindowsBuildWithProxy()
+    {
+        WindowsBuildFromCommandLine(true, true, 13000);
+    }
+    static void WindowsBuildFromCommandLine(bool withAltunity, bool withProxy, int port = 13000)
     {
         SetPlayerSettings();
 
@@ -43,16 +47,16 @@ public class BuildTrashCat
         {
             buildPlayerOptions.options = BuildOptions.Development;
         }
-        BuildGame(buildPlayerOptions, withAltunity, port);
+        BuildGame(buildPlayerOptions, withAltunity, withProxy, port);
 
     }
 
     [MenuItem("Build/macOSWithAltUnity")]
     static void MacOSBuildInspectorWithAltUnity()
     {
-        MacOSBuildFromCommandLine(true, 13000);
+        MacOSBuildFromCommandLine(true, false, 13000);
     }
-    private static void MacOSBuildFromCommandLine(bool withAltUnity, int port = 13000)
+    private static void MacOSBuildFromCommandLine(bool withAltUnity, bool withProxy, int port = 13000)
     {
         SetPlayerSettings();
         PlayerSettings.macRetinaSupport = true;
@@ -82,7 +86,7 @@ public class BuildTrashCat
             buildPlayerOptions.options = BuildOptions.Development;
         }
 
-        BuildGame(buildPlayerOptions, withAltUnity, port);
+        BuildGame(buildPlayerOptions, withAltUnity, withProxy, port);
 
     }
 
@@ -105,13 +109,13 @@ public class BuildTrashCat
 
 
 
-    static void BuildGame(BuildPlayerOptions buildPlayerOptions, bool withAltUnity, int port = 13000)
+    static void BuildGame(BuildPlayerOptions buildPlayerOptions, bool withAltUnity, bool withProxy, int port = 13000)
     {
         try
         {
             if (withAltUnity)
             {
-                AddAltUnity(buildPlayerOptions.targetGroup, buildPlayerOptions.scenes[0], port);
+                AddAltUnity(buildPlayerOptions.targetGroup, buildPlayerOptions.scenes[0], withProxy, port);
             }
             var results = BuildPipeline.BuildPlayer(buildPlayerOptions);
 
@@ -141,11 +145,22 @@ public class BuildTrashCat
             // EditorApplication.Exit(1);
         }
     }
-    static void AddAltUnity(BuildTargetGroup buildTargetGroup, string firstSceneName, int port = 13000)
+    static void AddAltUnity(BuildTargetGroup buildTargetGroup, string firstSceneName, bool withProxy, int port = 13000)
     {
         AltUnityBuilder.PreviousScenePath = firstSceneName;
+        var instrumentationSettings = new AltUnityInstrumentationSettings();
+        if (withProxy)
+        {
+            instrumentationSettings.InstrumentationMode = AltUnityInstrumentationMode.Proxy;
+            instrumentationSettings.ProxyPort = port;
+        }
+        else
+        {
+            instrumentationSettings.InstrumentationMode = AltUnityInstrumentationMode.Server;
+            instrumentationSettings.ServerPort = port;
+        }
         AltUnityBuilder.AddAltUnityTesterInScritpingDefineSymbolsGroup(buildTargetGroup);
-        AltUnityBuilder.InsertAltUnityInScene(firstSceneName, port);
+        AltUnityBuilder.InsertAltUnityInScene(firstSceneName, instrumentationSettings);
 
     }
     static void RemoveAltUnity(BuildTargetGroup buildTargetGroup)
