@@ -55,11 +55,14 @@ build-android-with-altunity:
     - git pull
     - git log -1
     - cd ../../..
-    - PROXY_HOST=$PROXY_HOST $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.AndroidBuild -logFile buildWindows.log -quit
+    - $UNITY_2019_2_HOME -batchmode -buildTarget Android -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod AssetBundles.AssetBundlesMenuItems.BuildAssetBundles -logFile buildAssetBundles.log -quit
+    - cp -rf TrashCat/AssetBundles/Android TrashCat/Assets/StreamingAssets/AssetBundles/Android
+    - PROXY_HOST=$PROXY_HOST $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.AndroidBuild -logFile buildAndroid.log -quit
     - ls
   artifacts:
     when: always
     expire_in: 60 days
     paths:
       - TrashCat/TraschatAndroidTest
-      - buildWindows.log
+      - buildAssetBundles.log
+      - buildAndroid.log
