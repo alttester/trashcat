@@ -55,7 +55,7 @@ build-android-with-altunity:
     - git pull
     - git log -1
     - cd ../../..
-    - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.AndroidBuild -logFile buildWindows.log -quit
+    - PROXY_HOST=$PROXY_HOST $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.AndroidBuild -logFile buildWindows.log -quit
     - ls
   artifacts:
     when: always
