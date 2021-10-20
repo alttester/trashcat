@@ -43,7 +43,7 @@ build-mac-with-altunity:
       - TrashCat/TrashCatTest.app
       - buildMac.log
 
-build-windows-with-proxy:
+build-android-with-altunity:
   stage: build-with-altunity
   tags:
     - unity
@@ -55,11 +55,11 @@ build-windows-with-proxy:
     - git pull
     - git log -1
     - cd ../../..
-    - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.WindowsBuildWithProxy -logFile buildWindows.log -quit
+    - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.AndroidBuild -logFile buildWindows.log -quit
     - ls
   artifacts:
     when: always
     expire_in: 60 days
     paths:
-      - TrashCat/TrashCatWindowsTest
+      - TrashCat/TraschatAndroidTest
       - buildWindows.log
