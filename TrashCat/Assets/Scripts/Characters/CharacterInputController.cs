@@ -156,7 +156,7 @@ public class CharacterInputController : MonoBehaviour
 	
 	protected void Update ()
     {
-#if UNITY_EDITOR || UNITY_STANDALONE
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL
         // Use key input in editor or standalone
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {

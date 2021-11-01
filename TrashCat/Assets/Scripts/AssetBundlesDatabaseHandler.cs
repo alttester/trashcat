@@ -22,7 +22,7 @@ public class AssetBundlesDatabaseHandler
 
         // Android store streams assets in a compressed archive, so different file system.
 #if !UNITY_EDITOR
-#if UNITY_ANDROID
+#if UNITY_ANDROID || UNITY_WEBGL
         AssetBundleManager.BaseDownloadingURL = Application.streamingAssetsPath + "/AssetBundles/"+Utility.GetPlatformName()+"/";
 #else
         AssetBundleManager.BaseDownloadingURL = "file://" + Application.streamingAssetsPath + "/AssetBundles/"+Utility.GetPlatformName()+"/";
