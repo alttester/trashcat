@@ -3,8 +3,8 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using Altom.Editor;
-using Altom.AltUnity.Instrumentation;
+using Altom.AltUnityTester;
+using Altom.AltUnityTesterEditor;
 
 public class BuildTrashCat
 {
@@ -178,7 +178,7 @@ public class BuildTrashCat
   {
     AltUnityBuilder.PreviousScenePath = firstSceneName;
     var instrumentationSettings = new AltUnityInstrumentationSettings();
-    instrumentationSettings.ProxyPort = proxyPort;
+    instrumentationSettings.AltUnityTesterPort = proxyPort;
     if (!string.IsNullOrEmpty(proxyHost)) instrumentationSettings.ProxyHost = proxyHost;
     AltUnityBuilder.AddAltUnityTesterInScritpingDefineSymbolsGroup(buildTargetGroup);
     AltUnityBuilder.InsertAltUnityInScene(firstSceneName, instrumentationSettings);
