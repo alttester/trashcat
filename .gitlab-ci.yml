@@ -35,7 +35,7 @@ build-mac-with-altunity:
     - git log -1
     - cd ../../..
     - $UNITY_2019_2_HOME -batchmode -buildTarget StandaloneOSX -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod AssetBundles.AssetBundlesMenuItems.BuildAssetBundles -logFile buildAssetBundles.log -quit
-    - cp -rf TrashCat/AssetBundles/OSX TrashCat/Assets/StreamingAssets/AssetBundles/StandaloneOSX
+    - cp -rf TrashCat/AssetBundles/OSX TrashCat/Assets/StreamingAssets/AssetBundles/OSX
     - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.MacOSBuildInspectorWithAltUnity -logFile buildMac.log -quit
     - ls
   artifacts:
