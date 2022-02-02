@@ -27,6 +27,12 @@ public class BuildTrashCat
   {
     MacOSBuildFromCommandLine(true, 13000);
   }
+
+  [MenuItem("Build/iOSWithAltUnity")]
+  static void IOSBuildWithAltUnity()
+  {
+    IOSBuildFromCommandLine(true,13000);
+  }
   static void WindowsBuildFromCommandLine(bool withAltunity, int proxyPort = 13000)
   {
     SetPlayerSettings();
@@ -59,6 +65,46 @@ public class BuildTrashCat
 
   }
 
+  static void IOSBuildFromCommandLine(bool withAltUnity, int port = 13000)
+  {
+    PlayerSettings.companyName = "Altom";
+    PlayerSettings.productName = "TrashCat";
+    PlayerSettings.bundleVersion = "1.0";
+    PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, "fi.altom.trashcat");
+    PlayerSettings.iOS.appleEnableAutomaticSigning = true;
+    PlayerSettings.iOS.appleDeveloperTeamID = "59ESG8ELF5";
+    PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.iOS, ApiCompatibilityLevel.NET_4_6);
+    PlayerSettings.stripEngineCode = false;
+    PlayerSettings.aotOptions = "ByteCode";
+    
+    Debug.Log("Starting iOS build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
+
+
+    BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+    buildPlayerOptions.scenes = new string[]
+    {
+            "Assets/Scenes/Main.unity",
+            "Assets/Scenes/Shop.unity",
+            "Assets/Scenes/Start.unity"
+    };
+    if (withAltunity)
+    {
+      buildPlayerOptions.locationPathName = "TrashCatiOSTest/TrashCatiOS";
+    }
+    else
+    {
+      buildPlayerOptions.locationPathName = "TrashCatiOS/TrashCatiOS";
+
+    }
+    buildPlayerOptions.target = BuildTarget.iOS;
+    buildPlayerOptions.targetGroup = BuildTargetGroup.iOS;
+    if (withAltunity)
+    {
+      buildPlayerOptions.options = BuildOptions.Development;
+    }
+    BuildGame(buildPlayerOptions, withAltunity, proxyHost, port);
+
+  }
   static void AndroidBuildFromCommandLine(bool withAltunity, string proxyHost, int proxyPort = 13000)
   {
     SetPlayerSettings();
