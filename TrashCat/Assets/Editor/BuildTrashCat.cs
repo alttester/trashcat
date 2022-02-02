@@ -31,7 +31,9 @@ public class BuildTrashCat
   [MenuItem("Build/iOSWithAltUnity")]
   static void IOSBuildWithAltUnity()
   {
-    IOSBuildFromCommandLine(true,13000);
+    string proxyHost = System.Environment.GetEnvironmentVariable("PROXY_HOST");
+
+    IOSBuildFromCommandLine(true,proxyHost,13000);
   }
   static void WindowsBuildFromCommandLine(bool withAltunity, int proxyPort = 13000)
   {
@@ -65,7 +67,7 @@ public class BuildTrashCat
 
   }
 
-  static void IOSBuildFromCommandLine(bool withAltUnity, int port = 13000)
+  static void IOSBuildFromCommandLine(bool withAltunity,string proxyHost, int port = 13000)
   {
     PlayerSettings.companyName = "Altom";
     PlayerSettings.productName = "TrashCat";
