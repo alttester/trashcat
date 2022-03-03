@@ -45,6 +45,29 @@ build-mac-with-altunity:
       - TrashCat/TrashCatTest.app
       - buildMac.log
 
+build-mac-with-altunity-il2cpp:
+  stage: build-with-altunity
+  tags:
+    - unity
+    - mac
+  script:
+    - git submodule update --init --force
+    - cd TrashCat/Assets/altunitytester
+    - git checkout master
+    - git pull
+    - git log -1
+    - cd ../../..
+    - $UNITY_2019_2_HOME -batchmode -buildTarget StandaloneOSX -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod AssetBundles.AssetBundlesMenuItems.BuildAssetBundles -logFile buildAssetBundles.log -quit
+    - cp -rf TrashCat/AssetBundles/OSX TrashCat/Assets/StreamingAssets/AssetBundles/OSX
+    - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.MacOSBuildInspectorWithAltUnityIL2CPP -logFile buildMac.log -quit
+    - ls
+  artifacts:
+    when: always
+    expire_in: 60 days
+    paths:
+      - TrashCatIL2CPP/TrashCatTestIL2CPP.app
+      - buildMac.log
+
 build-android-with-altunity:
   stage: build-with-altunity
   tags:
@@ -69,32 +92,32 @@ build-android-with-altunity:
       - buildAssetBundles.log
       - buildAndroid.log
 
-build-ios-with-altunity:
-  stage: build-with-altunity
-  tags:
-    - unity
-    - mac
-  script:
-    - git submodule update --init --force
-    - cd TrashCat/Assets/altunitytester
-    - git checkout master
-    - git pull
-    - git log -1
-    - cd ../../..
-    - $UNITY_2019_2_HOME -batchmode -buildTarget iOS -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod AssetBundles.AssetBundlesMenuItems.BuildAssetBundles -logFile buildAssetBundles.log -quit
-    - cp -rf TrashCat/AssetBundles/iOS TrashCat/Assets/StreamingAssets/AssetBundles/iOS
-    - $UNITY_2019_2_HOME -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.IOSBuildWithAltUnity -logFile buildiOS.log
-    - cd goalkeeperios
-    - xcodebuild -project ${CI_PROJECT_DIR}/TrashCatiOSTest/TrashCatiOS/Unity-iPhone.xcodeproj -scheme Unity-iPhone -configuration "Debug" -archivePath ${CI_PROJECT_DIR}/TrashCatiOSTest/TrashCatiOS/trashcat archive
-    - ls
-    - xcodebuild -exportArchive -archivePath ${CI_PROJECT_DIR}/TrashCatiOSTest/TrashCatiOS/trashcat.xcarchive  -exportPath ${CI_PROJECT_DIR}/TrashCatiOSTest/TrashCatiOS/trashcat.ipa -exportOptionsPlist /${CI_PROJECT_DIR}/TrashCatiOSTest/TrashCatiOS/Info.plist
-    - ls
-  artifacts:
-    when: always
-    expire_in: 60 days
-    paths:
-      - TrashCat/TrashCatiOS/TrashCat.ipa
-      - buildiOS.log
+# build-ios-with-altunity:
+#   stage: build-with-altunity
+#   tags:
+#     - unity
+#     - mac
+#   script:
+#     - git submodule update --init --force
+#     - cd TrashCat/Assets/altunitytester
+#     - git checkout master
+#     - git pull
+#     - git log -1
+#     - cd ../../..
+#     - $UNITY_2019_2_HOME -batchmode -buildTarget iOS -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod AssetBundles.AssetBundlesMenuItems.BuildAssetBundles -logFile buildAssetBundles.log -quit
+#     - cp -rf TrashCat/AssetBundles/iOS TrashCat/Assets/StreamingAssets/AssetBundles/iOS
+#     - $UNITY_2019_2_HOME -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.IOSBuildWithAltUnity -logFile buildiOS.log
+#     - cd goalkeeperios
+#     - xcodebuild -project ${CI_PROJECT_DIR}/TrashCatiOSTest/TrashCatiOS/Unity-iPhone.xcodeproj -scheme Unity-iPhone -configuration "Debug" -archivePath ${CI_PROJECT_DIR}/TrashCatiOSTest/TrashCatiOS/trashcat archive
+#     - ls
+#     - xcodebuild -exportArchive -archivePath ${CI_PROJECT_DIR}/TrashCatiOSTest/TrashCatiOS/trashcat.xcarchive  -exportPath ${CI_PROJECT_DIR}/TrashCatiOSTest/TrashCatiOS/trashcat.ipa -exportOptionsPlist /${CI_PROJECT_DIR}/TrashCatiOSTest/TrashCatiOS/Info.plist
+#     - ls
+#   artifacts:
+#     when: always
+#     expire_in: 60 days
+#     paths:
+#       - TrashCat/TrashCatiOS/TrashCat.ipa
+#       - buildiOS.log
 
 
 

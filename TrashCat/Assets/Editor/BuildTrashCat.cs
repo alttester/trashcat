@@ -27,6 +27,12 @@ public class BuildTrashCat
   {
     MacOSBuildFromCommandLine(true, 13000);
   }
+  
+  [MenuItem("Build/macOSWithAltUnityIL2CPP")]
+  static void MacOSBuildInspectorWithAltUnityIL2CPP()
+  {
+    MacOSBuildFromCommandLineIL2CPP(true, 13000);
+  }
 
   [MenuItem("Build/iOSWithAltUnity")]
   static void IOSBuildWithAltUnity()
@@ -37,7 +43,7 @@ public class BuildTrashCat
   }
   static void WindowsBuildFromCommandLine(bool withAltunity, int proxyPort = 13000)
   {
-    SetPlayerSettings();
+    SetPlayerSettings(false);
 
     Debug.Log("Starting Windows build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
     BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
@@ -109,7 +115,7 @@ public class BuildTrashCat
   }
   static void AndroidBuildFromCommandLine(bool withAltunity, string proxyHost, int proxyPort = 13000)
   {
-    SetPlayerSettings();
+    SetPlayerSettings(false);
 
     Debug.Log("Starting Android build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
     BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
@@ -140,7 +146,7 @@ public class BuildTrashCat
 
   private static void MacOSBuildFromCommandLine(bool withAltUnity, int proxyPort = 13000)
   {
-    SetPlayerSettings();
+    SetPlayerSettings(false);
     PlayerSettings.macRetinaSupport = true;
 
     Debug.Log("Starting Mac build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
@@ -172,8 +178,43 @@ public class BuildTrashCat
 
   }
 
+    private static void MacOSBuildFromCommandLineIL2CPP(bool withAltUnity, int proxyPort = 13000)
+  {
+    SetPlayerSettings(true);
+    PlayerSettings.macRetinaSupport = true;
 
-  private static void SetPlayerSettings()
+    Debug.Log("Starting Mac build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
+    BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+    buildPlayerOptions.scenes = new string[]
+    {
+            "Assets/Scenes/Main.unity",
+            "Assets/Scenes/Shop.unity",
+            "Assets/Scenes/Start.unity"
+    };
+    if (withAltUnity)
+    {
+      buildPlayerOptions.locationPathName = "TrashCatTestIL2CPP.app";
+
+    }
+    else
+    {
+      buildPlayerOptions.locationPathName = "TrashCatIL2CPP.app";
+
+    }
+    buildPlayerOptions.target = BuildTarget.StandaloneOSX;
+    buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
+    if (withAltUnity)
+    {
+      buildPlayerOptions.options = BuildOptions.Development;
+    }
+
+    BuildGame(buildPlayerOptions, withAltUnity, proxyPort: proxyPort);
+
+  }
+
+
+
+  private static void SetPlayerSettings(bool customBuild)
   {
     PlayerSettings.companyName = "Altom";
     PlayerSettings.productName = "TrashCat";
@@ -184,6 +225,11 @@ public class BuildTrashCat
     PlayerSettings.fullScreenMode = FullScreenMode.Windowed;
     PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
     PlayerSettings.runInBackground = true;
+    if(customBuild)
+    {
+      PlayerSettings.SetScriptingBackend(BuildTargetGroup.Standalone, ScriptingImplementation.IL2CPP);
+      PlayerSettings.SetManagedStrippingLevel(BuildTargetGroup.Standalone, ManagedStrippingLevel.Medium);
+    }
 
   }
   static void BuildGame(BuildPlayerOptions buildPlayerOptions, bool withAltUnity, string proxyHost = null, int proxyPort = 13000)
