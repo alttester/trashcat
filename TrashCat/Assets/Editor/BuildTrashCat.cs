@@ -34,6 +34,12 @@ public class BuildTrashCat
     MacOSBuildFromCommandLineIL2CPP(true, 13000);
   }
 
+  [MenuItem("Build/windowsWithAltUnityIL2CPP")]
+  static void WindowsBuildInspectorWithAltUnityIL2CPP()
+  {
+    WindowsBuildFromCommandLineIL2CPP(true, 13000);
+  }
+
   [MenuItem("Build/iOSWithAltUnity")]
   static void IOSBuildWithAltUnity()
   {
@@ -72,6 +78,7 @@ public class BuildTrashCat
     BuildGame(buildPlayerOptions, withAltunity, proxyPort: proxyPort);
 
   }
+
 
   static void IOSBuildFromCommandLine(bool withAltunity,string proxyHost, int port = 13000)
   {
@@ -212,6 +219,38 @@ public class BuildTrashCat
 
   }
 
+  static void WindowsBuildFromCommandLineIL2CPP(bool withAltunity, int proxyPort = 13000)
+  {
+    SetPlayerSettings(true);
+
+    Debug.Log("Starting Windows build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
+    BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+    buildPlayerOptions.scenes = new string[]
+    {
+            "Assets/Scenes/Main.unity",
+            "Assets/Scenes/Shop.unity",
+            "Assets/Scenes/Start.unity"
+    };
+    if (withAltunity)
+    {
+      buildPlayerOptions.locationPathName = "TrashCatWindowsTest/TrashCatIL2CPP.exe";
+
+    }
+    else
+    {
+      buildPlayerOptions.locationPathName = "TrashCatWindows/TrashCatIL2CPP.exe";
+
+    }
+    buildPlayerOptions.target = BuildTarget.StandaloneWindows;
+    buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
+    if (withAltunity)
+    {
+      buildPlayerOptions.options = BuildOptions.Development;
+    }
+    BuildGame(buildPlayerOptions, withAltunity, proxyPort: proxyPort);
+
+  }
+
 
 
   private static void SetPlayerSettings(bool customBuild)
@@ -228,7 +267,6 @@ public class BuildTrashCat
     if(customBuild)
     {
       PlayerSettings.SetScriptingBackend(BuildTargetGroup.Standalone, ScriptingImplementation.IL2CPP);
-      PlayerSettings.SetManagedStrippingLevel(BuildTargetGroup.Standalone, ManagedStrippingLevel.Medium);
     }
 
   }
