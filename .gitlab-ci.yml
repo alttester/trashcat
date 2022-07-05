@@ -13,7 +13,7 @@ build-windows-with-altunity:
     - git pull
     - git log -1
     - cd ../../..
-    - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.WindowsBuildInspectorWithAltUnity -logFile buildWindows.log -quit
+    - $UNITY_2021_3_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.WindowsBuildInspectorWithAltUnity -logFile buildWindows.log -quit
     - ls
   artifacts:
     when: always
@@ -34,9 +34,9 @@ build-mac-with-altunity:
     - git pull
     - git log -1
     - cd ../../..
-    - $UNITY_2019_2_HOME -batchmode -buildTarget StandaloneOSX -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod AssetBundles.AssetBundlesMenuItems.BuildAssetBundles -logFile buildAssetBundles.log -quit
+    - $UNITY_2021_3_HOME -batchmode -buildTarget StandaloneOSX -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod AssetBundles.AssetBundlesMenuItems.BuildAssetBundles -logFile buildAssetBundles.log -quit
     - cp -rf TrashCat/AssetBundles/OSX TrashCat/Assets/StreamingAssets/AssetBundles/OSX
-    - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.MacOSBuildInspectorWithAltUnity -logFile buildMac.log -quit
+    - $UNITY_2021_3_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.MacOSBuildInspectorWithAltUnity -logFile buildMac.log -quit
     - ls
   artifacts:
     when: always
@@ -57,9 +57,9 @@ build-mac-with-altunity-il2cpp:
     - git pull
     - git log -1
     - cd ../../..
-    - $UNITY_2019_2_HOME -batchmode -buildTarget StandaloneOSX -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod AssetBundles.AssetBundlesMenuItems.BuildAssetBundles -logFile buildAssetBundles.log -quit
+    - $UNITY_2021_3_HOME -batchmode -buildTarget StandaloneOSX -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod AssetBundles.AssetBundlesMenuItems.BuildAssetBundles -logFile buildAssetBundles.log -quit
     - cp -rf TrashCat/AssetBundles/OSX TrashCat/Assets/StreamingAssets/AssetBundles/OSX
-    - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.MacOSBuildInspectorWithAltUnityIL2CPP -logFile buildMac.log -quit
+    - $UNITY_2021_3_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.MacOSBuildInspectorWithAltUnityIL2CPP -logFile buildMac.log -quit
     - ls
   artifacts:
     when: always
@@ -80,7 +80,7 @@ build-windows-with-altunity-il2cpp:
     - git pull
     - git log -1
     - cd ../../..
-    - $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.WindowsBuildInspectorWithAltUnityIL2CPP -logFile buildWindows.log -quit
+    - $UNITY_2021_3_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.WindowsBuildInspectorWithAltUnityIL2CPP -logFile buildWindows.log -quit
     - ls
   artifacts:
     when: always
@@ -101,9 +101,9 @@ build-android-with-altunity:
     - git pull
     - git log -1
     - cd ../../..
-    - $UNITY_2019_2_HOME -batchmode -buildTarget Android -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod AssetBundles.AssetBundlesMenuItems.BuildAssetBundles -logFile buildAssetBundles.log -quit
+    - $UNITY_2021_3_HOME -batchmode -buildTarget Android -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod AssetBundles.AssetBundlesMenuItems.BuildAssetBundles -logFile buildAssetBundles.log -quit
     - cp -rf TrashCat/AssetBundles/Android TrashCat/Assets/StreamingAssets/AssetBundles/Android
-    - PROXY_HOST=$PROXY_HOST $UNITY_2019_2_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.AndroidBuild -logFile buildAndroid.log -quit
+    - PROXY_HOST=$PROXY_HOST $UNITY_2021_3_HOME -batchmode -projectPath ${CI_PROJECT_DIR}/TrashCat -executeMethod BuildTrashCat.AndroidBuild -logFile buildAndroid.log -quit
     - ls
   artifacts:
     when: always
