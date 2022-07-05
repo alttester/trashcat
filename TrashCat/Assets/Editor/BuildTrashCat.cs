@@ -3,8 +3,8 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using Altom.AltUnityTester;
-using Altom.AltUnityTesterEditor;
+using Altom.AltUnity.Instrumentation;
+using Altom.Editor;
 
 public class BuildTrashCat
 {
@@ -27,7 +27,7 @@ public class BuildTrashCat
   {
     MacOSBuildFromCommandLine(true, 13000);
   }
-  
+
   [MenuItem("Build/macOSWithAltUnityIL2CPP")]
   static void MacOSBuildInspectorWithAltUnityIL2CPP()
   {
@@ -91,7 +91,7 @@ public class BuildTrashCat
     PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.iOS, ApiCompatibilityLevel.NET_4_6);
     PlayerSettings.stripEngineCode = false;
     PlayerSettings.aotOptions = "ByteCode";
-    
+
     Debug.Log("Starting iOS build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
 
 
@@ -310,7 +310,7 @@ public class BuildTrashCat
   {
     AltUnityBuilder.PreviousScenePath = firstSceneName;
     var instrumentationSettings = new AltUnityInstrumentationSettings();
-    instrumentationSettings.AltUnityTesterPort = proxyPort;
+    instrumentationSettings.ProxyPort = proxyPort;
     if (!string.IsNullOrEmpty(proxyHost)) instrumentationSettings.ProxyHost = proxyHost;
     AltUnityBuilder.AddAltUnityTesterInScritpingDefineSymbolsGroup(buildTargetGroup);
     AltUnityBuilder.InsertAltUnityInScene(firstSceneName, instrumentationSettings);
