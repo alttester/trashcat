@@ -9,7 +9,7 @@ build-windows-with-altunity:
   script:
     - git submodule update --init --force
     - cd TrashCat/Assets/altunitytester
-    - git checkout v.1.7.0-alpha-without-newtonsoft-json
+    - git checkout feature-proxy
     - git pull
     - git log -1
     - cd ../../..
@@ -30,7 +30,7 @@ build-mac-with-altunity:
   script:
     - git submodule update --init --force
     - cd TrashCat/Assets/altunitytester
-    - git checkout v.1.7.0-alpha-without-newtonsoft-json
+    - git checkout feature-proxy
     - git pull
     - git log -1
     - cd ../../..
@@ -53,7 +53,7 @@ build-mac-with-altunity-il2cpp:
   script:
     - git submodule update --init --force
     - cd TrashCat/Assets/altunitytester
-    - git checkout v.1.7.0-alpha-without-newtonsoft-json
+    - git checkout feature-proxy
     - git pull
     - git log -1
     - cd ../../..
@@ -76,7 +76,7 @@ build-windows-with-altunity-il2cpp:
   script:
     - git submodule update --init --force
     - cd TrashCat/Assets/altunitytester
-    - git checkout v.1.7.0-alpha-without-newtonsoft-json
+    - git checkout feature-proxy
     - git pull
     - git log -1
     - cd ../../..
@@ -97,7 +97,7 @@ build-android-with-altunity:
   script:
     - git submodule update --init --force
     - cd TrashCat/Assets/altunitytester
-    - git checkout v.1.7.0-alpha-without-newtonsoft-json
+    - git checkout feature-proxy
     - git pull
     - git log -1
     - cd ../../..

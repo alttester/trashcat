@@ -3,8 +3,8 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using Altom.AltUnity.Instrumentation;
-using Altom.Editor;
+using Altom.AltUnityTester;
+using Altom.AltUnityTesterEditor;
 
 public class BuildTrashCat
 {
