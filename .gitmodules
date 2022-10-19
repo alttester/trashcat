@@ -1,3 +1,3 @@
-[submodule "TrashCat/Assets/altunitytester"]
-	path = TrashCat/Assets/altunitytester
-	url = https://gitlab.com/altom/altunity/altunitytester.git
+[submodule "TrashCat/Assets/AltTesterUnitySDK"]
+	path = TrashCat/Assets/AltTesterUnitySDK
+	url = https://github.com/alttester/AltTester-Unity-SDK
