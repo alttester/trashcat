@@ -12,7 +12,7 @@ jobs:
         run: git submodule update --init --force
         
       - name: Go to Trashcat
-        run: cd Trash TrashCat
+        run: cd TrashCat
 
       - uses: actions/cache@v2
         with:
