@@ -1,6 +1,5 @@
 name: Build TrashCat
-on:
-  workflow_dispatch: {}
+on: [push]
 jobs:
   build-windows:
     runs-on: [macos-latest]
@@ -24,7 +23,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           projectPath: TrashCat/
-          targetPlatform: StandaloneWindows
+          targetPlatform: StandaloneOSX
       - uses: actions/upload-artifact@v2
         with:
-          path: TrashCatWindowsTest
+          path: TrashCat
