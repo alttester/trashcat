@@ -7,6 +7,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        
+      - name: Init submodule
+        run: git submodule update --init --force
+        
+      - name: Go to Trashcat
+        run: cd Trash TrashCat
 
       - uses: actions/cache@v2
         with:
