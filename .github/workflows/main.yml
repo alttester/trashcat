@@ -10,9 +10,6 @@ jobs:
         
       - name: Init submodule
         run: git submodule update --init --force
-        
-      - name: Go to Trashcat
-        run: cd TrashCat
 
       - uses: actions/cache@v2
         with:
@@ -27,6 +24,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
+          projectPath: TrashCat/
           buildMethod: BuildTrashCat.WindowsBuildInspectorWithAltUnity
           targetPlatform: StandaloneWindows
       - uses: actions/upload-artifact@v2
