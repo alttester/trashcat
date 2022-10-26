@@ -1,16 +1,18 @@
-name: Acquire activation file
+name: Build TrashCat
 on:
   workflow_dispatch: {}
 jobs:
-  activation:
-    name: Request manual activation file
-    runs-on: ubuntu-latest
+  build-windows:
+    runs-on: [macos-latest]
     steps:
-      - name: Request manual activation file
-        id: getManualLicenseFile
-        uses: game-ci/unity-request-activation-file@v2
-      - name: Expose as artifact
-        uses: actions/upload-artifact@v2
+      - uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          name: ${{ steps.getManualLicenseFile.outputs.filePath }}
-          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+          buildMethod: BuildTrashCat.WindowsBuildInspectorWithAltUnity
+          targetPlatform: StandaloneWindows
+      - uses: actions/upload-artifact@v2
+        with:
+          path: TrashCatWindowsTest
