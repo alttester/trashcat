@@ -10,21 +10,21 @@ jobs:
     strategy:
       fail-fast: false
 
-    # matrix:
-    #   name:
-    #     - macOSWithAltTester
-    #     - WindowsWithAltTester
-    #     - iOSWithAltTester
-    #     - AndroidWithAltTester
-    #     - macOSWithAltTesterIL2CPP
-    #     - WindowsWithAltTesterIL2CPP
-    #   include:
-    #     - name: macOSWithAltTester
-    #       targetPlatform: StandaloneOSX
-    #       buildMethod: BuildTrashCat.macOSBuildWithAltTester
-    #     - name: WindowsWithAltTester
-    #       targetPlatform: StandaloneWindows
-    #       buildMethod: BuildTrashCat.WindowsBuildWithAltTester
+    matrix:
+      name:
+        - macOSWithAltTester
+        - WindowsWithAltTester
+      #     - iOSWithAltTester
+      #     - AndroidWithAltTester
+      #     - macOSWithAltTesterIL2CPP
+      #     - WindowsWithAltTesterIL2CPP
+      include:
+        - name: macOSWithAltTester
+          targetPlatform: StandaloneOSX
+          buildMethod: BuildTrashCat.macOSBuildWithAltTester
+        - name: WindowsWithAltTester
+          targetPlatform: StandaloneWindows
+          buildMethod: BuildTrashCat.WindowsBuildWithAltTester
     #     - name: iOSWithAltTester
     #       targetPlatform: iOS
     #       buildMethod: BuildTrashCat.iOSBuildWithAltTester
@@ -48,8 +48,8 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: TrashCat/Library
-          key: Library-StandaloneWindows64
-          restore-keys: Library-StandaloneWindows64
+          key: Library-${{ matrix.name }}
+          restore-keys: Library-${{ matrix.name }}
 
       - uses: game-ci/unity-builder@v2
         env:
@@ -58,12 +58,10 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           projectPath: TrashCat/
-          # targetPlatform: Android
-          # buildMethod: BuildTrashCat.AndroidBuild
-          targetPlatform: StandaloneWindows
-          buildMethod: BuildTrashCat.WindowsBuildWithAltTester
+          targetPlatform: ${{ matrix.targetPlatform }}
+          buildMethod: ${{ matrix.buildMethod }}
 
       - uses: actions/upload-artifact@v2
         with:
-          name: Builds
+          name: ${{ matrix.name }}
           path: TrashCat/Builds
