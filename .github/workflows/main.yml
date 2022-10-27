@@ -17,8 +17,8 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           projectPath: TrashCat/
-          targetPlatform: StandaloneWindows
-          buildMethod: BuildTrashCat.WindowsBuildInspectorWithAltUnity
+          targetPlatform: StandaloneOSX
+          buildMethod: BuildTrashCat.MacOSBuildInspectorWithAltUnity
       - uses: actions/upload-artifact@v2
         with:
           path: build
