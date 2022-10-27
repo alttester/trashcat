@@ -9,12 +9,12 @@ using Altom.AltTesterEditor;
 public class BuildTrashCat
 {
 
-    [MenuItem("Build/WindowsWithAltunity")]
-    static void WindowsBuildInspectorWithAltUnity()
+    [MenuItem("Build/WindowsWithAltTester")]
+    static void WindowsBuildWithAltTester()
     {
         WindowsBuildFromCommandLine(true, 13000);
     }
-    [MenuItem("Build/AndroidWithAltUnity")]
+    [MenuItem("Build/AndroidWithAltTester")]
     static void AndroidBuild()
     {
         string proxyHost = System.Environment.GetEnvironmentVariable("PROXY_HOST");
@@ -22,32 +22,32 @@ public class BuildTrashCat
         AndroidBuildFromCommandLine(true, proxyHost, 13000);
     }
 
-    [MenuItem("Build/macOSWithAltUnity")]
-    static void MacOSBuildInspectorWithAltUnity()
+    [MenuItem("Build/macOSWithAltTester")]
+    static void MacOSBuildWithAltTester()
     {
-        MacOSBuildFromCommandLine(true, 13000);
+        macOSBuildFromCommandLine(true, 13000);
     }
 
-    [MenuItem("Build/macOSWithAltUnityIL2CPP")]
-    static void MacOSBuildInspectorWithAltUnityIL2CPP()
+    [MenuItem("Build/macOSWithAltTesterIL2CPP")]
+    static void MacOSBuildWithAltTesterIL2CPP()
     {
-        MacOSBuildFromCommandLineIL2CPP(true, 13000);
+        macOSBuildFromCommandLineIL2CPP(true, 13000);
     }
 
-    [MenuItem("Build/windowsWithAltUnityIL2CPP")]
-    static void WindowsBuildInspectorWithAltUnityIL2CPP()
+    [MenuItem("Build/WindowsWithAltTesterIL2CPP")]
+    static void WindowsBuildWithAltTesterIL2CPP()
     {
         WindowsBuildFromCommandLineIL2CPP(true, 13000);
     }
 
-    [MenuItem("Build/iOSWithAltUnity")]
-    static void IOSBuildWithAltUnity()
+    [MenuItem("Build/iOSWithAltTester")]
+    static void iOSBuildWithAltTester()
     {
         string proxyHost = System.Environment.GetEnvironmentVariable("PROXY_HOST");
 
-        IOSBuildFromCommandLine(true, proxyHost, 13000);
+        iOSBuildFromCommandLine(true, proxyHost, 13000);
     }
-    static void WindowsBuildFromCommandLine(bool withAltunity, int proxyPort = 13000)
+    static void WindowsBuildFromCommandLine(bool withAltTester, int proxyPort = 13000)
     {
         SetPlayerSettings(false);
 
@@ -59,9 +59,9 @@ public class BuildTrashCat
             "Assets/Scenes/Shop.unity",
             "Assets/Scenes/Start.unity"
         };
-        if (withAltunity)
+        if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "TrashCatWindowsTest/TrashCat.exe";
+            buildPlayerOptions.locationPathName = "TrashCatWindowsAltTester/TrashCat.exe";
 
         }
         else
@@ -71,16 +71,16 @@ public class BuildTrashCat
         }
         buildPlayerOptions.target = BuildTarget.StandaloneWindows;
         buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
-        if (withAltunity)
+        if (withAltTester)
         {
             buildPlayerOptions.options = BuildOptions.Development;
         }
-        BuildGame(buildPlayerOptions, withAltunity, proxyPort: proxyPort);
+        BuildGame(buildPlayerOptions, withAltTester, proxyPort: proxyPort);
 
     }
 
 
-    static void IOSBuildFromCommandLine(bool withAltunity, string proxyHost, int port = 13000)
+    static void iOSBuildFromCommandLine(bool withAltTester, string proxyHost, int port = 13000)
     {
         PlayerSettings.companyName = "Altom";
         PlayerSettings.productName = "TrashCat";
@@ -102,9 +102,9 @@ public class BuildTrashCat
             "Assets/Scenes/Shop.unity",
             "Assets/Scenes/Start.unity"
         };
-        if (withAltunity)
+        if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "TrashCatiOSTest/TrashCatiOS";
+            buildPlayerOptions.locationPathName = "TrashCatiOSAltTester/TrashCatiOS";
         }
         else
         {
@@ -113,14 +113,14 @@ public class BuildTrashCat
         }
         buildPlayerOptions.target = BuildTarget.iOS;
         buildPlayerOptions.targetGroup = BuildTargetGroup.iOS;
-        if (withAltunity)
+        if (withAltTester)
         {
             buildPlayerOptions.options = BuildOptions.Development;
         }
-        BuildGame(buildPlayerOptions, withAltunity, proxyHost, port);
+        BuildGame(buildPlayerOptions, withAltTester, proxyHost, port);
 
     }
-    static void AndroidBuildFromCommandLine(bool withAltunity, string proxyHost, int proxyPort = 13000)
+    static void AndroidBuildFromCommandLine(bool withAltTester, string proxyHost, int proxyPort = 13000)
     {
         SetPlayerSettings(false);
 
@@ -132,9 +132,9 @@ public class BuildTrashCat
             "Assets/Scenes/Shop.unity",
             "Assets/Scenes/Start.unity"
         };
-        if (withAltunity)
+        if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "TraschatAndroidTest/TrashCat.apk";
+            buildPlayerOptions.locationPathName = "TraschatAndroidAltTester/TrashCat.apk";
         }
         else
         {
@@ -143,15 +143,15 @@ public class BuildTrashCat
         }
         buildPlayerOptions.target = BuildTarget.Android;
         buildPlayerOptions.targetGroup = BuildTargetGroup.Android;
-        if (withAltunity)
+        if (withAltTester)
         {
             buildPlayerOptions.options = BuildOptions.Development;
         }
-        BuildGame(buildPlayerOptions, withAltunity, proxyHost, proxyPort);
+        BuildGame(buildPlayerOptions, withAltTester, proxyHost, proxyPort);
 
     }
 
-    private static void MacOSBuildFromCommandLine(bool withAltUnity, int proxyPort = 13000)
+    private static void macOSBuildFromCommandLine(bool withAltTester, int proxyPort = 13000)
     {
         SetPlayerSettings(false);
         PlayerSettings.macRetinaSupport = true;
@@ -164,28 +164,28 @@ public class BuildTrashCat
             "Assets/Scenes/Shop.unity",
             "Assets/Scenes/Start.unity"
         };
-        if (withAltUnity)
+        if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "TrashCatTest.app";
+            buildPlayerOptions.locationPathName = "TraschatmacOSAltTester/TrashCat.app";
 
         }
         else
         {
-            buildPlayerOptions.locationPathName = "TrashCat.app";
+            buildPlayerOptions.locationPathName = "TraschatmacOS/TrashCat.app";
 
         }
         buildPlayerOptions.target = BuildTarget.StandaloneOSX;
         buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
-        if (withAltUnity)
+        if (withAltTester)
         {
             buildPlayerOptions.options = BuildOptions.Development;
         }
 
-        BuildGame(buildPlayerOptions, withAltUnity, proxyPort: proxyPort);
+        BuildGame(buildPlayerOptions, withAltTester, proxyPort: proxyPort);
 
     }
 
-    private static void MacOSBuildFromCommandLineIL2CPP(bool withAltUnity, int proxyPort = 13000)
+    private static void macOSBuildFromCommandLineIL2CPP(bool withAltTester, int proxyPort = 13000)
     {
         SetPlayerSettings(true);
         PlayerSettings.macRetinaSupport = true;
@@ -198,28 +198,28 @@ public class BuildTrashCat
             "Assets/Scenes/Shop.unity",
             "Assets/Scenes/Start.unity"
         };
-        if (withAltUnity)
+        if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "TrashCatTestIL2CPP.app";
+            buildPlayerOptions.locationPathName = "TraschatmacOSAltTesterIL2CPP/TrashCatTestIL2CPP.app";
 
         }
         else
         {
-            buildPlayerOptions.locationPathName = "TrashCatIL2CPP.app";
+            buildPlayerOptions.locationPathName = "TraschatmacOSIL2CPP/TrashCatIL2CPP.app";
 
         }
         buildPlayerOptions.target = BuildTarget.StandaloneOSX;
         buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
-        if (withAltUnity)
+        if (withAltTester)
         {
             buildPlayerOptions.options = BuildOptions.Development;
         }
 
-        BuildGame(buildPlayerOptions, withAltUnity, proxyPort: proxyPort);
+        BuildGame(buildPlayerOptions, withAltTester, proxyPort: proxyPort);
 
     }
 
-    static void WindowsBuildFromCommandLineIL2CPP(bool withAltunity, int proxyPort = 13000)
+    static void WindowsBuildFromCommandLineIL2CPP(bool withAltTester, int proxyPort = 13000)
     {
         SetPlayerSettings(true);
 
@@ -231,23 +231,23 @@ public class BuildTrashCat
             "Assets/Scenes/Shop.unity",
             "Assets/Scenes/Start.unity"
         };
-        if (withAltunity)
+        if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "TrashCatWindowsTest/TrashCatIL2CPP.exe";
+            buildPlayerOptions.locationPathName = "TrashCatWindowsAltTesterIL2CPP/TrashCatIL2CPP.exe";
 
         }
         else
         {
-            buildPlayerOptions.locationPathName = "TrashCatWindows/TrashCatIL2CPP.exe";
+            buildPlayerOptions.locationPathName = "TrashCatWindowsIL2CPP/TrashCatIL2CPP.exe";
 
         }
         buildPlayerOptions.target = BuildTarget.StandaloneWindows;
         buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
-        if (withAltunity)
+        if (withAltTester)
         {
             buildPlayerOptions.options = BuildOptions.Development;
         }
-        BuildGame(buildPlayerOptions, withAltunity, proxyPort: proxyPort);
+        BuildGame(buildPlayerOptions, withAltTester, proxyPort: proxyPort);
 
     }
 
@@ -270,19 +270,19 @@ public class BuildTrashCat
         }
 
     }
-    static void BuildGame(BuildPlayerOptions buildPlayerOptions, bool withAltUnity, string proxyHost = null, int proxyPort = 13000)
+    static void BuildGame(BuildPlayerOptions buildPlayerOptions, bool withAltTester, string proxyHost = null, int proxyPort = 13000)
     {
         try
         {
-            if (withAltUnity)
+            if (withAltTester)
             {
-                AddAltUnity(buildPlayerOptions.targetGroup, buildPlayerOptions.scenes[0], proxyHost, proxyPort);
+                AddAltTester(buildPlayerOptions.targetGroup, buildPlayerOptions.scenes[0], proxyHost, proxyPort);
             }
             var results = BuildPipeline.BuildPlayer(buildPlayerOptions);
 
-            if (withAltUnity)
+            if (withAltTester)
             {
-                RemoveAltUnity(buildPlayerOptions.targetGroup);
+                RemoveAltTester(buildPlayerOptions.targetGroup);
             }
 
             if (results.summary.totalErrors == 0 || results.summary.result == UnityEditor.Build.Reporting.BuildResult.Succeeded)
@@ -306,18 +306,18 @@ public class BuildTrashCat
             // EditorApplication.Exit(1);
         }
     }
-    static void AddAltUnity(BuildTargetGroup buildTargetGroup, string firstSceneName, string proxyHost = null, int proxyPort = 13000)
+    static void AddAltTester(BuildTargetGroup buildTargetGroup, string firstSceneName, string proxyHost = null, int proxyPort = 13000)
     {
         AltBuilder.PreviousScenePath = firstSceneName;
         var instrumentationSettings = new AltInstrumentationSettings();
         instrumentationSettings.ProxyPort = proxyPort;
         if (!string.IsNullOrEmpty(proxyHost)) instrumentationSettings.ProxyHost = proxyHost;
-        AltBuilder.AddAltTesterInScritpingDefineSymbolsGroup(buildTargetGroup);
+        AltBuilder.AddAltTesterInScriptingDefineSymbolsGroup(buildTargetGroup);
         AltBuilder.InsertAltInScene(firstSceneName, instrumentationSettings);
         Debug.Log("Instrumenting with proxyHost: " + proxyHost + ", proxyPort: " + proxyPort);
 
     }
-    static void RemoveAltUnity(BuildTargetGroup buildTargetGroup)
+    static void RemoveAltTester(BuildTargetGroup buildTargetGroup)
     {
         AltBuilder.RemoveAltTesterFromScriptingDefineSymbols(buildTargetGroup);
     }
