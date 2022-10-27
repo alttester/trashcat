@@ -11,25 +11,13 @@ jobs:
       fail-fast: false
       matrix:
         name:
-          - macOSWithAltTester
-          - WindowsWithAltTester
         #     - iOSWithAltTester
-        #     - AndroidWithAltTester
         #     - macOSWithAltTesterIL2CPP
         #     - WindowsWithAltTesterIL2CPP
-        include:
-          - name: macOSWithAltTester
-            targetPlatform: StandaloneOSX
-            buildMethod: BuildTrashCat.macOSBuildWithAltTester
-          - name: WindowsWithAltTester
-            targetPlatform: StandaloneWindows
-            buildMethod: BuildTrashCat.WindowsBuildWithAltTester
       #     - name: iOSWithAltTester
       #       targetPlatform: iOS
       #       buildMethod: BuildTrashCat.iOSBuildWithAltTester
-      #     - name: AndroidWithAltTester
-      #       targetPlatform: Android
-      #       buildMethod: BuildTrashCat.AndroidBuildWithAltTester
+
       #     - name: macOSWithAltTesterIL2CPP
       #       targetPlatform: StandaloneOSX
       #       buildMethod: BuildTrashCat.macOSBuildWithAltTesterIL2CPP
@@ -47,8 +35,8 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: TrashCat/Library
-          key: Library-${{ matrix.name }}
-          restore-keys: Library-${{ matrix.name }}
+          key: Library-AndroidWithAltTester
+          restore-keys: Library-AndroidWithAltTester
 
       - uses: game-ci/unity-builder@v2
         env:
@@ -57,10 +45,10 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           projectPath: TrashCat/
-          targetPlatform: ${{ matrix.targetPlatform }}
-          buildMethod: ${{ matrix.buildMethod }}
+          targetPlatform: Android
+          buildMethod: BuildTrashCat.AndroidBuildWithAltTester
 
       - uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.name }}
+          name: Build
           path: TrashCat/Builds
