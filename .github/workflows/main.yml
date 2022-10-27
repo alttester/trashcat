@@ -88,14 +88,14 @@ jobs:
             assetsBundlesName: BuildAssetBundlesiOS
             allowDirtyBuild: true
             unityVersion: auto
-            proxyHost: ${{ secrets.PROXY_HOST }}
+            proxyHost: true
           - name: AndroidWithAltTester
             targetPlatform: Android
             buildMethod: BuildTrashCat.AndroidBuildWithAltTester
             assetsBundlesName: BuildAssetBundlesAndroid
             allowDirtyBuild: true
             unityVersion: auto
-            proxyHost: ${{ secrets.PROXY_HOST }}
+            proxyHost: true
           - name: macOSWithAltTesterIL2CPP
             targetPlatform: StandaloneOSX
             buildMethod: BuildTrashCat.macOSBuildWithAltTesterIL2CPP
@@ -123,7 +123,7 @@ jobs:
           path: TrashCat/Assets/StreamingAssets/AssetBundles/
 
       - name: Set PROXY_HOST
-        if: ${{ matrix.proxyHost != '' }}
+        if: ${{ matrix.proxyHost == true }}
         run: echo "PROXY_HOST=${{ secrets.PROXY_HOST }}" >> $GITHUB_ENV
 
       - uses: actions/cache@v3.0.11
