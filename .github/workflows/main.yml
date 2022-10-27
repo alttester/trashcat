@@ -9,11 +9,11 @@ jobs:
 
     strategy:
       fail-fast: false
-      matrix:
-        name:
-        #     - iOSWithAltTester
-        #     - macOSWithAltTesterIL2CPP
-        #     - WindowsWithAltTesterIL2CPP
+      # matrix:
+      #   name:
+      #     - iOSWithAltTester
+      #     - macOSWithAltTesterIL2CPP
+      #     - WindowsWithAltTesterIL2CPP
       #     - name: iOSWithAltTester
       #       targetPlatform: iOS
       #       buildMethod: BuildTrashCat.iOSBuildWithAltTester
