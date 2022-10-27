@@ -4,10 +4,11 @@ on: [push]
 
 jobs:
   build-for-all-supported-platforms:
-    name: Build
+    name: Build Trashcat for ${{ matrix.name }}
     runs-on: [macos-latest]
-    # strategy:
-    #   fail-fast: false
+    strategy:
+      fail-fast: false
+
     # matrix:
     #   name:
     #     - macOSWithAltTester
@@ -16,22 +17,31 @@ jobs:
     #     - AndroidWithAltTester
     #     - macOSWithAltTesterIL2CPP
     #     - WindowsWithAltTesterIL2CPP
-    #   targetPlatform:
-    #     - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
-    #     - StandaloneWindows # Build a Windows standalone.
-    #     - iOS # Build an iOS player.
-    #     - Android # Build an Android .apk standalone app.
-    #   buildMethod:
-    #     - BuildTrashCat.macOSBuildWithAltTester
-    #     - BuildTrashCat.WindowsBuildWithAltTester
-    #     - BuildTrashCat.iOSBuildWithAltTester
-    #     - BuildTrashCat.AndroidBuildWithAltTester
+    #   include:
+    #     - name: macOSWithAltTester
+    #       targetPlatform: StandaloneOSX
+    #       buildMethod: BuildTrashCat.macOSBuildWithAltTester
+    #     - name: WindowsWithAltTester
+    #       targetPlatform: StandaloneWindows
+    #       buildMethod: BuildTrashCat.WindowsBuildWithAltTester
+    #     - name: iOSWithAltTester
+    #       targetPlatform: iOS
+    #       buildMethod: BuildTrashCat.iOSBuildWithAltTester
+    #     - name: AndroidWithAltTester
+    #       targetPlatform: Android
+    #       buildMethod: BuildTrashCat.AndroidBuildWithAltTester
+    #     - name: macOSWithAltTesterIL2CPP
+    #       targetPlatform: StandaloneOSX
+    #       buildMethod: BuildTrashCat.macOSBuildWithAltTesterIL2CPP
+    #     - name: WindowsWithAltTesterIL2CPP
+    #       targetPlatform: StandaloneWindows
+    #       buildMethod: BuildTrashCat.WindowsBuildWithAltTesterIL2CPP
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Init submodule
+      - name: Add AltTester Unity SDK
         run: git submodule update --init --force
 
       - uses: actions/cache@v2
@@ -47,12 +57,12 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           projectPath: TrashCat/
-          targetPlatform: Android
-          buildMethod: BuildTrashCat.AndroidBuild
+          # targetPlatform: Android
+          # buildMethod: BuildTrashCat.AndroidBuild
           # targetPlatform: StandaloneWindows64
           # buildMethod: BuildTrashCat.WindowsBuildWithAltTester
-          # targetPlatform: StandaloneOSX
-          # buildMethod: BuildTrashCat.MacOSBuildInspectorWithAltUnity
+          targetPlatform: StandaloneOSX
+          buildMethod: BuildTrashCat.macOSBuildWithAltTester
 
       - uses: actions/upload-artifact@v2
         with:
