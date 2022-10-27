@@ -4,26 +4,26 @@ on: [push]
 
 jobs:
   build-for-all-supported-platforms:
-    name: Build for ${{ matrix.name }}
+    name: Build
     runs-on: [macos-latest]
-    strategy:
-      fail-fast: false
-      matrix:
-        name:
-          - macOSWithAltTester
-          - WindowsWithAltTester
-          - iOSWithAltTester
-          - AndroidWithAltTester
-        targetPlatform:
-          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
-          - StandaloneWindows # Build a Windows standalone.
-          - iOS # Build an iOS player.
-          - Android # Build an Android .apk standalone app.
-        buildMethod:
-          - BuildTrashCat.macOSBuildWithAltTester
-          - BuildTrashCat.WindowsBuildWithAltTester
-          - BuildTrashCat.iOSBuildWithAltTester
-          - BuildTrashCat.AndroidBuildWithAltTester
+    # strategy:
+    #   fail-fast: false
+    # matrix:
+    #   name:
+    #     - macOSWithAltTester
+    #     - WindowsWithAltTester
+    #     - iOSWithAltTester
+    #     - AndroidWithAltTester
+    #   targetPlatform:
+    #     - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+    #     - StandaloneWindows # Build a Windows standalone.
+    #     - iOS # Build an iOS player.
+    #     - Android # Build an Android .apk standalone app.
+    #   buildMethod:
+    #     - BuildTrashCat.macOSBuildWithAltTester
+    #     - BuildTrashCat.WindowsBuildWithAltTester
+    #     - BuildTrashCat.iOSBuildWithAltTester
+    #     - BuildTrashCat.AndroidBuildWithAltTester
 
     steps:
       - name: Checkout repository
