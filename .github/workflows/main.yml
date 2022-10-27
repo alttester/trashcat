@@ -96,17 +96,17 @@ jobs:
             allowDirtyBuild: true
             unityVersion: auto
             proxyHost: true
-          - name: macOSWithAltTesterIL2CPP
-            targetPlatform: StandaloneOSX
-            buildMethod: BuildTrashCat.macOSBuildWithAltTesterIL2CPP
-            assetsBundlesName: BuildAssetBundlesmacOS
-            allowDirtyBuild: true
-            unityVersion: auto
-          - name: WindowsWithAltTesterIL2CPP
-            targetPlatform: StandaloneWindows
-            buildMethod: BuildTrashCat.WindowsBuildWithAltTesterIL2CPP
-            allowDirtyBuild: false
-            unityVersion: auto
+          # - name: macOSWithAltTesterIL2CPP
+          #   targetPlatform: StandaloneOSX
+          #   buildMethod: BuildTrashCat.macOSBuildWithAltTesterIL2CPP
+          #   assetsBundlesName: BuildAssetBundlesmacOS
+          #   allowDirtyBuild: true
+          #   unityVersion: auto
+          # - name: WindowsWithAltTesterIL2CPP
+          #   targetPlatform: StandaloneWindows
+          #   buildMethod: BuildTrashCat.WindowsBuildWithAltTesterIL2CPP
+          #   allowDirtyBuild: false
+          #   unityVersion: auto
 
     steps:
       - name: Checkout repository
