@@ -76,31 +76,37 @@ jobs:
             buildMethod: BuildTrashCat.macOSBuildWithAltTester
             assetsBundlesName: BuildAssetBundlesmacOS
             allowDirtyBuild: true
+            unityVersion: auto
           - name: WindowsWithAltTester
             targetPlatform: StandaloneWindows
             buildMethod: BuildTrashCat.WindowsBuildWithAltTester
-            assetsBundlesName:
             allowDirtyBuild: false
+            unityVersion: auto
           - name: iOSWithAltTester
             targetPlatform: iOS
             buildMethod: BuildTrashCat.iOSBuildWithAltTester
             assetsBundlesName: BuildAssetBundlesiOS
             allowDirtyBuild: true
+            unityVersion: auto
+            proxyHost: ${{ secrets.PROXY_HOST }}
           - name: AndroidWithAltTester
             targetPlatform: Android
             buildMethod: BuildTrashCat.AndroidBuildWithAltTester
             assetsBundlesName: BuildAssetBundlesAndroid
             allowDirtyBuild: true
+            unityVersion: auto
+            proxyHost: ${{ secrets.PROXY_HOST }}
           - name: macOSWithAltTesterIL2CPP
             targetPlatform: StandaloneOSX
             buildMethod: BuildTrashCat.macOSBuildWithAltTesterIL2CPP
             assetsBundlesName: BuildAssetBundlesmacOS
             allowDirtyBuild: true
+            unityVersion: auto
           - name: WindowsWithAltTesterIL2CPP
             targetPlatform: StandaloneWindows
             buildMethod: BuildTrashCat.WindowsBuildWithAltTesterIL2CPP
-            assetsBundlesName:
             allowDirtyBuild: false
+            unityVersion: auto
 
     steps:
       - name: Checkout repository
@@ -110,11 +116,15 @@ jobs:
         run: git submodule update --init --force
 
       - name: Add Assets Bundles
-        uses: actions/download-artifact@v3.1.1
+        uses: actions/download-artifact@v3.0.1
         if: ${{ matrix.assetsBundlesName != '' }}
         with:
           name: ${{ matrix.assetsBundlesName }}
           path: TrashCat/Assets/StreamingAssets/AssetBundles/
+
+      - name: Set PROXY_HOST
+        if: ${{ matrix.proxyHost != '' }}
+        run: echo "PROXY_HOST=${{ secrets.PROXY_HOST }}" >> $GITHUB_ENV
 
       - uses: actions/cache@v3.0.11
         with:
@@ -132,6 +142,7 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           buildMethod: ${{ matrix.buildMethod }}
           allowDirtyBuild: ${{ matrix.allowDirtyBuild }}
+          unityVersion: ${{ matrix.unityVersion }}
 
       - uses: actions/upload-artifact@v3.1.0
         with:

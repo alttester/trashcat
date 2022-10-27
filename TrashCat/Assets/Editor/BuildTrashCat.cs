@@ -19,7 +19,7 @@ public class BuildTrashCat
     {
         string proxyHost = System.Environment.GetEnvironmentVariable("PROXY_HOST");
 
-        AndroidBuildFromCommandLine(true, "13001", 13000);
+        AndroidBuildFromCommandLine(true, proxyHost, 13000);
     }
 
     [MenuItem("Build/macOSWithAltTester")]
@@ -45,7 +45,7 @@ public class BuildTrashCat
     {
         string proxyHost = System.Environment.GetEnvironmentVariable("PROXY_HOST");
 
-        iOSBuildFromCommandLine(true, "13001", 13000);
+        iOSBuildFromCommandLine(true, proxyHost, 13000);
     }
     static void WindowsBuildFromCommandLine(bool withAltTester, int proxyPort = 13000)
     {
