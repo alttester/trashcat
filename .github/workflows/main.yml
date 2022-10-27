@@ -3,27 +3,27 @@ name: Build TrashCat
 on: [push]
 
 jobs:
-  build-for-all-supported-platforms:
-    name: Build Trashcat for ${{ matrix.name }}
+  build-all-assets-bundles:
+    name: Build Assets Bundles for ${{ matrix.name }}
     runs-on: [ubuntu-latest]
 
     strategy:
       fail-fast: false
-      # matrix:
-      #   name:
-      #     - iOSWithAltTester
-      #     - macOSWithAltTesterIL2CPP
-      #     - WindowsWithAltTesterIL2CPP
-      #     - name: iOSWithAltTester
-      #       targetPlatform: iOS
-      #       buildMethod: BuildTrashCat.iOSBuildWithAltTester
-
-      #     - name: macOSWithAltTesterIL2CPP
-      #       targetPlatform: StandaloneOSX
-      #       buildMethod: BuildTrashCat.macOSBuildWithAltTesterIL2CPP
-      #     - name: WindowsWithAltTesterIL2CPP
-      #       targetPlatform: StandaloneWindows
-      #       buildMethod: BuildTrashCat.WindowsBuildWithAltTesterIL2CPP
+      matrix:
+        name:
+          - BuildAssetBundlesmacOS
+          - BuildAssetBundlesAndroid
+          - BuildAssetBundlesiOS
+        include:
+          - name: BuildAssetBundlesmacOS
+            targetPlatform: StandaloneOSX
+            buildMethod: AssetBundles.AssetBundlesMenuItems.BuildAssetBundles
+          - name: BuildAssetBundlesAndroid
+            targetPlatform: Android
+            buildMethod: AssetBundles.AssetBundlesMenuItems.BuildAssetBundles
+          - name: BuildAssetBundlesiOS
+            targetPlatform: iOS
+            buildMethod: AssetBundles.AssetBundlesMenuItems.BuildAssetBundles
 
     steps:
       - name: Checkout repository
@@ -35,8 +35,8 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: TrashCat/Library
-          key: Library-AndroidWithAltTester
-          restore-keys: Library-AndroidWithAltTester
+          key: Library-${{ matrix.name }}
+          restore-keys: Library-${{ matrix.name }}
 
       - uses: game-ci/unity-builder@v2
         env:
@@ -45,10 +45,86 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           projectPath: TrashCat/
-          targetPlatform: Android
-          buildMethod: BuildTrashCat.AndroidBuildWithAltTester
+          targetPlatform: ${{ matrix.targetPlatform }}
+          buildMethod: ${{ matrix.buildMethod }}
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@vv3.1.0
         with:
-          name: Build
+          name: ${{ matrix.name }}
+          path: TrashCat/AssetBundles
+
+  build-for-all-supported-platforms:
+    name: Build Trashcat for ${{ matrix.name }}
+    needs: [build-all-assets-bundles]
+    runs-on: [ubuntu-latest]
+
+    strategy:
+      fail-fast: false
+      matrix:
+        name:
+          - macOSWithAltTester
+          - WindowsWithAltTester
+          - iOSWithAltTester
+          - AndroidWithAltTester
+          - macOSWithAltTesterIL2CPP
+          - WindowsWithAltTesterIL2CPP
+        include:
+          - name: macOSWithAltTester
+            targetPlatform: StandaloneOSX
+            buildMethod: BuildTrashCat.macOSBuildWithAltTester
+            assetsBundlesName: BuildAssetBundlesmacOS
+          - name: WindowsWithAltTester
+            targetPlatform: StandaloneWindows
+            buildMethod: BuildTrashCat.WindowsBuildWithAltTester
+            assetsBundlesName:
+          - name: iOSWithAltTester
+            targetPlatform: iOS
+            buildMethod: BuildTrashCat.iOSBuildWithAltTester
+            assetsBundlesName: BuildAssetBundlesiOS
+          - name: AndroidWithAltTester
+            targetPlatform: Android
+            buildMethod: BuildTrashCat.AndroidBuildWithAltTester
+            assetsBundlesName: BuildAssetBundlesAndroid
+          - name: macOSWithAltTesterIL2CPP
+            targetPlatform: StandaloneOSX
+            buildMethod: BuildTrashCat.macOSBuildWithAltTesterIL2CPP
+            assetsBundlesName: BuildAssetBundlesmacOS
+          - name: WindowsWithAltTesterIL2CPP
+            targetPlatform: StandaloneWindows
+            buildMethod: BuildTrashCat.WindowsBuildWithAltTesterIL2CPP
+            assetsBundlesName:
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Add AltTester Unity SDK
+        run: git submodule update --init --force
+
+      - name: Add Assets Bundles
+        uses: actions/download-artifact@v3.0.0
+        if: ${{ matrix.assetsBundlesName != '' }}
+        with:
+          name: ${{ matrix.assetsBundlesName }}
+          path: TrashCat/Assets/StreamingAssets/AssetBundles/
+
+      - uses: actions/cache@v2
+        with:
+          path: TrashCat/Library
+          key: Library-${{ matrix.name }}
+          restore-keys: Library-${{ matrix.name }}
+
+      - uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: TrashCat/
+          targetPlatform: ${{ matrix.targetPlatform }}
+          buildMethod: ${{ matrix.buildMethod }}
+
+      - uses: actions/upload-artifact@vv3.1.0
+        with:
+          name: ${{ matrix.name }}
           path: TrashCat/Builds
