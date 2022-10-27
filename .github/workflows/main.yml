@@ -14,6 +14,8 @@ jobs:
     #     - WindowsWithAltTester
     #     - iOSWithAltTester
     #     - AndroidWithAltTester
+    #     - macOSWithAltTesterIL2CPP
+    #     - WindowsWithAltTesterIL2CPP
     #   targetPlatform:
     #     - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
     #     - StandaloneWindows # Build a Windows standalone.
