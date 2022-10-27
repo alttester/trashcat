@@ -20,13 +20,6 @@ jobs:
           targetPlatform: StandaloneOSX
           buildMethod: BuildTrashCat.MacOSBuildInspectorWithAltUnity
 
-      - name: Debugging 1
-        run: ll
-      - name: Debugging 2
-        run: ll TrashCat/
-      - name: Debugging 3
-        run: ll trashcat/
-
       - uses: actions/upload-artifact@v2
         with:
           path: trashcat
