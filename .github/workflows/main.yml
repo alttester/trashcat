@@ -28,12 +28,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.5.0
 
       - name: Add AltTester Unity SDK
         run: git submodule update --init --force
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3.0.11
         with:
           path: TrashCat/Library
           key: Library-${{ matrix.name }}
@@ -104,19 +104,19 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.5.0
 
       - name: Add AltTester Unity SDK
         run: git submodule update --init --force
 
       - name: Add Assets Bundles
-        uses: actions/download-artifact@v3.0.0
+        uses: actions/download-artifact@v3.1.
         if: ${{ matrix.assetsBundlesName != '' }}
         with:
           name: ${{ matrix.assetsBundlesName }}
           path: TrashCat/Assets/StreamingAssets/AssetBundles/
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3.0.11
         with:
           path: TrashCat/Library
           key: Library-${{ matrix.name }}
@@ -136,4 +136,5 @@ jobs:
       - uses: actions/upload-artifact@v3.1.0
         with:
           name: ${{ matrix.name }}
-          path: TrashCat/Builds
+          path: trashcat
+          # path: TrashCat/Builds

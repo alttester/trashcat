@@ -45,7 +45,7 @@ public class BuildTrashCat
     {
         string proxyHost = System.Environment.GetEnvironmentVariable("PROXY_HOST");
 
-        iOSBuildFromCommandLine(true, proxyHost, 13000);
+        iOSBuildFromCommandLine(true, "13001", 13000);
     }
     static void WindowsBuildFromCommandLine(bool withAltTester, int proxyPort = 13000)
     {
@@ -293,17 +293,17 @@ public class BuildTrashCat
             else
             {
                 Debug.LogError("Build failed! " + results.steps + "\n Result: " + results.summary.result + "\n Stripping info: " + results.strippingInfo);
-                // EditorApplication.Exit(1);
+                EditorApplication.Exit(1);
             }
 
             Debug.Log("Finished. " + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-            // EditorApplication.Exit(0);
+            EditorApplication.Exit(0);
         }
         catch (Exception exception)
         {
 
             Debug.LogException(exception);
-            // EditorApplication.Exit(1);
+            EditorApplication.Exit(1);
         }
     }
     static void AddAltTester(BuildTargetGroup buildTargetGroup, string firstSceneName, string proxyHost = null, int proxyPort = 13000)
