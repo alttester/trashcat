@@ -48,7 +48,7 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           buildMethod: ${{ matrix.buildMethod }}
 
-      - uses: actions/upload-artifact@vv3.1.0
+      - uses: actions/upload-artifact@v3.1.0
         with:
           name: ${{ matrix.name }}
           path: TrashCat/AssetBundles
@@ -124,7 +124,7 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           buildMethod: ${{ matrix.buildMethod }}
 
-      - uses: actions/upload-artifact@vv3.1.0
+      - uses: actions/upload-artifact@v3.1.0
         with:
           name: ${{ matrix.name }}
           path: TrashCat/Builds
