@@ -15,7 +15,7 @@ public class BuildTrashCat
         WindowsBuildFromCommandLine(true, 13000);
     }
     [MenuItem("Build/AndroidWithAltTester")]
-    static void AndroidBuild()
+    static void AndroidBuildWithAltTester()
     {
         string proxyHost = System.Environment.GetEnvironmentVariable("PROXY_HOST");
 
@@ -23,13 +23,13 @@ public class BuildTrashCat
     }
 
     [MenuItem("Build/macOSWithAltTester")]
-    static void MacOSBuildWithAltTester()
+    static void macOSBuildWithAltTester()
     {
         macOSBuildFromCommandLine(true, 13000);
     }
 
     [MenuItem("Build/macOSWithAltTesterIL2CPP")]
-    static void MacOSBuildWithAltTesterIL2CPP()
+    static void macOSBuildWithAltTesterIL2CPP()
     {
         macOSBuildFromCommandLineIL2CPP(true, 13000);
     }
@@ -61,15 +61,15 @@ public class BuildTrashCat
         };
         if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "TrashCatWindowsAltTester/TrashCat.exe";
+            buildPlayerOptions.locationPathName = "Builds/TrashCatWindowsAltTester/TrashCat.exe";
 
         }
         else
         {
-            buildPlayerOptions.locationPathName = "TrashCatWindows/TrashCat.exe";
+            buildPlayerOptions.locationPathName = "Builds/TrashCatWindows/TrashCat.exe";
 
         }
-        buildPlayerOptions.target = BuildTarget.StandaloneWindows;
+        buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
         buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
         if (withAltTester)
         {
@@ -104,11 +104,11 @@ public class BuildTrashCat
         };
         if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "TrashCatiOSAltTester/TrashCatiOS";
+            buildPlayerOptions.locationPathName = "Builds/TrashCatiOSAltTester/TrashCatiOS";
         }
         else
         {
-            buildPlayerOptions.locationPathName = "TrashCatiOS/TrashCatiOS";
+            buildPlayerOptions.locationPathName = "Builds/TrashCatiOS/TrashCatiOS";
 
         }
         buildPlayerOptions.target = BuildTarget.iOS;
@@ -134,11 +134,11 @@ public class BuildTrashCat
         };
         if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "TraschatAndroidAltTester/TrashCat.apk";
+            buildPlayerOptions.locationPathName = "Builds/TraschatAndroidAltTester/TrashCat.apk";
         }
         else
         {
-            buildPlayerOptions.locationPathName = "TraschatAndroid/TrashCat.apk";
+            buildPlayerOptions.locationPathName = "Builds/TraschatAndroid/TrashCat.apk";
 
         }
         buildPlayerOptions.target = BuildTarget.Android;
@@ -166,12 +166,12 @@ public class BuildTrashCat
         };
         if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "TraschatmacOSAltTester/TrashCat.app";
+            buildPlayerOptions.locationPathName = "Builds/TraschatmacOSAltTester/TrashCat.app";
 
         }
         else
         {
-            buildPlayerOptions.locationPathName = "TraschatmacOS/TrashCat.app";
+            buildPlayerOptions.locationPathName = "Builds/TraschatmacOS/TrashCat.app";
 
         }
         buildPlayerOptions.target = BuildTarget.StandaloneOSX;
@@ -200,12 +200,12 @@ public class BuildTrashCat
         };
         if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "TraschatmacOSAltTesterIL2CPP/TrashCatTestIL2CPP.app";
+            buildPlayerOptions.locationPathName = "Builds/TraschatmacOSAltTesterIL2CPP/TrashCatTestIL2CPP.app";
 
         }
         else
         {
-            buildPlayerOptions.locationPathName = "TraschatmacOSIL2CPP/TrashCatIL2CPP.app";
+            buildPlayerOptions.locationPathName = "Builds/TraschatmacOSIL2CPP/TrashCatIL2CPP.app";
 
         }
         buildPlayerOptions.target = BuildTarget.StandaloneOSX;
@@ -233,12 +233,12 @@ public class BuildTrashCat
         };
         if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "TrashCatWindowsAltTesterIL2CPP/TrashCatIL2CPP.exe";
+            buildPlayerOptions.locationPathName = "Builds/TrashCatWindowsAltTesterIL2CPP/TrashCatIL2CPP.exe";
 
         }
         else
         {
-            buildPlayerOptions.locationPathName = "TrashCatWindowsIL2CPP/TrashCatIL2CPP.exe";
+            buildPlayerOptions.locationPathName = "Builds/TrashCatWindowsIL2CPP/TrashCatIL2CPP.exe";
 
         }
         buildPlayerOptions.target = BuildTarget.StandaloneWindows;

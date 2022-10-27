@@ -1,14 +1,42 @@
 name: Build TrashCat
+
 on: [push]
+
 jobs:
-  build-windows:
+  build-for-all-supported-platforms:
+    name: Build for ${{ matrix.name }}
     runs-on: [macos-latest]
+    strategy:
+      fail-fast: false
+      matrix:
+        name:
+          - macOSWithAltTester
+          - WindowsWithAltTester
+          - iOSWithAltTester
+          - AndroidWithAltTester
+        targetPlatform:
+          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          - StandaloneWindows # Build a Windows standalone.
+          - iOS # Build an iOS player.
+          - Android # Build an Android .apk standalone app.
+        buildMethod:
+          - BuildTrashCat.macOSBuildWithAltTester
+          - BuildTrashCat.WindowsBuildWithAltTester
+          - BuildTrashCat.iOSBuildWithAltTester
+          - BuildTrashCat.AndroidBuildWithAltTester
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Init submodule
         run: git submodule update --init --force
+
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-StandaloneWindows64
+          restore-keys: Library-
 
       - uses: game-ci/unity-builder@v2
         env:
@@ -24,4 +52,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          path: trashcat
+          name: Builds
+          path: trashcat/Builds
