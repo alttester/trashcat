@@ -69,7 +69,7 @@ public class BuildTrashCat
             buildPlayerOptions.locationPathName = "Builds/TrashCatWindows/TrashCat.exe";
 
         }
-        buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
+        buildPlayerOptions.target = BuildTarget.StandaloneWindows;
         buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
         if (withAltTester)
         {

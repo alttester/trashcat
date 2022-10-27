@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build-for-all-supported-platforms:
     name: Build Trashcat for ${{ matrix.name }}
-    runs-on: [macos-latest]
+    runs-on: [windows-latest]
     strategy:
       fail-fast: false
 
@@ -59,10 +59,8 @@ jobs:
           projectPath: TrashCat/
           # targetPlatform: Android
           # buildMethod: BuildTrashCat.AndroidBuild
-          # targetPlatform: StandaloneWindows64
-          # buildMethod: BuildTrashCat.WindowsBuildWithAltTester
-          targetPlatform: StandaloneOSX
-          buildMethod: BuildTrashCat.macOSBuildWithAltTester
+          targetPlatform: StandaloneWindows
+          buildMethod: BuildTrashCat.WindowsBuildWithAltTester
 
       - uses: actions/upload-artifact@v2
         with:
