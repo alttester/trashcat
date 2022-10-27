@@ -45,8 +45,10 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           projectPath: TrashCat/
-          targetPlatform: StandaloneWindows64
-          buildMethod: BuildTrashCat.WindowsBuildWithAltTester
+          targetPlatform: Android
+          buildMethod: BuildTrashCat.AndroidBuild
+          # targetPlatform: StandaloneWindows64
+          # buildMethod: BuildTrashCat.WindowsBuildWithAltTester
           # targetPlatform: StandaloneOSX
           # buildMethod: BuildTrashCat.MacOSBuildInspectorWithAltUnity
 
