@@ -134,11 +134,11 @@ public class BuildTrashCat
         };
         if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "Builds/TraschatAndroidAltTester/TrashCat.apk";
+            buildPlayerOptions.locationPathName = "Builds/TrashCatAndroidAltTester/TrashCat.apk";
         }
         else
         {
-            buildPlayerOptions.locationPathName = "Builds/TraschatAndroid/TrashCat.apk";
+            buildPlayerOptions.locationPathName = "Builds/TrashCatAndroid/TrashCat.apk";
 
         }
         buildPlayerOptions.target = BuildTarget.Android;
@@ -166,12 +166,12 @@ public class BuildTrashCat
         };
         if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "Builds/TraschatmacOSAltTester/TrashCat.app";
+            buildPlayerOptions.locationPathName = "Builds/TrashCatmacOSAltTester/TrashCat.app";
 
         }
         else
         {
-            buildPlayerOptions.locationPathName = "Builds/TraschatmacOS/TrashCat.app";
+            buildPlayerOptions.locationPathName = "Builds/TrashCatmacOS/TrashCat.app";
 
         }
         buildPlayerOptions.target = BuildTarget.StandaloneOSX;
@@ -200,12 +200,12 @@ public class BuildTrashCat
         };
         if (withAltTester)
         {
-            buildPlayerOptions.locationPathName = "Builds/TraschatmacOSAltTesterIL2CPP/TrashCatTestIL2CPP.app";
+            buildPlayerOptions.locationPathName = "Builds/TrashCatmacOSAltTesterIL2CPP/TrashCatTestIL2CPP.app";
 
         }
         else
         {
-            buildPlayerOptions.locationPathName = "Builds/TraschatmacOSIL2CPP/TrashCatIL2CPP.app";
+            buildPlayerOptions.locationPathName = "Builds/TrashCatmacOSIL2CPP/TrashCatIL2CPP.app";
 
         }
         buildPlayerOptions.target = BuildTarget.StandaloneOSX;
