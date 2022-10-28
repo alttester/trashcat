@@ -114,7 +114,7 @@ jobs:
             allowDirtyBuild: false
             runsOn: windows-latest
 
-    runs-on: ${{ matix.runsOn }}
+    runs-on: ${{ matrix.runsOn }}
 
     steps:
       - name: Checkout repository
