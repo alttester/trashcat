@@ -1,7 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AltDriver", "AltDriver.csproj", "{5100ecc8-b1e3-407f-0ca0-f5e8d776326a}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AltTester", "AltTester.csproj", "{53ff1ca6-0498-2b35-f1bd-d50dba1a82cc}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{e8cecbf2-4436-1feb-81fa-13e18a997bec}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AltTesterEditor", "AltTesterEditor.csproj", "{619151f1-144f-f413-3306-a492b343a916}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{98c92189-fcdc-4ba0-cca7-ed485b335519}"
 EndProject
@@ -10,8 +16,14 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5100ecc8-b1e3-407f-0ca0-f5e8d776326a}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5100ecc8-b1e3-407f-0ca0-f5e8d776326a}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53ff1ca6-0498-2b35-f1bd-d50dba1a82cc}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53ff1ca6-0498-2b35-f1bd-d50dba1a82cc}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{e8cecbf2-4436-1feb-81fa-13e18a997bec}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{e8cecbf2-4436-1feb-81fa-13e18a997bec}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{619151f1-144f-f413-3306-a492b343a916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{619151f1-144f-f413-3306-a492b343a916}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98c92189-fcdc-4ba0-cca7-ed485b335519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{98c92189-fcdc-4ba0-cca7-ed485b335519}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
