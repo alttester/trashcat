@@ -19,9 +19,11 @@ jobs:
           - name: BuildAssetBundlesmacOS
             targetPlatform: StandaloneOSX
             buildMethod: AssetBundles.AssetBundlesMenuItems.BuildAssetBundles
+
           - name: BuildAssetBundlesAndroid
             targetPlatform: Android
             buildMethod: AssetBundles.AssetBundlesMenuItems.BuildAssetBundles
+
           - name: BuildAssetBundlesiOS
             targetPlatform: iOS
             buildMethod: AssetBundles.AssetBundlesMenuItems.BuildAssetBundles
@@ -57,7 +59,6 @@ jobs:
   build-for-all-supported-platforms:
     name: Build Trashcat for ${{ matrix.name }}
     needs: [build-all-assets-bundles]
-    runs-on: [ubuntu-latest]
     timeout-minutes: 120
 
     strategy:
@@ -76,37 +77,44 @@ jobs:
             buildMethod: BuildTrashCat.macOSBuildWithAltTester
             assetsBundlesName: BuildAssetBundlesmacOS
             allowDirtyBuild: true
-            unityVersion: auto
+            runsOn: ubuntu-latest
+
           - name: WindowsWithAltTester
             targetPlatform: StandaloneWindows
             buildMethod: BuildTrashCat.WindowsBuildWithAltTester
             allowDirtyBuild: false
-            unityVersion: auto
+            runsOn: ubuntu-latest
+
           - name: iOSWithAltTester
             targetPlatform: iOS
             buildMethod: BuildTrashCat.iOSBuildWithAltTester
             assetsBundlesName: BuildAssetBundlesiOS
             allowDirtyBuild: true
-            unityVersion: auto
             proxyHost: true
+            runsOn: ubuntu-latest
+
           - name: AndroidWithAltTester
             targetPlatform: Android
             buildMethod: BuildTrashCat.AndroidBuildWithAltTester
             assetsBundlesName: BuildAssetBundlesAndroid
             allowDirtyBuild: true
-            unityVersion: auto
             proxyHost: true
-          # - name: macOSWithAltTesterIL2CPP
-          #   targetPlatform: StandaloneOSX
-          #   buildMethod: BuildTrashCat.macOSBuildWithAltTesterIL2CPP
-          #   assetsBundlesName: BuildAssetBundlesmacOS
-          #   allowDirtyBuild: true
-          #   unityVersion: auto
-          # - name: WindowsWithAltTesterIL2CPP
-          #   targetPlatform: StandaloneWindows
-          #   buildMethod: BuildTrashCat.WindowsBuildWithAltTesterIL2CPP
-          #   allowDirtyBuild: false
-          #   unityVersion: auto
+            runsOn: ubuntu-latest
+
+          - name: macOSWithAltTesterIL2CPP
+            targetPlatform: StandaloneOSX
+            buildMethod: BuildTrashCat.macOSBuildWithAltTesterIL2CPP
+            assetsBundlesName: BuildAssetBundlesmacOS
+            allowDirtyBuild: true
+            runsOn: macos-latest
+
+          - name: WindowsWithAltTesterIL2CPP
+            targetPlatform: StandaloneWindows
+            buildMethod: BuildTrashCat.WindowsBuildWithAltTesterIL2CPP
+            allowDirtyBuild: false
+            runsOn: windows-latest
+
+    runs-on: ${{ matix.runsOn }}
 
     steps:
       - name: Checkout repository
@@ -142,7 +150,6 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           buildMethod: ${{ matrix.buildMethod }}
           allowDirtyBuild: ${{ matrix.allowDirtyBuild }}
-          unityVersion: ${{ matrix.unityVersion }}
 
       - uses: actions/upload-artifact@v3.1.0
         with:
