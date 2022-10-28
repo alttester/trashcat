@@ -31,8 +31,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2.5.0
-        with:
-          submodules: tue
+
+      - name: Add AltTester Unity SDK
+        run: git submodule update --init --force
 
       - uses: actions/cache@v3.0.11
         with:
@@ -118,8 +119,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2.5.0
-        with:
-          submodules: true
+
+      - name: Add AltTester Unity SDK
+        run: git submodule update --init --force
 
       - name: Add Assets Bundles
         uses: actions/download-artifact@v3.0.1
