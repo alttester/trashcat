@@ -111,7 +111,7 @@ jobs:
             targetPlatform: StandaloneWindows
             buildMethod: BuildTrashCat.WindowsBuildWithAltTesterIL2CPP
             allowDirtyBuild: false
-            runsOn: windows-latest
+            runsOn: windows-2019
 
     runs-on: ${{ matrix.runsOn }}
 
