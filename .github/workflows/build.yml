@@ -83,7 +83,7 @@ jobs:
             targetPlatform: StandaloneWindows
             buildMethod: BuildTrashCat.WindowsBuildWithAltTester
             allowDirtyBuild: false
-            runsOn: ubuntu-latest
+            runsOn: windows-2019
 
           - name: iOSWithAltTester
             targetPlatform: iOS
@@ -91,7 +91,7 @@ jobs:
             assetsBundlesName: BuildAssetBundlesiOS
             allowDirtyBuild: true
             proxyHost: true
-            runsOn: macos-latest
+            runsOn: ubuntu-latest
 
           - name: AndroidWithAltTester
             targetPlatform: Android
