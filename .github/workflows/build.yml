@@ -90,7 +90,7 @@ jobs:
             buildMethod: BuildTrashCat.iOSBuildWithAltTester
             assetsBundlesName: BuildAssetBundlesiOS
             allowDirtyBuild: true
-            proxyHost: true
+            proxyHost: false
             runsOn: ubuntu-latest
 
           - name: AndroidWithAltTester
@@ -98,7 +98,7 @@ jobs:
             buildMethod: BuildTrashCat.AndroidBuildWithAltTester
             assetsBundlesName: BuildAssetBundlesAndroid
             allowDirtyBuild: true
-            proxyHost: true
+            proxyHost: false
             runsOn: ubuntu-latest
 
           - name: macOSWithAltTesterIL2CPP
