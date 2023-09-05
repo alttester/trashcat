@@ -36,7 +36,24 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Driver\Testforscene1TestSample.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Driver\TestInputActions.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Driver\Commands\AltCommandsTests.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Driver\TestForScene3DragAndDrop.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Editor\BuildAltTester.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\ShortCuts\Editor\Shortcuts.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Driver\TestForScene4NoCameras.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Driver\TestForScene5KeyboardAndMouseInput.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Driver\TestForNIS.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Server\PathSelectorTests.cs" />
      <Compile Include="Assets\Editor\BundleAndBuild.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Driver\MockClasses\MockNotificationCallBacks.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Driver\TestForscene2DraggablePanel.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Driver\TestReversePortForwarding.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Driver\TestsHelper.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Editor\CreateAltPrefab.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Driver\TestBase.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Test\Editor\Driver\TestNotification.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Unity Stuff\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -298,6 +315,9 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
         <HintPath>D:\Unity Stuff\2021.3.16f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="altwebsocket-sharp">
+        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\3rdParty\websocket-sharp\netstandard2.0\altwebsocket-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.IonicZip">
         <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
     </Reference>
@@ -318,6 +338,9 @@
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
         <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.analytics@3.6.12\Unity.Analytics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\3rdParty\nlog.4.7.9\netstandard2.0\NLog.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
         <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
@@ -340,11 +363,11 @@
     <Reference Include="Unity.Burst.Cecil.Rocks">
         <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Analytics.Tracker">
         <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.analytics@3.6.12\Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
         <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
@@ -832,9 +855,9 @@
       <Project>{a8b6f15a-016f-f451-5730-e0fcf46344bd}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Analytics.DataPrivacy.csproj">
-      <Project>{d4007dc5-0c3b-0b4e-ba1f-d3a9c9f938d5}</Project>
-      <Name>Unity.Analytics.DataPrivacy</Name>
+    <ProjectReference Include="Unity.EditorCoroutines.Editor.csproj">
+      <Project>{06fc4a14-ac35-c3b5-b5f9-240667ef1046}</Project>
+      <Name>Unity.EditorCoroutines.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.IK.Runtime.csproj">
       <Project>{ae25cc61-5818-a1cf-dbbd-41c9d0a716de}</Project>
@@ -844,6 +867,14 @@
       <Project>{e7a0ee2a-760b-d9bd-8cdc-d2fdd811d357}</Project>
       <Name>Unity.ShaderGraph.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Analytics.DataPrivacy.csproj">
+      <Project>{d4007dc5-0c3b-0b4e-ba1f-d3a9c9f938d5}</Project>
+      <Name>Unity.Analytics.DataPrivacy</Name>
+    </ProjectReference>
+    <ProjectReference Include="AltTester.AltTesterUnitySDK.Editor.csproj">
+      <Project>{5d5f0c56-e7f1-93bd-bfea-bcd3b6d056ba}</Project>
+      <Name>AltTester.AltTesterUnitySDK.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEngine.Purchasing.Codeless.csproj">
       <Project>{1d9a3608-0781-e437-1d3c-36c02b105ffe}</Project>
       <Name>UnityEngine.Purchasing.Codeless</Name>
@@ -851,6 +882,10 @@
     <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj">
       <Project>{47f7e084-2d0f-0376-ed25-2926c0dbc885}</Project>
       <Name>Unity.RenderPipeline.Universal.ShaderLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="AltTester.AltTesterUnitySDK.Driver.csproj">
+      <Project>{fbb9cc45-e0a5-24a1-ac04-fe6c50a0fd8a}</Project>
+      <Name>AltTester.AltTesterUnitySDK.Driver</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.Editor.csproj">
       <Project>{2db189f0-eb62-21aa-6f26-2e957e24e356}</Project>
@@ -951,6 +986,10 @@
     <ProjectReference Include="Unity.2D.Tilemap.Extras.Editor.csproj">
       <Project>{4a3f2276-e81b-8e99-a355-8f9620744ecf}</Project>
       <Name>Unity.2D.Tilemap.Extras.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="AltTester.AltTesterUnitySDK.csproj">
+      <Project>{9b437c01-2eec-18b8-2fdd-4fded73e68a2}</Project>
+      <Name>AltTester.AltTesterUnitySDK</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.csproj">
       <Project>{052d4cea-d726-6341-5d9f-97c44d166df7}</Project>

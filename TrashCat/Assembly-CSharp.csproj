@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Obstacles\SimpleBarricade.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltInheritedFields.cs" />
      <Compile Include="Assets\Scripts\UI\HighscoreUI.cs" />
      <Compile Include="Assets\Scripts\GameManager\LoadoutState.cs" />
      <Compile Include="Assets\Scripts\GameManager\GameOverState.cs" />
@@ -44,11 +45,16 @@
      <Compile Include="Assets\Scripts\GameManager\Modifier.cs" />
      <Compile Include="Assets\Scripts\Tracks\TrackManager.cs" />
      <Compile Include="Assets\Scripts\UI\Settings\DataDeleteConfirmation.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptPlayer2Controller.cs" />
      <Compile Include="Assets\Scripts\UI\Shop\ShopUI.cs" />
      <Compile Include="Assets\Scripts\UI\AdsForMission.cs" />
      <Compile Include="Assets\Scripts\GameManager\GameState.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptCameraViewControl.cs" />
      <Compile Include="Assets\Scripts\WorldCurver.cs" />
      <Compile Include="Assets\Scripts\Consumable\ConsumableDatabase.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptNextSceneButtonController.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptCubeController.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptDropMe.cs" />
      <Compile Include="Assets\Scripts\GameManager\TutorialState.cs" />
      <Compile Include="Assets\Scripts\Consumable\Types\Invincibility.cs" />
      <Compile Include="Assets\Scripts\UI\LicenceDisplayer.cs" />
@@ -58,55 +64,103 @@
      <Compile Include="Assets\Scripts\Characters\RandomAnimation.cs" />
      <Compile Include="Assets\Scripts\Consumable\ConsumableIcon.cs" />
      <Compile Include="Assets\Scripts\UI\StartButton.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptIncrementOnClick.cs" />
      <Compile Include="Assets\Scripts\Consumable\Types\CoinMagnet.cs" />
      <Compile Include="Assets\Scripts\Sounds\CountdownSound.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptDragPanel.cs" />
      <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltSphereColliderScript.cs" />
      <Compile Include="Assets\Scripts\CoroutineHandler.cs" />
      <Compile Include="Assets\Scripts\UI\Shop\ShopList.cs" />
      <Compile Include="Assets\Scripts\PlayerData.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltPlaneColliderScript.cs" />
      <Compile Include="Assets\Scripts\Helpers.cs" />
      <Compile Include="Assets\Scripts\LevelLoader.cs" />
      <Compile Include="Assets\Scripts\Pooler.cs" />
      <Compile Include="Assets\Scripts\Obstacles\AllLaneObstacle.cs" />
      <Compile Include="Assets\Scripts\UI\MissionEntry.cs" />
      <Compile Include="Assets\Scripts\Characters\Character.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptStarCounter.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptResizePanel.cs" />
      <Compile Include="Assets\Scripts\Coin.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptPanel.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltCubeNIS.cs" />
      <Compile Include="Assets\Scripts\Tracks\TrackSegment.cs" />
      <Compile Include="Assets\Scripts\UI\Shop\ShopItemList.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\MeshRendererPreserve.cs" />
      <Compile Include="Assets\Scripts\UI\Shop\IAPHandler.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptActiveStateToggler.cs" />
      <Compile Include="Assets\Scripts\UI\Leaderboard.cs" />
      <Compile Include="Assets\Scripts\Characters\CharacterInputController.cs" />
      <Compile Include="Assets\Scripts\Obstacles\PatrollingObstacle.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptDebugController.cs" />
      <Compile Include="Assets\Scripts\Sounds\MusicPlayer.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptDestroyObject.cs" />
      <Compile Include="Assets\Scripts\Missions\Missions.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltButtonHoldTimer.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleNewInputSystem.cs" />
      <Compile Include="Assets\Scripts\Obstacles\Obstacle.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltTapClickEventsScript.cs" />
      <Compile Include="Assets\Scripts\Characters\CharacterDatabase.cs" />
      <Compile Include="Assets\Scripts\Themes\ThemeData.cs" />
      <Compile Include="Assets\Scripts\Sounds\AssignOutputChannel.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptDragMe.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptCapsule.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\SimpleControls.cs" />
      <Compile Include="Assets\Scripts\Consumable\Consumable.cs" />
      <Compile Include="Assets\Scripts\Consumable\Types\ExtraLife.cs" />
      <Compile Include="Assets\Scripts\Consumable\Types\Score2Multiplier.cs" />
      <Compile Include="Assets\Scripts\UI\PowerupIcon.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltInputFieldRaisedEvents.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltSampleClass.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltNIPDebugScript.cs" />
      <Compile Include="Assets\Scripts\Obstacles\Missile.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\SimpleController_UsingPlayerInput.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptStarController.cs" />
      <Compile Include="Assets\Scripts\UI\Shop\ShopThemeList.cs" />
      <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Themes\ThemeDatabase.cs" />
      <Compile Include="Assets\Scripts\Characters\CharacterCollider.cs" />
      <Compile Include="Assets\Scripts\Characters\RestartRunning.cs" />
      <Compile Include="Assets\Scripts\UI\MissionUI.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\Examples\Scripts\AltExampleScriptGameLogicController.cs" />
      <Compile Include="Assets\Scripts\Characters\CharacterAccessories.cs" />
      <Compile Include="Assets\Scripts\UI\Settings\SettingPopup.cs" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\Shaders\CurvedUnlitCloud.shader" />
      <None Include="Assets\EndlessRunner_Third-PartyNotice.txt" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\Shaders\CurvedUnlit.shader" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+     <None Include="Assets\AltTesterUnitySDK\ProjectSettings\ProjectVersion.txt" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\AltTesterUnitySDK\Docs\requirements.txt" />
      <None Include="Assets\INSTRUCTIONS.txt" />
      <None Include="Assets\Shaders\VertexColor.shader" />
      <None Include="Assets\Shaders\CurvedUnlitAlpha.shader" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\Shaders\CurvedCode.cginc" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\Shaders\CurvedRotation.shader" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\Shaders\UnlitBlinking.shader" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\Font\FontLicense.txt" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\AltTester\link.xml" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\Link.xml" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Unity Stuff\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -353,6 +407,9 @@
     <Reference Include="UnityEditor.UnityConnectModule">
         <HintPath>D:\Unity Stuff\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
+    <Reference Include="altwebsocket-sharp">
+        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\3rdParty\websocket-sharp\netstandard2.0\altwebsocket-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Cecil.Pdb">
         <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
     </Reference>
@@ -365,6 +422,9 @@
     <Reference Include="Unity.Analytics.Editor">
         <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.analytics@3.6.12\Unity.Analytics.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\3rdParty\nlog.4.7.9\netstandard2.0\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Cecil.Mdb">
         <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
     </Reference>
@@ -374,11 +434,11 @@
     <Reference Include="Unity.Burst.Cecil.Rocks">
         <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Analytics.Tracker">
         <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.analytics@3.6.12\Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
         <HintPath>D:\Unity Stuff\2021.3.16f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -851,9 +911,9 @@
       <Project>{a8b6f15a-016f-f451-5730-e0fcf46344bd}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Analytics.DataPrivacy.csproj">
-      <Project>{d4007dc5-0c3b-0b4e-ba1f-d3a9c9f938d5}</Project>
-      <Name>Unity.Analytics.DataPrivacy</Name>
+    <ProjectReference Include="Unity.EditorCoroutines.Editor.csproj">
+      <Project>{06fc4a14-ac35-c3b5-b5f9-240667ef1046}</Project>
+      <Name>Unity.EditorCoroutines.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.IK.Runtime.csproj">
       <Project>{ae25cc61-5818-a1cf-dbbd-41c9d0a716de}</Project>
@@ -863,6 +923,14 @@
       <Project>{e7a0ee2a-760b-d9bd-8cdc-d2fdd811d357}</Project>
       <Name>Unity.ShaderGraph.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Analytics.DataPrivacy.csproj">
+      <Project>{d4007dc5-0c3b-0b4e-ba1f-d3a9c9f938d5}</Project>
+      <Name>Unity.Analytics.DataPrivacy</Name>
+    </ProjectReference>
+    <ProjectReference Include="AltTester.AltTesterUnitySDK.Editor.csproj">
+      <Project>{5d5f0c56-e7f1-93bd-bfea-bcd3b6d056ba}</Project>
+      <Name>AltTester.AltTesterUnitySDK.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEngine.Purchasing.Codeless.csproj">
       <Project>{1d9a3608-0781-e437-1d3c-36c02b105ffe}</Project>
       <Name>UnityEngine.Purchasing.Codeless</Name>
@@ -870,6 +938,10 @@
     <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj">
       <Project>{47f7e084-2d0f-0376-ed25-2926c0dbc885}</Project>
       <Name>Unity.RenderPipeline.Universal.ShaderLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="AltTester.AltTesterUnitySDK.Driver.csproj">
+      <Project>{fbb9cc45-e0a5-24a1-ac04-fe6c50a0fd8a}</Project>
+      <Name>AltTester.AltTesterUnitySDK.Driver</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.Editor.csproj">
       <Project>{2db189f0-eb62-21aa-6f26-2e957e24e356}</Project>
@@ -971,6 +1043,10 @@
       <Project>{4a3f2276-e81b-8e99-a355-8f9620744ecf}</Project>
       <Name>Unity.2D.Tilemap.Extras.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="AltTester.AltTesterUnitySDK.csproj">
+      <Project>{9b437c01-2eec-18b8-2fdd-4fded73e68a2}</Project>
+      <Name>AltTester.AltTesterUnitySDK</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.csproj">
       <Project>{052d4cea-d726-6341-5d9f-97c44d166df7}</Project>
       <Name>Unity.Services.Core</Name>
@@ -1066,6 +1142,10 @@
     <ProjectReference Include="Unity.VisualScripting.State.csproj">
       <Project>{fa235e18-29fe-d5fc-4b2d-408b4ebdac34}</Project>
       <Name>Unity.VisualScripting.State</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.InputSystem.csproj">
+      <Project>{c88619db-747c-e0fd-212c-b75190744297}</Project>
+      <Name>Unity.InputSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

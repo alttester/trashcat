@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{0a0c0595-89ef-4695-158c-b837c170548d}</ProjectGuid>
+    <ProjectGuid>{fbb9cc45-e0a5-24a1-ac04-fe6c50a0fd8a}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>PsdPlugin</AssemblyName>
+    <AssemblyName>AltTester.AltTesterUnitySDK.Driver</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -36,53 +36,120 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Layers\LayerInfo\RawLayerInfo.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Util.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Layers\LayerInfo\LayerSectionInfo.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\LoadContext.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\ImageResources\AlphaChannelNames.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PDNWrapper\PDNDecodeJob.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Compression\RleImage.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PDNWrapper\Enums.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Compression\RawImage.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Compression\ImageDataFactory.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PDNWrapper\Document.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PhotoShopFileType\PsdLoad.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PDNWrapper\BitmapLayer.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Compression\ZipImage.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Layers\Channel.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\AssemblyInfo.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\RleRowLengths.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Exceptions.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\ImageResources\Thumbnail.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\ImageResources\RawImageResource.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Compression\ZipPredict32Image.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Layers\Layer.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Compression\ImageData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Layers\LayerInfo.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\RleWriter.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PDNWrapper\Size.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Layers\LayerInfo\LayerUnicodeName.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\PsdBinaryReader.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PhotoShopFileType\DocumentLoadContext.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PDNWrapper\Rectangle.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\RleReader.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PhotoShopFileType\ImageDecoderPdn.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\ImageResources\VersionInfo.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\PsdFile.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Compression\ZipPredict16Image.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Layers\Mask.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Layers\LayerInfo\LayerId.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Layers\BlendingRanges.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\ImageResource.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\ImageResources\ResolutionInfo.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PhotoShopFileType\BlendModeMapping.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Compression\EndianReverser.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\PsdBlendMode.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\ImageResources\UnicodeAlphaNames.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PDNWrapper\Surface.cs" />
-     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdFile\Layers\LayerInfo\InfoLayers.cs" />
-     <None Include="Library\PackageCache\com.unity.2d.psdimporter@6.0.6\Editor\PSDPlugin\PsdPlugin.asmdef" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\AltCommands\AltResetInput.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\FindObjects\AltFindObjectsWhichContain.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\Parameters\CommandParams.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltGetAllMethods.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Logging\AltLogger.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Communication\DriverCommunicationHandler.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltGetIntKeyPlayerPref.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltWaitForCurrentSceneToBe.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\AltCommands\RemoveNotificationListener.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Common\AltObjectProperty.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\AltBaseCommand.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Logging\DriverLogManager.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Common\AltTextureInformation.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Proxy\ProxyFinder.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\FindObjects\AltFindObjects.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltGetAllCameras.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltSetText.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltGetAllActiveCameras.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\InputActions\AltScroll.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltGetAllProperties.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Notifications\AltLogNotificationResultParams.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Communication\DriverWebSocketClient.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Notifications\AltLoadSceneMode.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\UnityStruct\PLayerPrefKeyType.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Communication\IDriverCommunication.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\InputActions\AltBeginTouch.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\FindObjects\AltGetAllElementsLight.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\AltCommands\AltGetServerVersion.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltPointerUpFromObject.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\InputActions\AltEndTouch.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\FindObjects\AltWaitForComponentProperty.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\FindObjects\AltWaitForObjectNotBePresent.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Common\AltObjectLight.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltLoadScene.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Proxy\EnvironmentProxyFinder.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\FindObjects\AltFindObjectAtCoordinates.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\AltDriver.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\AltErrors.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Common\AltType.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Communication\LiveUpdateDriver.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltUnloadScene.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltPointerExitObject.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltGetComponentProperty.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Logging\AltLogLevelExtensions.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Common\AltMethodSelection.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltGetAllFields.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltGetAllComponents.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltSetComponentProperty.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Common\AltProperty.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltGetAllScenes.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Common\AltPropertiesSelections.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\UnityStruct\AltVector.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Proxy\IOSProxyFinder.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\FindObjects\AltGetAllLoadedScenesAndObjects.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\Screenshot\AltGetScreenshot.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\InputActions\AltKeysUp.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Common\AltComponent.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltGetFloatKeyPlayerPref.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltGetStringKeyPlayerPref.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\AltCommandReturningAltElement.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltPointerDownFromObject.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Proxy\AndroidProxyFinder.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\InputActions\AltTilt.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\InputActions\AltKeysDown.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltDeletePlayerPref.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Notifications\NotificationType.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Communication\Utils.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltDeleteKeyPlayerPref.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Logging\UnityTarget.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\UnityStruct\AltKeyCode.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\AltCommands\AddNotificationListener.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltObjectAction.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\AltSetStaticProperty.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Proxy\DotnetProxyFinder.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\InputActions\AltPressKeys.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\UnityStruct\AltColor.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Common\AltAxis.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Common\AltObject.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\InputActions\AltMoveTouch.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\InputActions\AltClickCoordinates.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Proxy\IProxyFinder.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\FindObjects\AltFindObjectWhichContains.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\InputActions\AltTapCoordinates.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\AltReversePortForwarding.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\FindObjects\AltFindObject.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\InputActions\AltMoveMouse.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\FindObjects\AltBaseFindObjects.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\FindObjects\AltWaitForObjectWhichContains.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltDragObject.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Logging\AltLogLevel.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\FindObjects\AltWaitForObject.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltGetTimeScale.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltSetKeyPLayerPref.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Notifications\AltLoadSceneNotificationResultParams.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltGetText.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltSetTimeScale.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltGetCurrentScene.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\UnityCommands\AltGetAllLoadedScenes.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltPointerEnterObject.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltTapElement.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Common\AltFieldsSelections.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Notifications\BaseNotificationCallBacks.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltCallStaticMethod.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltClickElement.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\AltDevice.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\AltCommands\AltSetServerLogging.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Notifications\INotificationCallbacks.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\InputActions\AltMultipointSwipe.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\FindObjects\AltGetAllElements.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\ObjectCommands\AltCallComponentMethod.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\InputActions\AltSwipe.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\Screenshot\AltGetPNGScreenshot.cs" />
+     <Compile Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\Commands\AltGetStaticProperty.cs" />
+     <None Include="Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\AltDriver\AltTester.AltTesterUnitySDK.Driver.asmdef" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Unity Stuff\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -157,9 +224,6 @@
     </Reference>
     <Reference Include="UnityEngine.LocalizationModule">
         <HintPath>D:\Unity Stuff\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEngine.LocalizationModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.NVIDIAModule">
-        <HintPath>D:\Unity Stuff\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEngine.NVIDIAModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
         <HintPath>D:\Unity Stuff\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEngine.ParticleSystemModule.dll</HintPath>
@@ -344,62 +408,14 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
         <HintPath>D:\Unity Stuff\2021.3.16f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="altwebsocket-sharp">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\3rdParty\websocket-sharp\netstandard2.0\altwebsocket-sharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil.Pdb">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
-    </Reference>
-    <Reference Include="log4netPlastic">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+    <Reference Include="NLog">
+        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\3rdParty\nlog.4.7.9\netstandard2.0\NLog.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
         <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Plastic.Newtonsoft.Json">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.StandardEvents">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.analytics@3.6.12\AnalyticsStandardEvents\Unity.Analytics.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.Editor">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.analytics@3.6.12\Unity.Analytics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\3rdParty\nlog.4.7.9\netstandard2.0\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Plastic.Antlr3.Runtime">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil.Mdb">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.TextureAssets">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
-    </Reference>
-    <Reference Include="unityplastic">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil.Rocks">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.Tracker">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.analytics@3.6.12\Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
+    <Reference Include="altwebsocket-sharp">
+        <HintPath>D:\AltTester\Unity\NewTrashCat\trashcat\TrashCat\Assets\AltTesterUnitySDK\Assets\AltTester\Runtime\3rdParty\websocket-sharp\netstandard2.0\altwebsocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
         <HintPath>D:\Unity Stuff\2021.3.16f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -784,10 +800,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.Burst.csproj">
-      <Project>{4a337c41-5c79-52f0-8e1d-4cd2446f379c}</Project>
-      <Name>Unity.Burst</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{8c260a56-ff28-aba7-9645-66108dd28f80}</Project>
       <Name>UnityEditor.UI</Name>
@@ -795,14 +807,6 @@
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{a8b6f15a-016f-f451-5730-e0fcf46344bd}</Project>
       <Name>UnityEngine.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEditor.TestRunner.csproj">
-      <Project>{cf3f02ae-d649-c897-8e92-1a7a206c4e6f}</Project>
-      <Name>UnityEditor.TestRunner</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEngine.TestRunner.csproj">
-      <Project>{a0e2c613-512b-eb7c-9da2-dcf3f3262c31}</Project>
-      <Name>UnityEngine.TestRunner</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
