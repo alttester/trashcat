@@ -1087,6 +1087,10 @@
       <Project>{fa235e18-29fe-d5fc-4b2d-408b4ebdac34}</Project>
       <Name>Unity.VisualScripting.State</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.InputSystem.csproj">
+      <Project>{c88619db-747c-e0fd-212c-b75190744297}</Project>
+      <Name>Unity.InputSystem</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
