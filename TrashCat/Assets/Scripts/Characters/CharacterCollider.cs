@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AddressableAssets;
 
 /// <summary>
 /// Handles everything related to the collider of the character. This is actually an empty game object, NOT on the character prefab
@@ -40,6 +41,10 @@ public class CharacterCollider : MonoBehaviour
 
     [HideInInspector]
 	public List<GameObject> magnetCoins = new List<GameObject>();
+
+    public bool tutorialHitObstacle {  get { return m_TutorialHitObstacle;} set { m_TutorialHitObstacle = value;} }
+
+    protected bool m_TutorialHitObstacle;
 
     protected bool m_Invincible;
     protected DeathEvent m_DeathData;
@@ -104,7 +109,7 @@ public class CharacterCollider : MonoBehaviour
 
 			if (c.GetComponent<Coin>().isPremium)
             {
-				Destroy(c.gameObject);
+				Addressables.ReleaseInstance(c.gameObject);
                 PlayerData.instance.premium += 1;
                 controller.premium += 1;
 				m_Audio.PlayOneShot(premiumSound);
@@ -134,10 +139,18 @@ public class CharacterCollider : MonoBehaviour
 			}
 			else
 			{
-				Destroy(c.gameObject);
+			    Addressables.ReleaseInstance(c.gameObject);
 			}
 
-			controller.currentLife -= 1;
+            if (TrackManager.instance.isTutorial)
+            {
+                m_TutorialHitObstacle = true;
+            }
+            else
+            {
+                controller.currentLife -= 1;
+            }
+
             controller.character.animator.SetTrigger(s_HitHash);
 
 			if (controller.currentLife > 0)
