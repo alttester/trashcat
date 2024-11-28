@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.AddressableAssets;
 
 /// <summary>
 /// Handle everything related to controlling the character. Interact with both the Character (visual, animation) and CharacterCollider
@@ -41,6 +42,9 @@ public class CharacterInputController : MonoBehaviour
 	public AudioClip powerUpUseSound;
 	public AudioSource powerupSource;
 
+    [HideInInspector] public int currentTutorialLevel;
+    [HideInInspector] public bool tutorialWaitingForValidation;
+
     protected int m_Coins;
     protected int m_Premium;
     protected int m_CurrentLife;
@@ -50,7 +54,8 @@ public class CharacterInputController : MonoBehaviour
     protected int m_ObstacleLayer;
 
 	protected bool m_IsInvincible;
-
+	protected bool m_IsRunning;
+	
     protected float m_JumpStart;
     protected bool m_Jumping;
 
@@ -77,6 +82,7 @@ public class CharacterInputController : MonoBehaviour
         m_CurrentLife = 0;
         m_Sliding = false;
         m_SlideStart = 0.0f;
+	    m_IsRunning = false;
     }
 
 #if !UNITY_STANDALONE
@@ -113,6 +119,7 @@ public class CharacterInputController : MonoBehaviour
 	// Called at the beginning of a run or rerun
 	public void Begin()
 	{
+		m_IsRunning = false;
         character.animator.SetBool(s_DeadHash, false);
 
 		characterCollider.Init ();
@@ -130,14 +137,15 @@ public class CharacterInputController : MonoBehaviour
         for (int i = 0; i < m_ActiveConsumables.Count; ++i)
         {
             m_ActiveConsumables[i].Ended(this);
-            Destroy(m_ActiveConsumables[i].gameObject);
+            Addressables.ReleaseInstance(m_ActiveConsumables[i].gameObject);
         }
 
         m_ActiveConsumables.Clear();
     }
 
     public void StartRunning()
-    {
+    {   
+	    StartMoving();
         if (character.animator)
         {
             character.animator.Play(s_RunStartHash);
@@ -145,32 +153,47 @@ public class CharacterInputController : MonoBehaviour
         }
     }
 
+	public void StartMoving()
+	{
+		m_IsRunning = true;
+	}
+
     public void StopMoving()
     {
+	    m_IsRunning = false;
         trackManager.StopMove();
         if (character.animator)
         {
             character.animator.SetBool(s_MovingHash, false);
         }
     }
-	
+
+    protected bool TutorialMoveCheck(int tutorialLevel)
+    {
+        tutorialWaitingForValidation = currentTutorialLevel != tutorialLevel;
+
+        return (!TrackManager.instance.isTutorial || currentTutorialLevel >= tutorialLevel);
+    }
+
 	protected void Update ()
     {
-#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL
+#if UNITY_EDITOR || UNITY_STANDALONE
         // Use key input in editor or standalone
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        // disabled if it's tutorial and not thecurrent right tutorial level (see func TutorialMoveCheck)
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && TutorialMoveCheck(0))
         {
             ChangeLane(-1);
         }
-        else if(Input.GetKeyDown(KeyCode.RightArrow))
+        else if(Input.GetKeyDown(KeyCode.RightArrow) && TutorialMoveCheck(0))
         {
             ChangeLane(1);
         }
-        else if(Input.GetKeyDown(KeyCode.UpArrow))
+        else if(Input.GetKeyDown(KeyCode.UpArrow) && TutorialMoveCheck(1))
         {
             Jump();
         }
-		else if (Input.GetKeyDown(KeyCode.DownArrow))
+		else if (Input.GetKeyDown(KeyCode.DownArrow) && TutorialMoveCheck(2))
 		{
 			if(!m_Sliding)
 				Slide();
@@ -191,16 +214,16 @@ public class CharacterInputController : MonoBehaviour
 				{
 					if(Mathf.Abs(diff.y) > Mathf.Abs(diff.x))
 					{
-						if(diff.y < 0)
+						if(TutorialMoveCheck(2) && diff.y < 0)
 						{
 							Slide();
 						}
-						else
+						else if(TutorialMoveCheck(1))
 						{
 							Jump();
 						}
 					}
-					else
+					else if(TutorialMoveCheck(0))
 					{
 						if(diff.x < 0)
 						{
@@ -292,6 +315,9 @@ public class CharacterInputController : MonoBehaviour
 
     public void Jump()
     {
+	    if (!m_IsRunning)
+		    return;
+	    
         if (!m_Jumping)
         {
 			if (m_Sliding)
@@ -319,6 +345,9 @@ public class CharacterInputController : MonoBehaviour
 
 	public void Slide()
 	{
+		if (!m_IsRunning)
+			return;
+		
 		if (!m_Sliding)
 		{
 
@@ -351,7 +380,7 @@ public class CharacterInputController : MonoBehaviour
 
 	public void ChangeLane(int direction)
     {
-		if (!trackManager.isMoving)
+		if (!m_IsRunning)
 			return;
 
         int targetLane = m_CurrentLane + direction;
@@ -383,7 +412,7 @@ public class CharacterInputController : MonoBehaviour
             {
 				// If we already have an active consumable of that type, we just reset the time
                 m_ActiveConsumables[i].ResetTime();
-                Destroy(c.gameObject);
+                Addressables.ReleaseInstance(c.gameObject);
                 return;
             }
         }
@@ -393,6 +422,6 @@ public class CharacterInputController : MonoBehaviour
         c.gameObject.SetActive(false);
 
         m_ActiveConsumables.Add(c);
-        c.Started(this);
+        StartCoroutine(c.Started(this));
     }
 }

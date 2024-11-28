@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+
 #if UNITY_ANALYTICS
 using UnityEngine.Analytics;
 #endif
@@ -40,6 +43,9 @@ public class LoadoutState : AState
     public MissionUI missionPopup;
 	public Button runButton;
 
+    public GameObject tutorialBlocker;
+    public GameObject tutorialPrompt;
+
 	public MeshFilter skyMeshFilter;
     public MeshFilter UIGroundFilter;
 
@@ -67,6 +73,9 @@ public class LoadoutState : AState
 
     public override void Enter(AState from)
     {
+        tutorialBlocker.SetActive(!PlayerData.instance.tutorialDone);
+        tutorialPrompt.SetActive(false);
+
         inventoryCanvas.gameObject.SetActive(true);
         missionPopup.gameObject.SetActive(false);
 
@@ -105,7 +114,7 @@ public class LoadoutState : AState
         missionPopup.gameObject.SetActive(false);
         inventoryCanvas.gameObject.SetActive(false);
 
-        if (m_Character != null) Destroy(m_Character);
+        if (m_Character != null) Addressables.ReleaseInstance(m_Character);
 
         GameState gs = to as GameState;
 
@@ -151,6 +160,9 @@ public class LoadoutState : AState
             {
                 runButton.interactable = true;
                 runButton.GetComponentInChildren<Text>().text = "Run!";
+
+                //we can always enabled, as the parent will be disabled if tutorial is already done
+                tutorialPrompt.SetActive(true);
             }
         }
 
@@ -263,13 +275,20 @@ public class LoadoutState : AState
 
                     accessoriesSelector.gameObject.SetActive(m_OwnedAccesories.Count > 0);
 
-                    newChar = Instantiate(c.gameObject);
+                    AsyncOperationHandle op = Addressables.InstantiateAsync(c.characterName);
+                    yield return op;
+                    if (op.Result == null || !(op.Result is GameObject))
+                    {
+                        Debug.LogWarning(string.Format("Unable to load character {0}.", c.characterName));
+                        yield break;
+                    }
+                    newChar = op.Result as GameObject;
                     Helpers.SetRendererLayerRecursive(newChar, k_UILayer);
 					newChar.transform.SetParent(charPosition, false);
                     newChar.transform.rotation = k_FlippedYAxisRotation;
 
                     if (m_Character != null)
-                        Destroy(m_Character);
+                        Addressables.ReleaseInstance(m_Character);
 
                     m_Character = newChar;
                     charNameDisplay.text = c.characterName;
@@ -361,6 +380,12 @@ public class LoadoutState : AState
 		PopulatePowerup();
 	}
 
+	public void UnequipPowerup()
+	{
+		m_PowerupToUse = Consumable.ConsumableType.NONE;
+	}
+	
+
 	public void SetModifier(Modifier modifier)
 	{
 		m_CurrentModifier = modifier;
@@ -368,10 +393,13 @@ public class LoadoutState : AState
 
     public void StartGame()
     {
-        if(PlayerData.instance.ftueLevel == 1)
+        if (PlayerData.instance.tutorialDone)
         {
-            PlayerData.instance.ftueLevel = 2;
-            PlayerData.instance.Save();
+            if (PlayerData.instance.ftueLevel == 1)
+            {
+                PlayerData.instance.ftueLevel = 2;
+                PlayerData.instance.Save();
+            }
         }
 
         manager.SwitchState("Game");
