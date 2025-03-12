@@ -23,7 +23,7 @@ public class BuildTrashCat
             PlayerSettings.defaultScreenWidth = 1920;
 
             logger.Debug("Starting Windows build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-            var buildPlayerOptions = GetBuildPlayerOptions("TrashCat", BuildTarget.StandaloneWindows64);
+            var buildPlayerOptions = GetBuildPlayerOptions("TrashCatBuild/TrashCat.exe", BuildTarget.StandaloneWindows64);
             buildGame(buildPlayerOptions, BuildTargetGroup.Standalone);
 
         }

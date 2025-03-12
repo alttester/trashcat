@@ -31,7 +31,7 @@ jobs:
         with:
           name: BuildWindowsArtifact
           path: |
-            **/TrashCat
+            **/TrashCatBuild/*
             **/*.log
 
   # build-macOS:
