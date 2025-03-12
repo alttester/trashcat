@@ -17,14 +17,14 @@ jobs:
         run: env
       - name: Test
         shell: bash
-        run : echo $CI_PROJECT_DIR
+        run : echo $GITHUB_WORKSPACE
       - name: Build TrashCat
         shell: bash
         run: |
           export ALTSERVER_PORT=13000
           export ALTSERVER_HOST="192.168.11.35"
-          echo $CI_PROJECT_DIR
-          "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/TrashCat -executeMethod BuildTrashCat.WindowsBuildFromCommandLine -logFile buildWindows.log -quit
+          echo $GITHUB_WORKSPACE
+          "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath $GITHUB_WORKSPACE/TrashCat -executeMethod BuildTrashCat.WindowsBuildFromCommandLine -logFile buildWindows.log -quit
 
       - uses: actions/upload-artifact@v4
         if: always() # run this step even if one of the previous steps failed
