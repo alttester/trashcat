@@ -1,10 +1,10 @@
 ﻿﻿using System;
-using System.IO;
-using System.Linq;
+using AltTester.AltTesterUnitySDK;
+using AltTester.AltTesterUnitySDK.Driver;
+using AltTester.AltTesterUnitySDK.Editor;
+using AltTester.AltTesterUnitySDK.Editor.Logging;
 using UnityEditor;
-using UnityEngine;
-using Altom.AltUnityTester;
-using Altom.AltUnityTesterEditor;
+using UnityEditor.Build.Reporting;
 
 public class BuildTrashCat
 {
