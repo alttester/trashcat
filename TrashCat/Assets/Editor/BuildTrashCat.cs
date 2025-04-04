@@ -1,325 +1,240 @@
 ﻿﻿using System;
-using System.IO;
-using System.Linq;
+using AltTester.AltTesterUnitySDK;
+using AltTester.AltTesterSDK.Driver;
+using AltTester.AltTesterUnitySDK.Editor;
+using AltTester.AltTesterUnitySDK.Editor.Logging;
 using UnityEditor;
-using UnityEngine;
-using Altom.AltUnityTester;
-using Altom.AltUnityTesterEditor;
+using UnityEditor.Build.Reporting;
 
 public class BuildTrashCat
 {
 
-  [MenuItem("Build/WindowsWithAltunity")]
-  static void WindowsBuildInspectorWithAltUnity()
-  {
-    WindowsBuildFromCommandLine(true, 13000);
-  }
-  [MenuItem("Build/AndroidWithAltUnity")]
-  static void AndroidBuild()
-  {
-    string proxyHost = System.Environment.GetEnvironmentVariable("PROXY_HOST");
+    private static readonly NLog.Logger logger = EditorLogManager.Instance.GetCurrentClassLogger();
 
-    AndroidBuildFromCommandLine(true, proxyHost, 13000);
-  }
-
-  [MenuItem("Build/macOSWithAltUnity")]
-  static void MacOSBuildInspectorWithAltUnity()
-  {
-    MacOSBuildFromCommandLine(true, 13000);
-  }
-
-  [MenuItem("Build/macOSWithAltUnityIL2CPP")]
-  static void MacOSBuildInspectorWithAltUnityIL2CPP()
-  {
-    MacOSBuildFromCommandLineIL2CPP(true, 13000);
-  }
-
-  [MenuItem("Build/windowsWithAltUnityIL2CPP")]
-  static void WindowsBuildInspectorWithAltUnityIL2CPP()
-  {
-    WindowsBuildFromCommandLineIL2CPP(true, 13000);
-  }
-
-  [MenuItem("Build/iOSWithAltUnity")]
-  static void IOSBuildWithAltUnity()
-  {
-    string proxyHost = System.Environment.GetEnvironmentVariable("PROXY_HOST");
-
-    IOSBuildFromCommandLine(true,proxyHost,13000);
-  }
-  static void WindowsBuildFromCommandLine(bool withAltunity, int proxyPort = 13000)
-  {
-    SetPlayerSettings(false);
-
-    Debug.Log("Starting Windows build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-    BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-    buildPlayerOptions.scenes = new string[]
+    [MenuItem("Build/Windows")]
+    protected static void WindowsBuildFromCommandLine()
     {
-            "Assets/Scenes/Main.unity",
-            "Assets/Scenes/Shop.unity",
-            "Assets/Scenes/Start.unity"
-    };
-    if (withAltunity)
-    {
-      buildPlayerOptions.locationPathName = "TrashCatWindowsTest/TrashCat.exe";
+        try
+        {
+            SetCommonSettings(BuildTargetGroup.Standalone);
+
+            PlayerSettings.fullScreenMode = UnityEngine.FullScreenMode.Windowed;
+            PlayerSettings.defaultScreenHeight = 1080;
+            PlayerSettings.defaultScreenWidth = 1920;
+
+            logger.Debug("Starting Windows build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
+            var buildPlayerOptions = GetBuildPlayerOptions("TrashCatBuild/TrashCat.exe", BuildTarget.StandaloneWindows64);
+            buildGame(buildPlayerOptions, BuildTargetGroup.Standalone);
+
+        }
+        catch (Exception exception)
+        {
+            logger.Error(exception);
+        }
 
     }
-    else
+
+
+    [MenuItem("Build/Mac")]
+    protected static void MacBuildFromCommandLine()
     {
-      buildPlayerOptions.locationPathName = "TrashCatWindows/TrashCat.exe";
+        try
+        {
+            SetCommonSettings(BuildTargetGroup.Standalone);
+
+            PlayerSettings.fullScreenMode = UnityEngine.FullScreenMode.Windowed;
+            PlayerSettings.defaultScreenHeight = 1080;
+            PlayerSettings.defaultScreenWidth = 1920;
+
+            logger.Debug("Starting Mac build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
+            var buildPlayerOptions = GetBuildPlayerOptions("TrashCat", BuildTarget.StandaloneOSX);
+            buildGame(buildPlayerOptions, BuildTargetGroup.Standalone);
+
+        }
+        catch (Exception exception)
+        {
+            logger.Error(exception);
+        }
 
     }
-    buildPlayerOptions.target = BuildTarget.StandaloneWindows;
-    buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
-    if (withAltunity)
+
+
+
+    [MenuItem("Build/Android")]
+    protected static void AndroidBuildFromCommandLine()
     {
-      buildPlayerOptions.options = BuildOptions.Development;
-    }
-    BuildGame(buildPlayerOptions, withAltunity, proxyPort: proxyPort);
+        try
+        {
+            SetCommonSettings(BuildTargetGroup.Android);
 
-  }
+            PlayerSettings.Android.bundleVersionCode = int.Parse(PlayerSettings.bundleVersion);
+            PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel23;
+#if UNITY_2018_1_OR_NEWER
+            PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARMv7;
+#endif
+            logger.Debug("Starting Android build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
+            var buildPlayerOptions = GetBuildPlayerOptions("TrashCat.apk", BuildTarget.Android, false);
 
+            buildGame(buildPlayerOptions, BuildTargetGroup.Android);
 
-  static void IOSBuildFromCommandLine(bool withAltunity,string proxyHost, int port = 13000)
-  {
-    PlayerSettings.companyName = "Altom";
-    PlayerSettings.productName = "TrashCat";
-    PlayerSettings.bundleVersion = "1.0";
-    PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, "fi.altom.trashcat");
-    PlayerSettings.iOS.appleEnableAutomaticSigning = true;
-    PlayerSettings.iOS.appleDeveloperTeamID = "59ESG8ELF5";
-    PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.iOS, ApiCompatibilityLevel.NET_4_6);
-    PlayerSettings.stripEngineCode = false;
-    PlayerSettings.aotOptions = "ByteCode";
-
-    Debug.Log("Starting iOS build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-
-
-    BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-    buildPlayerOptions.scenes = new string[]
-    {
-            "Assets/Scenes/Main.unity",
-            "Assets/Scenes/Shop.unity",
-            "Assets/Scenes/Start.unity"
-    };
-    if (withAltunity)
-    {
-      buildPlayerOptions.locationPathName = "TrashCatiOSTest/TrashCatiOS";
-    }
-    else
-    {
-      buildPlayerOptions.locationPathName = "TrashCatiOS/TrashCatiOS";
+        }
+        catch (Exception exception)
+        {
+            logger.Error(exception);
+        }
 
     }
-    buildPlayerOptions.target = BuildTarget.iOS;
-    buildPlayerOptions.targetGroup = BuildTargetGroup.iOS;
-    if (withAltunity)
-    {
-      buildPlayerOptions.options = BuildOptions.Development;
-    }
-    BuildGame(buildPlayerOptions, withAltunity, proxyHost, port);
 
-  }
-  static void AndroidBuildFromCommandLine(bool withAltunity, string proxyHost, int proxyPort = 13000)
-  {
-    SetPlayerSettings(false);
+    [MenuItem("Build/iOS")]
+    protected static void IosBuildFromCommandLine()
+    {
+        try
+        {
+            SetCommonSettings(BuildTargetGroup.iOS);
+            PlayerSettings.iOS.appleEnableAutomaticSigning = true;
+            PlayerSettings.iOS.appleDeveloperTeamID = "59ESG8ELF5";
 
-    Debug.Log("Starting Android build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-    BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-    buildPlayerOptions.scenes = new string[]
-    {
-            "Assets/Scenes/Main.unity",
-            "Assets/Scenes/Shop.unity",
-            "Assets/Scenes/Start.unity"
-    };
-    if (withAltunity)
-    {
-      buildPlayerOptions.locationPathName = "TraschatAndroidTest/TrashCat.apk";
-    }
-    else
-    {
-      buildPlayerOptions.locationPathName = "TraschatAndroid/TrashCat.apk";
+            logger.Debug("Starting IOS build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
 
-    }
-    buildPlayerOptions.target = BuildTarget.Android;
-    buildPlayerOptions.targetGroup = BuildTargetGroup.Android;
-    if (withAltunity)
-    {
-      buildPlayerOptions.options = BuildOptions.Development;
-    }
-    BuildGame(buildPlayerOptions, withAltunity, proxyHost, proxyPort);
+            var buildPlayerOptions = GetBuildPlayerOptions("TrashCat", BuildTarget.iOS, false);
+            buildGame(buildPlayerOptions, BuildTargetGroup.iOS);
 
-  }
-
-  private static void MacOSBuildFromCommandLine(bool withAltUnity, int proxyPort = 13000)
-  {
-    SetPlayerSettings(false);
-    PlayerSettings.macRetinaSupport = true;
-
-    Debug.Log("Starting Mac build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-    BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-    buildPlayerOptions.scenes = new string[]
-    {
-            "Assets/Scenes/Main.unity",
-            "Assets/Scenes/Shop.unity",
-            "Assets/Scenes/Start.unity"
-    };
-    if (withAltUnity)
-    {
-      buildPlayerOptions.locationPathName = "TrashCatTest.app";
-
-    }
-    else
-    {
-      buildPlayerOptions.locationPathName = "TrashCat.app";
-
-    }
-    buildPlayerOptions.target = BuildTarget.StandaloneOSX;
-    buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
-    if (withAltUnity)
-    {
-      buildPlayerOptions.options = BuildOptions.Development;
+        }
+        catch (Exception exception)
+        {
+            logger.Error(exception);
+        }
     }
 
-    BuildGame(buildPlayerOptions, withAltUnity, proxyPort: proxyPort);
-
-  }
-
-    private static void MacOSBuildFromCommandLineIL2CPP(bool withAltUnity, int proxyPort = 13000)
-  {
-    SetPlayerSettings(true);
-    PlayerSettings.macRetinaSupport = true;
-
-    Debug.Log("Starting Mac build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-    BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-    buildPlayerOptions.scenes = new string[]
+    [MenuItem("Build/WebGL")]
+    protected static void WebGLBuildFromCommandLine()
     {
-            "Assets/Scenes/Main.unity",
-            "Assets/Scenes/Shop.unity",
-            "Assets/Scenes/Start.unity"
-    };
-    if (withAltUnity)
-    {
-      buildPlayerOptions.locationPathName = "TrashCatTestIL2CPP.app";
+        try
+        {
+            SetCommonSettings(BuildTargetGroup.WebGL);
 
-    }
-    else
-    {
-      buildPlayerOptions.locationPathName = "TrashCatIL2CPP.app";
+            PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Disabled;
+            PlayerSettings.WebGL.exceptionSupport = WebGLExceptionSupport.FullWithStacktrace;
 
-    }
-    buildPlayerOptions.target = BuildTarget.StandaloneOSX;
-    buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
-    if (withAltUnity)
-    {
-      buildPlayerOptions.options = BuildOptions.Development;
+            logger.Debug("Starting WebGL build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
+            var buildPlayerOptions = GetBuildPlayerOptions("build/webgl", BuildTarget.WebGL);
+
+            AltBuilder.AddScriptingDefineSymbol("UNITY_WEBGL", BuildTargetGroup.WebGL);
+            buildGame(buildPlayerOptions, BuildTargetGroup.WebGL);
+
+            AltBuilder.RemoveScriptingDefineSymbol("UNITY_WEBGL", BuildTargetGroup.WebGL);
+
+
+        }
+        catch (Exception exception)
+        {
+            logger.Error(exception);
+            EditorApplication.Exit(1);
+        }
     }
 
-    BuildGame(buildPlayerOptions, withAltUnity, proxyPort: proxyPort);
-
-  }
-
-  static void WindowsBuildFromCommandLineIL2CPP(bool withAltunity, int proxyPort = 13000)
-  {
-    SetPlayerSettings(true);
-
-    Debug.Log("Starting Windows build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-    BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-    buildPlayerOptions.scenes = new string[]
+    private static AltInstrumentationSettings getInstrumentationSettings()
     {
-            "Assets/Scenes/Main.unity",
-            "Assets/Scenes/Shop.unity",
-            "Assets/Scenes/Start.unity"
-    };
-    if (withAltunity)
-    {
-      buildPlayerOptions.locationPathName = "TrashCatWindowsTest/TrashCatIL2CPP.exe";
+        var instrumentationSettings = new AltInstrumentationSettings();
 
+        var host = System.Environment.GetEnvironmentVariable("ALTSERVER_HOST");
+        if (!string.IsNullOrEmpty(host))
+        {
+            instrumentationSettings.AltServerHost = host;
+        }
+
+        var port = System.Environment.GetEnvironmentVariable("ALTSERVER_PORT");
+        if (!string.IsNullOrEmpty(port))
+        {
+            instrumentationSettings.AltServerPort = int.Parse(port);
+        }
+        else
+        {
+            instrumentationSettings.AltServerPort = 13010;
+        }
+        instrumentationSettings.ResetConnectionData = true;
+        instrumentationSettings.UID = UnityEngine.SystemInfo.deviceUniqueIdentifier.ToString() + DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
+
+        return instrumentationSettings;
     }
-    else
+    public static string[] GetScenes()
     {
-      buildPlayerOptions.locationPathName = "TrashCatWindows/TrashCatIL2CPP.exe";
-
+        return new string[]
+                {
+                    "Assets/Scenes/Main.unity",
+                    "Assets/Scenes/Shop.unity",
+                    "Assets/Scenes/Start.unity"
+                };
     }
-    buildPlayerOptions.target = BuildTarget.StandaloneWindows;
-    buildPlayerOptions.targetGroup = BuildTargetGroup.Standalone;
-    if (withAltunity)
+    private static void buildGame(BuildPlayerOptions buildPlayerOptions, BuildTargetGroup targetGroup)
     {
-      buildPlayerOptions.options = BuildOptions.Development;
-    }
-    BuildGame(buildPlayerOptions, withAltunity, proxyPort: proxyPort);
+        var instrumentationSettings = getInstrumentationSettings();
 
-  }
+        AltBuilder.InsertAltInScene(buildPlayerOptions.scenes[0], instrumentationSettings);
 
-
-
-  private static void SetPlayerSettings(bool customBuild)
-  {
-    PlayerSettings.companyName = "Altom";
-    PlayerSettings.productName = "TrashCat";
-    PlayerSettings.bundleVersion = "1.0";
-    PlayerSettings.resizableWindow = true;
-    PlayerSettings.defaultScreenHeight = 900;
-    PlayerSettings.defaultScreenWidth = 1200;
-    PlayerSettings.fullScreenMode = FullScreenMode.Windowed;
-    PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
-    PlayerSettings.runInBackground = true;
-    if(customBuild)
-    {
-      PlayerSettings.SetScriptingBackend(BuildTargetGroup.Standalone, ScriptingImplementation.IL2CPP);
+        var results = BuildPipeline.BuildPlayer(buildPlayerOptions);
+        AltBuilder.RemoveAltTesterFromScriptingDefineSymbols(targetGroup);
+        HandleResults(results);
     }
 
-  }
-  static void BuildGame(BuildPlayerOptions buildPlayerOptions, bool withAltUnity, string proxyHost = null, int proxyPort = 13000)
-  {
-    try
+    private static void HandleResults(BuildReport results)
     {
-      if (withAltUnity)
-      {
-        AddAltUnity(buildPlayerOptions.targetGroup, buildPlayerOptions.scenes[0], proxyHost, proxyPort);
-      }
-      var results = BuildPipeline.BuildPlayer(buildPlayerOptions);
+#if UNITY_2017
+            if (results.Equals(""))
+            {
+                logger.Info("Build succeeded!");
+                // EditorApplication.Exit(0);
 
-      if (withAltUnity)
-      {
-        RemoveAltUnity(buildPlayerOptions.targetGroup);
-      }
+            }
+            else
+                {
+                    logger.Error("Build failed!");
+                    // EditorApplication.Exit(1);
+                }
 
-      if (results.summary.totalErrors == 0 || results.summary.result == UnityEditor.Build.Reporting.BuildResult.Succeeded)
-      {
-        Debug.Log("Build succeeded!");
+#else
+        if (results.summary.totalErrors == 0)
+        {
+            logger.Info("Build succeeded!");
+        }
+        else
+        {
+            logger.Error("Total Errors: " + results.summary.totalErrors);
+            logger.Error("Steps: ");
+            foreach (var step in results.steps)
+            {
+                logger.Error(step + "\n");
+            }
+            logger.Error("Build failed!  Result: " + results.summary.result + "\n Stripping info: " + results.strippingInfo);
+            // EditorApplication.Exit(1);
+        }
 
-      }
-      else
-      {
-        Debug.LogError("Build failed! " + results.steps + "\n Result: " + results.summary.result + "\n Stripping info: " + results.strippingInfo);
-        // EditorApplication.Exit(1);
-      }
+#endif
 
-      Debug.Log("Finished. " + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-      // EditorApplication.Exit(0);
+        logger.Info("Finished. " + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
+        // EditorApplication.Exit(0);
     }
-    catch (Exception exception)
+    public static void SetCommonSettings(BuildTargetGroup targetGroup)
     {
+        string versionNumber = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
+        PlayerSettings.companyName = "Altom";
+        PlayerSettings.productName = "TrashCat";
+        PlayerSettings.bundleVersion = versionNumber;
+        PlayerSettings.SetApplicationIdentifier(targetGroup, "com.altom.TrashCat");
+        PlayerSettings.SetApiCompatibilityLevel(targetGroup, ApiCompatibilityLevel.NET_4_6);
+        AltBuilder.AddAltTesterInScriptingDefineSymbolsGroup(targetGroup);
 
-      Debug.LogException(exception);
-      // EditorApplication.Exit(1);
     }
-  }
-  static void AddAltUnity(BuildTargetGroup buildTargetGroup, string firstSceneName, string proxyHost = null, int proxyPort = 13000)
-  {
-    AltUnityBuilder.PreviousScenePath = firstSceneName;
-    var instrumentationSettings = new AltUnityInstrumentationSettings();
-    instrumentationSettings.ProxyPort = proxyPort;
-    if (!string.IsNullOrEmpty(proxyHost)) instrumentationSettings.ProxyHost = proxyHost;
-    AltUnityBuilder.AddAltUnityTesterInScritpingDefineSymbolsGroup(buildTargetGroup);
-    AltUnityBuilder.InsertAltUnityInScene(firstSceneName, instrumentationSettings);
-    Debug.Log("Instrumenting with proxyHost: " + proxyHost + ", proxyPort: " + proxyPort);
+    public static BuildPlayerOptions GetBuildPlayerOptions(string locationPathName, BuildTarget target, bool autorun = false)
+    {
+        return new BuildPlayerOptions
+        {
+            scenes = GetScenes(),
 
-  }
-  static void RemoveAltUnity(BuildTargetGroup buildTargetGroup)
-  {
-    AltUnityBuilder.RemoveAltUnityTesterFromScriptingDefineSymbols(buildTargetGroup);
-  }
+            locationPathName = locationPathName,
+            target = target,
+            options = BuildOptions.Development | BuildOptions.IncludeTestAssemblies | (autorun ? BuildOptions.AutoRunPlayer : BuildOptions.None)
+        };
+    }
 
 }
