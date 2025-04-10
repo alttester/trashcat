@@ -32,38 +32,40 @@ jobs:
   get-selected-platforms:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      platforms: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - name: Get Selected Platforms
-        id: get-selected
-        uses: joao-zanutto/get-selected@v1.1.1
-        with:
-          format: json
-
-      - name: Set matrix
+      - name: Set Matrix
         id: set-matrix
         run: |
-          echo "Matrix input: ${{ steps.get-selected.outputs.selected }}"
-          platforms=${{ steps.get-selected.outputs.selected }}
-          json='['
+          platforms=()
+          if ${{ github.event.inputs.windows }}; then platforms+=("windows"); fi
+          if ${{ github.event.inputs.macos }}; then platforms+=("macos"); fi
+          if ${{ github.event.inputs.android }}; then platforms+=("android"); fi
+          if ${{ github.event.inputs.webgl }}; then platforms+=("webgl"); fi
+
+          json=""
           sep=""
-          for platform in $(echo $platforms | jq -r '.[]'); do
-            case $platform in
-              Windows) os='["self-hosted", "Windows", "product"]' ;;
-              macOS|Android|WebGL) os='["self-hosted", "MAC37"]' ;;
+          for platform in "${platforms[@]}"; do
+            case "${platform,,}" in
+              windows) os='["self-hosted", "Windows", "product"]'; plat='Windows' ;;
+              macos) os='["self-hosted", "MAC37"]'; plat='macOS' ;;
+              android) os='["self-hosted", "MAC37"]'; plat='Android' ;;
+              webgl) os='["self-hosted", "MAC37"]'; plat='WebGL' ;;
               *) continue ;;
             esac
-            json="${json}${sep}{\"platform\":\"$platform\",\"os\":$os}"
+            json="${json}${sep}{\"platform\":\"$plat\",\"os\":$os}"
             sep=","
           done
-          json="${json}]"
-          echo "matrix=${json}" >> $GITHUB_OUTPUT
+
+          echo "matrix=[${json}]" >> $GITHUB_OUTPUT
 
   build:
     needs: get-selected-platforms
-    runs-on: ${{ matrix.os }}
     strategy:
-      matrix: ${{ fromJson(needs.get-selected-platforms.outputs.matrix) }}
+      matrix:
+        include: ${{ fromJson(needs.get-selected-platforms.outputs.platforms) }}
+    runs-on: ${{ matrix.os }}
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -74,7 +76,7 @@ jobs:
           git submodule foreach --recursive git reset --hard
           git submodule foreach --recursive git clean -fd
           git submodule update --init --recursive
-
+        
       - name: Checkout AltTester Submodule Branch
         shell: bash
         run: |
@@ -84,10 +86,10 @@ jobs:
           git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
 
       - name: Build TrashCat
-        shell: bash
         run: |
           export ALTSERVER_PORT=13000
           export ALTSERVER_HOST="192.168.11.35"
+
           if [ "${{ matrix.platform }}" = "Windows" ]; then
             "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath $GITHUB_WORKSPACE/TrashCat -executeMethod BuildTrashCat.WindowsBuildFromCommandLine -logFile buildWindows.log -quit
           elif [ "${{ matrix.platform }}" = "macOS" ]; then
@@ -109,113 +111,6 @@ jobs:
             **/TrashCat.app
             **/build/webgl
 
-
-  # build-windows:
-  #   runs-on: [self-hosted, Windows, product]
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         submodules: "recursive"
-
-  #     - name: Update Submodules
-  #       run: |
-  #         git submodule foreach --recursive git reset --hard
-  #         git submodule foreach --recursive git clean -fd
-  #         git submodule update --init --recursive
-        
-  #     - name: Checkout AltTester Submodule Branch
-  #       shell: bash
-  #       run: |
-  #         cd TrashCat/Assets/AltTester-Unity-SDK
-  #         git fetch
-  #         git checkout "${{ github.event.inputs.branch || 'development' }}"
-  #         git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
-
-  #     - name: Build TrashCat
-  #       shell: bash
-  #       run: |
-  #         export ALTSERVER_PORT=13000
-  #         export ALTSERVER_HOST="192.168.11.35"
-  #         "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath $GITHUB_WORKSPACE/TrashCat -executeMethod BuildTrashCat.WindowsBuildFromCommandLine -logFile buildWindows.log -quit
-
-  #     - uses: actions/upload-artifact@v4
-  #       if: always() # run this step even if one of the previous steps failed
-  #       with:
-  #         name: BuildWindowsArtifact
-  #         path: |
-  #           **/TrashCatBuild/*
-  #           **/*.log
-
-  # build-macOS:
-  #   runs-on: [self-hosted, MAC37]
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         submodules: "recursive"
-
-  #     - name: Update Submodules
-  #       run: |
-  #         git submodule foreach --recursive git reset --hard
-  #         git submodule foreach --recursive git clean -fd
-  #         git submodule update --init --recursive
-        
-  #     - name: Checkout AltTester Submodule Branch
-  #       shell: bash
-  #       run: |
-  #         cd TrashCat/Assets/AltTester-Unity-SDK
-  #         git fetch
-  #         git checkout "${{ github.event.inputs.branch || 'development' }}"
-  #         git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
-
-  #     - name: Build TrashCat
-  #       run: |
-  #         export ALTSERVER_PORT=13000
-  #         export ALTSERVER_HOST="192.168.11.35"
-  #         echo $CI_PROJECT_DIR
-  #         $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/TrashCat -executeMethod BuildTrashCat.MacBuildFromCommandLine -logFile buildMac.log -quit
-
-  #     - uses: actions/upload-artifact@v4
-  #       if: always() # run this step even if one of the previous steps failed
-  #       with:
-  #         name: BuildMacArtifact
-  #         path: |
-  #           **/TrashCat.app
-  #           **/*.log
-
-  # build-android:
-  #   runs-on: [self-hosted, MAC37]
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         submodules: "recursive"
-
-  #     - name: Update Submodules
-  #       run: |
-  #         git submodule foreach --recursive git reset --hard
-  #         git submodule foreach --recursive git clean -fd
-  #         git submodule update --init --recursive
-        
-  #     - name: Checkout AltTester Submodule Branch
-  #       shell: bash
-  #       run: |
-  #         cd TrashCat/Assets/AltTester-Unity-SDK
-  #         git fetch
-  #         git checkout "${{ github.event.inputs.branch || 'development' }}"
-  #         git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
-
-  #     - name: Build TrashCat
-  #       run: |
-  #         export ALTSERVER_PORT=13000
-  #         export ALTSERVER_HOST="192.168.11.35"
-  #         $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/TrashCat -executeMethod BuildTrashCat.AndroidBuildFromCommandLine -logFile buildAndroid.log -quit
-
-  #     - uses: actions/upload-artifact@v4
-  #       if: always() # run this step even if one of the previous steps failed
-  #       with:
-  #         name: BuildAndroidArtifact
-  #         path: |
-  #           **/TrashCat.apk
-  #           **/*.log
 
   # build-iOS:
   #   runs-on: [self-hosted, MAC37]
