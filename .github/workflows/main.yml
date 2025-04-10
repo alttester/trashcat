@@ -86,6 +86,7 @@ jobs:
           git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
 
       - name: Build TrashCat
+        shell: bash
         run: |
           export ALTSERVER_PORT=13000
           export ALTSERVER_HOST="192.168.11.35"
