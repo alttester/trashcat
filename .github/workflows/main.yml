@@ -61,6 +61,9 @@ jobs:
 
   build:
     needs: get-selected-platforms
+    defaults:
+      run:
+        shell: bash
     strategy:
       matrix:
         include: ${{ fromJson(needs.get-selected-platforms.outputs.platforms) }}
