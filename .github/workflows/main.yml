@@ -141,38 +141,3 @@ jobs:
   #         path: |
   #           **/TrashCat.ipa
   #           **/*.log
-
-  build-WebGL:
-    runs-on: [self-hosted, MAC37]
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: "recursive"
-
-      - name: Update Submodules
-        run: |
-          git submodule foreach --recursive git reset --hard
-          git submodule foreach --recursive git clean -fd
-          git submodule update --init --recursive
-        
-      - name: Checkout AltTester Submodule Branch
-        shell: bash
-        run: |
-          cd TrashCat/Assets/AltTester-Unity-SDK
-          git fetch
-          git checkout "${{ github.event.inputs.branch || 'development' }}"
-          git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
-
-      - name: Build TrashCat
-        run: |
-          export ALTSERVER_PORT=13000
-          export ALTSERVER_HOST="192.168.11.35"
-          $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/TrashCat -executeMethod BuildTrashCat.WebGLBuildFromCommandLine -logFile buildWebGL.log -quit
-
-      - uses: actions/upload-artifact@v4
-        if: always() # run this step even if one of the previous steps failed
-        with:
-          name: BuildWebGLArtifact
-          path: |
-            **/build/webgl
-            **/*.log
