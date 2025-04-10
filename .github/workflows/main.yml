@@ -1,56 +1,80 @@
 name: Build TrashCat
 
 on:
-  push:
   workflow_dispatch:
     inputs:
+      windows:
+        description: 'Build for Windows'
+        type: boolean
+        default: false
+      macos:
+        description: 'Build for macOS'
+        type: boolean
+        default: false
+      android:
+        description: 'Build for Android'
+        type: boolean
+        default: false
+      webgl:
+        description: 'Build for WebGL'
+        type: boolean
+        default: false
       branch:
-        description: "Branch to checkout for AltTester submodule"
-        default: "development"
+        description: 'Branch to checkout for AltTester submodule'
+        default: 'development'
         required: true
-      platforms:
-        description: "Select platform(s) to build"
-        type: choice
-        required: true
-        default: "Windows"
-        options:
-          - Windows
-          - macOS
-          - Android
-          - WebGL
+
 concurrency:
-  group: build-${{ github.event.pull_request.number || github.ref }} 
+  group: build-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
-  get-build-platforms:
+  get-selected-platforms:
     runs-on: ubuntu-latest
     outputs:
-      platforms: ${{ steps.set-matrix.outputs.platforms }}
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - uses: joao-zanutto/get-selected@v2
-        id: set-matrix
+      - name: Get Selected Platforms
+        id: get-selected
+        uses: joao-zanutto/get-selected@v1.1.1
         with:
-          selected: ${{ github.event.inputs.platforms }}
-          options: '["Windows", "macOS", "Android", "WebGL"]' 
+          format: json
+
+      - name: Set matrix
+        id: set-matrix
+        run: |
+          echo "Matrix input: ${{ steps.get-selected.outputs.selected }}"
+          platforms=${{ steps.get-selected.outputs.selected }}
+          json='['
+          sep=""
+          for platform in $(echo $platforms | jq -r '.[]'); do
+            case $platform in
+              Windows) os='["self-hosted", "Windows", "product"]' ;;
+              macOS|Android|WebGL) os='["self-hosted", "MAC37"]' ;;
+              *) continue ;;
+            esac
+            json="${json}${sep}{\"platform\":\"$platform\",\"os\":$os}"
+            sep=","
+          done
+          json="${json}]"
+          echo "matrix=${json}" >> $GITHUB_OUTPUT
 
   build:
-    needs: get-build-platforms
+    needs: get-selected-platforms
+    runs-on: ${{ matrix.os }}
     strategy:
-      matrix:
-        platform: ${{ fromJson(needs.get-build-platforms.outputs.platforms) }}
-    runs-on: ${{ matrix.platform == 'Windows' && '["self-hosted", "Windows", "product"]' || '["self-hosted", "MAC37"]' }}
+      matrix: ${{ fromJson(needs.get-selected-platforms.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: "recursive"
+          submodules: 'recursive'
 
       - name: Update Submodules
         run: |
           git submodule foreach --recursive git reset --hard
           git submodule foreach --recursive git clean -fd
           git submodule update --init --recursive
-        
+
       - name: Checkout AltTester Submodule Branch
         shell: bash
         run: |
@@ -60,6 +84,7 @@ jobs:
           git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
 
       - name: Build TrashCat
+        shell: bash
         run: |
           export ALTSERVER_PORT=13000
           export ALTSERVER_HOST="192.168.11.35"
@@ -83,6 +108,7 @@ jobs:
             **/TrashCat.apk
             **/TrashCat.app
             **/build/webgl
+
 
   # build-windows:
   #   runs-on: [self-hosted, Windows, product]
