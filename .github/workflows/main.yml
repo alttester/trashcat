@@ -23,6 +23,12 @@ on:
         description: 'Branch to checkout for AltTester submodule'
         default: 'development'
         required: true
+      host:
+        description: 'AltServer Host'
+        default: '127.0.0.1'
+      port:
+        description: 'AltServer Port'
+        default: '13000'
 
 concurrency:
   group: build-${{ github.event.pull_request.number || github.ref }}
@@ -91,8 +97,8 @@ jobs:
       - name: Build TrashCat
         shell: bash
         run: |
-          export ALTSERVER_PORT=13000
-          export ALTSERVER_HOST="127.0.0.1"
+          export ALTSERVER_PORT=${{ github.event.inputs.port }}
+          export ALTSERVER_HOST="${{ github.event.inputs.host }}"
 
           if [ "${{ matrix.platform }}" = "Windows" ]; then
             "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath $GITHUB_WORKSPACE/TrashCat -executeMethod BuildTrashCat.WindowsBuildFromCommandLine -logFile buildWindows.log -quit
