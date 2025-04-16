@@ -92,7 +92,7 @@ jobs:
         shell: bash
         run: |
           export ALTSERVER_PORT=13000
-          export ALTSERVER_HOST="192.168.11.35"
+          export ALTSERVER_HOST="127.0.0.1"
 
           if [ "${{ matrix.platform }}" = "Windows" ]; then
             "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath $GITHUB_WORKSPACE/TrashCat -executeMethod BuildTrashCat.WindowsBuildFromCommandLine -logFile buildWindows.log -quit
@@ -132,7 +132,7 @@ jobs:
   #     - name: Build TrashCat
   #       run: |
   #         export ALTSERVER_PORT=13000
-  #         export ALTSERVER_HOST="192.168.11.35"
+  #         export ALTSERVER_HOST="127.0.0.1"
   #         $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/TrashCat -executeMethod BuildTrashCat.IosBuildFromCommandLine -logFile buildiOS.log -quit
   #         xcodebuild -project ./TrashCat/TrashCat/Unity-iPhone.xcodeproj -scheme Unity-iPhone -archivePath Unity-iPhone.xcarchive archive
   #         xcodebuild -exportArchive -archivePath ./Unity-iPhone.xcarchive -exportOptionsPlist $EXPORT_OPTIONS_LOCATION/export-options.plist -exportPath ./
