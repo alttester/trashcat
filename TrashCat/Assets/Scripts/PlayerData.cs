@@ -252,7 +252,9 @@ public class PlayerData
 
         m_Instance.CheckMissionsCount();
 
-		m_Instance.Save();
+        m_Instance.tutorialDone = true;
+
+        m_Instance.Save();
 	}
 
     public void Read()
