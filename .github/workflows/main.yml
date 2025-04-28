@@ -108,7 +108,6 @@ jobs:
 
           "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod AddressablesBuilder.BuildAddressablesForCurrentPlatform -logFile buildAddressables.log -quit
 
-
           case "${{ matrix.platform }}" in
             "Windows")
               "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.WindowsBuildFromCommandLine -logFile buildWindows.log -quit
