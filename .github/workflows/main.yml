@@ -106,7 +106,8 @@ jobs:
             projectPath="$CI_PROJECT_DIR/TrashCat"
           fi
 
-          "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod UnityEditor.AddressableAssets.Settings.AddressableAssetSettings.BuildPlayerContent -logFile buildAddressables.log -quit
+          "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod AddressablesBuilder.BuildAddressablesForCurrentPlatform -logFile buildAddressables.log -quit
+
 
           case "${{ matrix.platform }}" in
             "Windows")
