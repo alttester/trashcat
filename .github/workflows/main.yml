@@ -96,6 +96,8 @@ jobs:
 
       - name: Build TrashCat
         shell: bash
+        env:
+          UNITY_CLI_PLATFORM: ${{ matrix.platform }}
         run: |
           export ALTSERVER_PORT=${{ github.event.inputs.port }}
           export ALTSERVER_HOST="${{ github.event.inputs.host }}"
