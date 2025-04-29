@@ -224,6 +224,8 @@ public class PlayerData
         {
             // If not we create one with default data.
 			NewSave();
+            m_Instance.tutorialDone = true;
+            m_Instance.Save();
         }
 
         m_Instance.CheckMissionsCount();
