@@ -96,7 +96,7 @@ public class BuildTrashCat
 
             logger.Debug("Starting IOS build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
 
-            var buildPlayerOptions = GetBuildPlayerOptions("TrashCat", BuildTarget.iOS, false);
+            var buildPlayerOptions = GetBuildPlayerOptions("TrashCat-iOS", BuildTarget.iOS, false);
             buildGame(buildPlayerOptions, BuildTargetGroup.iOS);
 
         }
