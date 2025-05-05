@@ -172,6 +172,7 @@ public class BuildTrashCat
 
         AltBuilder.InsertAltInScene(buildPlayerOptions.scenes[0], instrumentationSettings);
 
+        PlayerSettings.iOS.locationUsageDescription = "This app uses location to enhance gameplay.";
         var results = BuildPipeline.BuildPlayer(buildPlayerOptions);
         AltBuilder.RemoveAltTesterFromScriptingDefineSymbols(targetGroup);
         HandleResults(results);
