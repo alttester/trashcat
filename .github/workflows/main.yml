@@ -131,7 +131,7 @@ jobs:
               ;;
             "iOS")
               "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.IosBuildFromCommandLine -logFile buildiOS.log -quit
-              xcodebuild -project ./TrashCat-iOS/Unity-iPhone.xcodeproj -scheme Unity-iPhone -archivePath Unity-iPhone.xcarchive archive
+              xcodebuild -project ./TrashCat/Unity-iPhone.xcodeproj -scheme Unity-iPhone -archivePath Unity-iPhone.xcarchive archive
               xcodebuild -exportArchive -archivePath ./Unity-iPhone.xcarchive -exportOptionsPlist $EXPORT_OPTIONS_LOCATION/export-options.plist -exportPath ./
               osascript -e 'tell app "Xcode" to quit'
               ;;
