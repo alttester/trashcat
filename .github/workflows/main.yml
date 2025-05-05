@@ -100,6 +100,13 @@ jobs:
           git checkout "${{ github.event.inputs.branch || 'development' }}"
           git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
 
+      - name: Remove Unity Ads for iOS
+        if: matrix.platform == 'iOS'
+        run: |
+          echo "Removing com.unity.ads from manifest.json"
+          jq 'del(.dependencies["com.unity.ads"])' TrashCat/Packages/manifest.json > TrashCat/Packages/tmp_manifest.json
+          mv TrashCat/Packages/tmp_manifest.json TrashCat/Packages/manifest.json          
+
       - name: Build TrashCat
         shell: bash
         env:
