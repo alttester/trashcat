@@ -88,54 +88,22 @@ public class BuildTrashCat
     [MenuItem("Build/iOS")]
     protected static void IosBuildFromCommandLine()
     {
-        [MenuItem("Build/iOS")]
-        protected static void IosBuildFromCommandLine()
+        try
         {
-            try
-            {
-                SetCommonSettings(BuildTargetGroup.iOS);
-                PlayerSettings.iOS.appleEnableAutomaticSigning = true;
-                PlayerSettings.iOS.appleDeveloperTeamID = "59ESG8ELF5";
+            SetCommonSettings(BuildTargetGroup.iOS);
+            PlayerSettings.iOS.appleEnableAutomaticSigning = true;
+            PlayerSettings.iOS.appleDeveloperTeamID = "59ESG8ELF5";
 
-                logger.Debug("🔧 Starting iOS build... " + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
+            logger.Debug("Starting IOS build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
 
-                string outputPath = "TrashCat-iOS";
+            var buildPlayerOptions = GetBuildPlayerOptions("TrashCat", BuildTarget.iOS, false);
+            buildGame(buildPlayerOptions, BuildTargetGroup.iOS);
 
-                // Delete the forme folder if it exists
-                if (Directory.Exists(outputPath))
-                {
-                    logger.Debug("Cleaning existing output folder: " + outputPath);
-                    Directory.Delete(outputPath, true);
-                }
-
-                var buildPlayerOptions = GetBuildPlayerOptions(outputPath, BuildTarget.iOS, false);
-                buildGame(buildPlayerOptions, BuildTargetGroup.iOS);
-
-            }
-            catch (Exception exception)
-            {
-                logger.Error("iOS build exception:");
-                logger.Error(exception);
-                EditorApplication.Exit(1); // stop the GitHub workflow
-            }
         }
-
-        // try
-        // {
-        //     SetCommonSettings(BuildTargetGroup.iOS);
-        //     PlayerSettings.iOS.appleEnableAutomaticSigning = true;
-        //     PlayerSettings.iOS.appleDeveloperTeamID = "59ESG8ELF5";
-
-        //     logger.Debug("Starting IOS build..." + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-
-        //     var buildPlayerOptions = GetBuildPlayerOptions("TrashCat-iOS", BuildTarget.iOS, false);
-        //     buildGame(buildPlayerOptions, BuildTargetGroup.iOS);
-
-        // }
-        // catch (Exception exception)
-        // {
-        //     logger.Error(exception);
-        // }
+        catch (Exception exception)
+        {
+            logger.Error(exception);
+        }
     }
 
     [MenuItem("Build/WebGL")]
@@ -214,57 +182,21 @@ public class BuildTrashCat
         if (results.summary.totalErrors == 0)
         {
             logger.Info("Build succeeded!");
-            logger.Info("Output: " + results.summary.outputPath);
         }
         else
         {
-            logger.Error("Build failed!");
-            logger.Error("Total errors: " + results.summary.totalErrors);
-            logger.Error("Steps:");
+            logger.Error("Total Errors: " + results.summary.totalErrors);
+            logger.Error("Steps: ");
             foreach (var step in results.steps)
             {
-                logger.Error("  ⮕ " + step.name + " - " + step.messages.Length + " messages");
+                logger.Error(step + "\n");
             }
-            logger.Error("Output (if any): " + results.summary.outputPath);
-            EditorApplication.Exit(1); 
+            logger.Error("Build failed!  Result: " + results.summary.result + "\n Stripping info: " + results.strippingInfo);
+            EditorApplication.Exit(1);
         }
 
         logger.Info("Finished. " + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-
-        // #if UNITY_2017
-        //             if (results.Equals(""))
-        //             {
-        //                 logger.Info("Build succeeded!");
-        //                 // EditorApplication.Exit(0);
-
-        //             }
-        //             else
-        //                 {
-        //                     logger.Error("Build failed!");
-        //                     // EditorApplication.Exit(1);
-        //                 }
-
-        // #else
-        //         if (results.summary.totalErrors == 0)
-        //         {
-        //             logger.Info("Build succeeded!");
-        //         }
-        //         else
-        //         {
-        //             logger.Error("Total Errors: " + results.summary.totalErrors);
-        //             logger.Error("Steps: ");
-        //             foreach (var step in results.steps)
-        //             {
-        //                 logger.Error(step + "\n");
-        //             }
-        //             logger.Error("Build failed!  Result: " + results.summary.result + "\n Stripping info: " + results.strippingInfo);
-        //             // EditorApplication.Exit(1);
-        //         }
-
-        // #endif
-
-        //         logger.Info("Finished. " + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-        //         // EditorApplication.Exit(0);
+        EditorApplication.Exit(0);
     }
     public static void SetCommonSettings(BuildTargetGroup targetGroup)
     {
