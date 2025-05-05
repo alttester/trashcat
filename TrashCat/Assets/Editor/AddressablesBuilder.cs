@@ -29,6 +29,10 @@ public static class AddressablesBuilder
                     target = BuildTarget.StandaloneOSX;
                     group = BuildTargetGroup.Standalone;
                     break;
+                case "iOS":
+                    target = BuildTarget.iOS;
+                    group = BuildTargetGroup.iOS;
+                    break;
                 case "Android":
                     target = BuildTarget.Android;
                     group = BuildTargetGroup.Android;
