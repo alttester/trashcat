@@ -205,7 +205,7 @@ public class BuildTrashCat
         PlayerSettings.companyName = "Altom";
         PlayerSettings.productName = "TrashCat";
         PlayerSettings.bundleVersion = versionNumber;
-        PlayerSettings.SetApplicationIdentifier(targetGroup, "com.altom.TrashCat");
+        PlayerSettings.SetApplicationIdentifier(targetGroup, "com.Altom.TrashCat");
         PlayerSettings.SetApiCompatibilityLevel(targetGroup, ApiCompatibilityLevel.NET_4_6);
         AltBuilder.AddAltTesterInScriptingDefineSymbolsGroup(targetGroup);
 
