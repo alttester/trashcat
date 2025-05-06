@@ -172,6 +172,7 @@ public class BuildTrashCat
 
         AltBuilder.InsertAltInScene(buildPlayerOptions.scenes[0], instrumentationSettings);
 
+        PlayerSettings.iOS.locationUsageDescription = "This app uses location to enhance gameplay.";
         var results = BuildPipeline.BuildPlayer(buildPlayerOptions);
         AltBuilder.RemoveAltTesterFromScriptingDefineSymbols(targetGroup);
         HandleResults(results);
@@ -179,20 +180,6 @@ public class BuildTrashCat
 
     private static void HandleResults(BuildReport results)
     {
-#if UNITY_2017
-            if (results.Equals(""))
-            {
-                logger.Info("Build succeeded!");
-                // EditorApplication.Exit(0);
-
-            }
-            else
-                {
-                    logger.Error("Build failed!");
-                    // EditorApplication.Exit(1);
-                }
-
-#else
         if (results.summary.totalErrors == 0)
         {
             logger.Info("Build succeeded!");
@@ -206,13 +193,11 @@ public class BuildTrashCat
                 logger.Error(step + "\n");
             }
             logger.Error("Build failed!  Result: " + results.summary.result + "\n Stripping info: " + results.strippingInfo);
-            // EditorApplication.Exit(1);
+            EditorApplication.Exit(1);
         }
 
-#endif
-
         logger.Info("Finished. " + PlayerSettings.productName + " : " + PlayerSettings.bundleVersion);
-        // EditorApplication.Exit(0);
+        EditorApplication.Exit(0);
     }
     public static void SetCommonSettings(BuildTargetGroup targetGroup)
     {
@@ -220,7 +205,7 @@ public class BuildTrashCat
         PlayerSettings.companyName = "Altom";
         PlayerSettings.productName = "TrashCat";
         PlayerSettings.bundleVersion = versionNumber;
-        PlayerSettings.SetApplicationIdentifier(targetGroup, "com.altom.TrashCat");
+        PlayerSettings.SetApplicationIdentifier(targetGroup, "com.Altom.TrashCat");
         PlayerSettings.SetApiCompatibilityLevel(targetGroup, ApiCompatibilityLevel.NET_4_6);
         AltBuilder.AddAltTesterInScriptingDefineSymbolsGroup(targetGroup);
 

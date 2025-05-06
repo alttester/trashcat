@@ -19,6 +19,10 @@ on:
         description: 'Build for WebGL'
         type: boolean
         default: false
+      ios:
+        description: "Build for iOS"
+        type: boolean
+        default: false
       branch:
         description: 'Branch to checkout for AltTester submodule'
         default: 'development'
@@ -48,6 +52,7 @@ jobs:
           if ${{ github.event.inputs.macos }}; then platforms+=("macos"); fi
           if ${{ github.event.inputs.android }}; then platforms+=("android"); fi
           if ${{ github.event.inputs.webgl }}; then platforms+=("webgl"); fi
+          if ${{ github.event.inputs.ios }}; then platforms+=("ios"); fi
 
           json=""
           sep=""
@@ -57,6 +62,7 @@ jobs:
               macos) os='["self-hosted", "MAC37"]'; plat='macOS' ;;
               android) os='["self-hosted", "MAC37"]'; plat='Android' ;;
               webgl) os='["self-hosted", "MAC37"]'; plat='WebGL' ;;
+              ios) os='["self-hosted", "MAC37"]'; plat='iOS' ;;
               *) continue ;;
             esac
             json="${json}${sep}{\"platform\":\"$plat\",\"os\":$os}"
@@ -94,21 +100,49 @@ jobs:
           git checkout "${{ github.event.inputs.branch || 'development' }}"
           git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
 
+      - name: Remove Unity Ads for iOS
+        if: matrix.platform == 'iOS'
+        run: |
+          echo "Removing com.unity.ads from manifest.json"
+          jq 'del(.dependencies["com.unity.ads"])' TrashCat/Packages/manifest.json > TrashCat/Packages/tmp_manifest.json
+          mv TrashCat/Packages/tmp_manifest.json TrashCat/Packages/manifest.json          
+
       - name: Build TrashCat
         shell: bash
+        env:
+          UNITY_CLI_PLATFORM: ${{ matrix.platform }}
         run: |
           export ALTSERVER_PORT=${{ github.event.inputs.port }}
           export ALTSERVER_HOST="${{ github.event.inputs.host }}"
 
           if [ "${{ matrix.platform }}" = "Windows" ]; then
-            "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath $GITHUB_WORKSPACE/TrashCat -executeMethod BuildTrashCat.WindowsBuildFromCommandLine -logFile buildWindows.log -quit
-          elif [ "${{ matrix.platform }}" = "macOS" ]; then
-            $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/TrashCat -executeMethod BuildTrashCat.MacBuildFromCommandLine -logFile buildMac.log -quit
-          elif [ "${{ matrix.platform }}" = "Android" ]; then
-            $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/TrashCat -executeMethod BuildTrashCat.AndroidBuildFromCommandLine -logFile buildAndroid.log -quit
-          elif [ "${{ matrix.platform }}" = "WebGL" ]; then
-            $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/TrashCat -executeMethod BuildTrashCat.WebGLBuildFromCommandLine -logFile buildWebGL.log -quit
+            projectPath="$GITHUB_WORKSPACE/TrashCat"
+          else
+            projectPath="$CI_PROJECT_DIR/TrashCat"
           fi
+
+          "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod AddressablesBuilder.BuildAddressablesForCurrentPlatform -logFile buildAddressables.log -quit
+
+          case "${{ matrix.platform }}" in
+            "Windows")
+              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.WindowsBuildFromCommandLine -logFile buildWindows.log -quit
+              ;;
+            "macOS")
+              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.MacBuildFromCommandLine -logFile buildMac.log -quit
+              ;;
+            "Android")
+              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.AndroidBuildFromCommandLine -logFile buildAndroid.log -quit
+              ;;
+            "WebGL")
+              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.WebGLBuildFromCommandLine -logFile buildWebGL.log -quit
+              ;;
+            "iOS")
+              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.IosBuildFromCommandLine -logFile buildiOS.log -quit
+              xcodebuild -project "${GITHUB_WORKSPACE}/TrashCat/TrashCat/Unity-iPhone.xcodeproj" -scheme Unity-iPhone -archivePath "${GITHUB_WORKSPACE}/TrashCat/TrashCat/Unity-iPhone.xcarchive" archive
+              xcodebuild -exportArchive -archivePath "${GITHUB_WORKSPACE}/TrashCat/TrashCat/Unity-iPhone.xcarchive" -exportOptionsPlist $EXPORT_OPTIONS_LOCATION/export-options.plist -exportPath ./
+              osascript -e 'tell app "Xcode" to quit'
+              ;;
+              esac
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -119,35 +153,5 @@ jobs:
             **/TrashCatBuild/*
             **/TrashCat.apk
             **/TrashCat.app
+            **/TrashCat.ipa
             **/build/webgl
-
-
-  # build-iOS:
-  #   runs-on: [self-hosted, MAC37]
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         submodules: "recursive"
-
-  #     - name: Checkout Submodules to Development Branch
-  #       run: |
-  #         git submodule foreach --recursive git fetch origin
-  #         git submodule foreach --recursive git checkout development --force
-  #         git submodule foreach --recursive git pull origin development
-
-  #     - name: Build TrashCat
-  #       run: |
-  #         export ALTSERVER_PORT=13000
-  #         export ALTSERVER_HOST="127.0.0.1"
-  #         $UNITY_2021_3_HOME -batchmode -stackTraceLogType None -projectPath $CI_PROJECT_DIR/TrashCat -executeMethod BuildTrashCat.IosBuildFromCommandLine -logFile buildiOS.log -quit
-  #         xcodebuild -project ./TrashCat/TrashCat/Unity-iPhone.xcodeproj -scheme Unity-iPhone -archivePath Unity-iPhone.xcarchive archive
-  #         xcodebuild -exportArchive -archivePath ./Unity-iPhone.xcarchive -exportOptionsPlist $EXPORT_OPTIONS_LOCATION/export-options.plist -exportPath ./
-  #         osascript -e 'tell app "Xcode" to quit'
-
-  #     - uses: actions/upload-artifact@v4
-  #       if: always() # run this step even if one of the previous steps failed
-  #       with:
-  #         name: BuildiOSArtifact
-  #         path: |
-  #           **/TrashCat.ipa
-  #           **/*.log
