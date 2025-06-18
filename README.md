@@ -4,6 +4,7 @@ This repository contains a modified version (without the tutorial) of the TrashC
 
 ## Adding the AltTester Unity SDK submodule to the project
 - use ``git submodule update --init`` command to pull the git submodule;
+- use ``git submodule update --remote`` command to get the latest version of AltTester Unity SDK;
 - make sure that the submodule added is on the master branch (you can use the following command ``git checkout master`` in the <i>Assets/AltTester-Unity-SDK</i> folder);
 - also, if you already have the project, you should make a ``git pull`` on the master branch, in order to ensure that you are using the latest version of AltTester.
 
