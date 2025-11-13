@@ -148,7 +148,10 @@ jobs:
           fi
 
           # Select Unity version based on input
-          case "${{ github.event.inputs.unity-version }}" in
+          UNITY_VERSION="${{ github.event.inputs.unity-version }}"
+          echo "Selected Unity version: $UNITY_VERSION"
+          
+          case "$UNITY_VERSION" in
             "2021.3.45f2")
               UNITY_PATH="$UNITY_2021_3_HOME"
               ;;
@@ -162,10 +165,17 @@ jobs:
               UNITY_PATH="$UNITY_6000_0_HOME"
               ;;
             *)
-              echo "Unknown Unity version: ${{ github.event.inputs.unity-version }}"
+              echo "Unknown Unity version: $UNITY_VERSION"
               exit 1
               ;;
           esac
+
+          echo "Using Unity path: $UNITY_PATH"
+          
+          if [ -z "$UNITY_PATH" ]; then
+            echo "Error: UNITY_PATH is empty"
+            exit 1
+          fi
 
           "$UNITY_PATH" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod AddressablesBuilder.BuildAddressablesForCurrentPlatform -logFile buildAddressables.log -quit
 
