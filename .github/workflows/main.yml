@@ -3,6 +3,13 @@ name: Build TrashCat
 on:
   workflow_dispatch:
     inputs:
+      unity-version:
+        description: 'Unity Version to use'
+        type: choice
+        options:
+          - '2021.3.45f2'
+          - '2023.1.22f1'
+          - '6000.0.60f1'
       windows:
         description: 'Build for Windows'
         type: boolean
@@ -21,6 +28,10 @@ on:
         default: false
       ios:
         description: "Build for iOS"
+        type: boolean
+        default: false
+      alttester-nongpl:
+        description: 'Use AltTester Non-GPL version'
         type: boolean
         default: false
       branch:
@@ -139,23 +150,40 @@ jobs:
             projectPath="$CI_PROJECT_DIR/TrashCat"
           fi
 
-          "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod AddressablesBuilder.BuildAddressablesForCurrentPlatform -logFile buildAddressables.log -quit
+          # Select Unity version based on input
+          case "${{ github.event.inputs.unity-version }}" in
+            "2021.3.45f2")
+              UNITY_PATH="$UNITY_2021_3_HOME"
+              ;;
+            "2023.1.22f1")
+              UNITY_PATH="$UNITY_2023_1_HOME"
+              ;;
+            "6000.0.60f1")
+              UNITY_PATH="$UNITY_6000_0_HOME"
+              ;;
+            *)
+              echo "Unknown Unity version: ${{ github.event.inputs.unity-version }}"
+              exit 1
+              ;;
+          esac
+
+          "$UNITY_PATH" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod AddressablesBuilder.BuildAddressablesForCurrentPlatform -logFile buildAddressables.log -quit
 
           case "${{ matrix.platform }}" in
             "Windows")
-              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.WindowsBuildFromCommandLine -logFile buildWindows.log -quit
+              "$UNITY_PATH" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.WindowsBuildFromCommandLine -logFile buildWindows.log -quit
               ;;
             "macOS")
-              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.MacBuildFromCommandLine -logFile buildMac.log -quit
+              "$UNITY_PATH" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.MacBuildFromCommandLine -logFile buildMac.log -quit
               ;;
             "Android")
-              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.AndroidBuildFromCommandLine -logFile buildAndroid.log -quit
+              "$UNITY_PATH" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.AndroidBuildFromCommandLine -logFile buildAndroid.log -quit
               ;;
             "WebGL")
-              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.WebGLBuildFromCommandLine -logFile buildWebGL.log -quit
+              "$UNITY_PATH" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.WebGLBuildFromCommandLine -logFile buildWebGL.log -quit
               ;;
             "iOS")
-              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.IosBuildFromCommandLine -logFile buildiOS.log -quit
+              "$UNITY_PATH" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.IosBuildFromCommandLine -logFile buildiOS.log -quit
               xcodebuild -project "${GITHUB_WORKSPACE}/TrashCat/TrashCat/Unity-iPhone.xcodeproj" -scheme Unity-iPhone -archivePath "${GITHUB_WORKSPACE}/TrashCat/TrashCat/Unity-iPhone.xcarchive" archive
               xcodebuild -exportArchive -archivePath "${GITHUB_WORKSPACE}/TrashCat/TrashCat/Unity-iPhone.xcarchive" -exportOptionsPlist $EXPORT_OPTIONS_LOCATION/export-options.plist -exportPath ./
               osascript -e 'tell app "Xcode" to quit'
