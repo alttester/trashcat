@@ -31,10 +31,6 @@ on:
           - '2022.3.62f3'
           - '2023.2.22f1'
           - '6000.0.62f1'
-      alttester-nongpl:
-        description: 'Use AltTester Non-GPL version'
-        type: boolean
-        default: false
       branch:
         description: 'Branch to checkout for AltTester submodule'
         default: 'development'
@@ -45,6 +41,10 @@ on:
       port:
         description: 'AltServer Port'
         default: '13000'
+      alttester-nongpl:
+        description: 'Use AltTester Non-GPL version'
+        type: boolean
+        default: false
 
 concurrency:
   group: build-${{ github.event.pull_request.number || github.ref }}
