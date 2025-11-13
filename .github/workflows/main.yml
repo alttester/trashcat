@@ -31,6 +31,10 @@ on:
           - '2022.3.62f3'
           - '2023.2.22f1'
           - '6000.0.62f1'
+      alttester-nongpl:
+        description: 'Use AltTester Non-GPL version'
+        type: boolean
+        default: false
       branch:
         description: 'Branch to checkout for AltTester submodule'
         default: 'development'
@@ -95,12 +99,14 @@ jobs:
           submodules: 'recursive'
 
       - name: Update Submodules
+        if: ${{ github.event.inputs.alttester-nongpl == 'false' }}
         run: |
           git submodule foreach --recursive git reset --hard
           git submodule foreach --recursive git clean -fd
           git submodule update --init --recursive
         
       - name: Checkout AltTester Submodule Branch
+        if: ${{ github.event.inputs.alttester-nongpl == 'false' }}
         shell: bash
         run: |
           cd TrashCat/Assets/AltTester-Unity-SDK
@@ -109,6 +115,7 @@ jobs:
           git pull --rebase origin "${{ github.event.inputs.branch || 'development' }}"
 
       - name: Add commit number to AltTester-Unity-SDK version
+        if: ${{ github.event.inputs.alttester-nongpl == 'false' }}
         run: |
           cd TrashCat/Assets/AltTester-Unity-SDK
           case "${{ matrix.platform }}" in
@@ -125,6 +132,13 @@ jobs:
               sed -i '' "s#\"version\": \".*\"#\"version\": \"$VERSION\"#" Assets/AltTester/package.json
               ;;
           esac
+      
+      - name: Download AltTester Unity SDK Non-GPL
+        if: ${{ github.event.inputs.alttester-nongpl == 'true' }}
+        shell: bash
+        run: |
+          mkdir -p alttester_unitypackage
+          wget -O alttester_unitypackage/AltTesterUnitySDK_NonGPL.unitypackage "${{ secrets.ALTTESTER_NONGPL_DOWNLOAD_URL }}"
 
       - name: Remove Unity Ads for iOS
         if: matrix.platform == 'iOS'
@@ -142,8 +156,10 @@ jobs:
           export ALTSERVER_HOST="${{ github.event.inputs.host }}"
 
           if [ "${{ matrix.platform }}" = "Windows" ]; then
+            editorPath="$GITHUB_WORKSPACE/Editor"
             projectPath="$GITHUB_WORKSPACE/TrashCat"
           else
+            editorPath="$CI_PROJECT_DIR/Editor"
             projectPath="$CI_PROJECT_DIR/TrashCat"
           fi
 
@@ -169,12 +185,22 @@ jobs:
               exit 1
               ;;
           esac
-
-          echo "Using Unity path: $UNITY_PATH"
           
           if [ -z "$UNITY_PATH" ]; then
             echo "Error: UNITY_PATH is empty"
             exit 1
+          fi
+
+          if [ ${{ github.event.inputs.alttester-nongpl }} == 'true' ]; then
+            echo "Using AltTester Non-GPL version"
+            
+            FILE=$(find alttester_unitypackage -type f -name "AltTesterUnitySDK_NonGPL.unitypackage")
+            cp $FILE TrashCat/Test2.unitypackage
+            "$UNITY_PATH" \
+              -projectPath "$projectPath" \
+              -importPackage "$projectPath/Test2.unitypackage" \
+              -batchmode -nographics -quit
+            mv $editorPath $projectPath/Assets
           fi
 
           "$UNITY_PATH" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod AddressablesBuilder.BuildAddressablesForCurrentPlatform -logFile buildAddressables.log -quit
