@@ -36,10 +36,10 @@ on:
         default: 'development'
         required: true
       host:
-        description: 'AltServer Host'
+        description: 'AltTester Server Host'
         default: '127.0.0.1'
       port:
-        description: 'AltServer Port'
+        description: 'AltTester Server Port'
         default: '13000'
       alttester-nongpl:
         description: 'Use AltTester Non-GPL version'
