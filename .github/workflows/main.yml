@@ -3,13 +3,6 @@ name: Build TrashCat
 on:
   workflow_dispatch:
     inputs:
-      unity-version:
-        description: 'Unity Version to use'
-        type: choice
-        options:
-          - '2021.3.45f2'
-          - '2023.1.22f1'
-          - '6000.0.60f1'
       windows:
         description: 'Build for Windows'
         type: boolean
@@ -30,10 +23,14 @@ on:
         description: "Build for iOS"
         type: boolean
         default: false
-      alttester-nongpl:
-        description: 'Use AltTester Non-GPL version'
-        type: boolean
-        default: false
+      unity-version:
+        description: 'Unity Version to use'
+        type: choice
+        options:
+          - '2021.3.45f2'
+          - '2022.3.62f3'
+          - '2023.2.22f1'
+          - '6000.0.62f1'
       branch:
         description: 'Branch to checkout for AltTester submodule'
         default: 'development'
@@ -155,10 +152,13 @@ jobs:
             "2021.3.45f2")
               UNITY_PATH="$UNITY_2021_3_HOME"
               ;;
-            "2023.1.22f1")
-              UNITY_PATH="$UNITY_2023_1_HOME"
+            "2022.3.62f3")
+              UNITY_PATH="$UNITY_2022_3_HOME"
               ;;
-            "6000.0.60f1")
+            "2023.2.22f1")
+              UNITY_PATH="$UNITY_2023_2_HOME"
+              ;;
+            "6000.0.62f1")
               UNITY_PATH="$UNITY_6000_0_HOME"
               ;;
             *)
@@ -193,7 +193,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: Build-${{ matrix.platform }}-Artifact
+          name: Build-${{ matrix.platform }}-${{ github.event.inputs.unity-version }}-Artifact
           path: |
             **/*.log
             **/TrashCatBuild/*
