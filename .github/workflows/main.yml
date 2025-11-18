@@ -189,6 +189,11 @@ jobs:
           
           echo "UNITY_PATH=$UNITY_PATH" >> $GITHUB_ENV
 
+      - name: Move Editor Folder outside Assets
+        if : ${{ github.event.inputs.alttester-nongpl == 'true' }}
+        run: |
+          mv $GITHUB_WORKSPACE/TrashCat/Assets/Editor $GITHUB_WORKSPACE/
+
       - name: Import AltTester Non-GPL Package
         if: ${{ github.event.inputs.alttester-nongpl == 'true' }}
         run: |
@@ -206,6 +211,7 @@ jobs:
             -batchmode -nographics -quit
 
       - name: Move Editor Folder inside Assets
+        if : ${{ github.event.inputs.alttester-nongpl == 'true' }}
         run: |
           mv $GITHUB_WORKSPACE/Editor $GITHUB_WORKSPACE/TrashCat/Assets
 
