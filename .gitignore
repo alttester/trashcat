@@ -1,7 +1,19 @@
 **/[Ll]ibrary/
 **/[Tt]emp/
 **/[Oo]bj/
+**/[Ll]ogs/
 TrashCat/Log/
 TrashCat/Logs/
 TrashCat/obj/
 TrashCat/Builds/
+TrashCat/build
+*.csproj
+*.sln
+
+# Assets
+TrashCat/Assets/AltTester
+TrashCat/Assets/StreamingAssets
+
+# OS generated files
+.vscode
+.DS_Store
