@@ -118,7 +118,7 @@ jobs:
         run: |
           cd TrashCat/Assets/AltTester-Unity-SDK
           # Extract current version from AltRunner.cs
-          CURRENT_VERSION=$(grep -oP 'public static readonly string VERSION = "\K[^"]+' Assets/AltTester/Runtime/Commands/AltRunner.cs)
+          CURRENT_VERSION=$(sed -n 's/.*VERSION = "\([^"]*\)".*/\1/p' Assets/AltTester/Runtime/Commands/AltRunner.cs)
           COMMIT_HASH=$(git rev-parse --short HEAD)
           VERSION="$CURRENT_VERSION-$COMMIT_HASH"
           
