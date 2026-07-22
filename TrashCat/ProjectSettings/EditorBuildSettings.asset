@@ -18,3 +18,5 @@ EditorBuildSettings:
     AddressableAssetSettings: {fileID: 0}
     com.unity.addressableassets: {fileID: 11400000, guid: b326c184dbebf6b4e8e5be689c39d470,
       type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 87503808cdd0dba4bac50090da1ec5fa,
+      type: 2}

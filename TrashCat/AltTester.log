@@ -1,0 +1,86 @@
+2026-07-22 12:07:23.7750|INFO|Info
+2026-07-22 12:07:23.7827|INFO|AltTester(R) logs are saved at: /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/AltTester.log
+2026-07-22 12:07:23.7833|DEBUG|Connecting to AltTester(R) on host: '127.0.0.1', port: '13000', appName: '__default__', platform: 'unknown', platformVersion: 'unknown', deviceInstanceId: 'unknown' and driverType: 'SDK'.
+2026-07-22 12:07:23.7861|INFO|Connecting to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:23.8089|DEBUG|Connection to AltTester(R) Server closed: [Code:1006, Reason:An exception has occurred while attempting to connect.].
+2026-07-22 12:07:23.8096|INFO|Driver disconnected An exception has occurred while attempting to connect.-1006. Clean: False
+2026-07-22 12:07:23.8096|INFO|Connecting to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:23.8109|DEBUG|Connection to AltTester(R) Server closed: [Code:1006, Reason:An exception has occurred while attempting to connect.].
+2026-07-22 12:07:23.8113|INFO|Driver disconnected An exception has occurred while attempting to connect.-1006. Clean: False
+2026-07-22 12:07:23.9133|DEBUG|Closed connection because AltTester.AltTesterSDK.Driver.ConnectionException: Connection closed by AltTester(R) Server with reason: An exception has occurred while attempting to connect..
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.CheckCloseMessage () [0x0008d] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:106 
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.Connect () [0x00188] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:209 
+2026-07-22 12:07:23.9133|DEBUG|Retrying #1 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:23.9148|DEBUG|Connection to AltTester(R) Server closed: [Code:1006, Reason:An exception has occurred while attempting to connect.].
+2026-07-22 12:07:23.9148|INFO|Driver disconnected An exception has occurred while attempting to connect.-1006. Clean: False
+2026-07-22 12:07:24.0168|DEBUG|Closed connection because AltTester.AltTesterSDK.Driver.ConnectionException: Connection closed by AltTester(R) Server with reason: An exception has occurred while attempting to connect..
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.CheckCloseMessage () [0x0008d] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:106 
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.Connect () [0x00188] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:209 
+2026-07-22 12:07:24.0181|DEBUG|Retrying #2 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:24.0195|DEBUG|Connection to AltTester(R) Server closed: [Code:1006, Reason:An exception has occurred while attempting to connect.].
+2026-07-22 12:07:24.0206|INFO|Driver disconnected An exception has occurred while attempting to connect.-1006. Clean: False
+2026-07-22 12:07:24.1228|DEBUG|Closed connection because AltTester.AltTesterSDK.Driver.ConnectionException: Connection closed by AltTester(R) Server with reason: An exception has occurred while attempting to connect..
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.CheckCloseMessage () [0x0008d] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:106 
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.Connect () [0x00188] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:209 
+2026-07-22 12:07:24.1251|DEBUG|Retrying #3 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:24.1292|DEBUG|Connection to AltTester(R) Server closed: [Code:1006, Reason:An exception has occurred while attempting to connect.].
+2026-07-22 12:07:24.1297|INFO|Driver disconnected An exception has occurred while attempting to connect.-1006. Clean: False
+2026-07-22 12:07:24.2309|DEBUG|Closed connection because AltTester.AltTesterSDK.Driver.ConnectionException: Connection closed by AltTester(R) Server with reason: An exception has occurred while attempting to connect..
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.CheckCloseMessage () [0x0008d] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:106 
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.Connect () [0x00188] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:209 
+2026-07-22 12:07:24.2315|DEBUG|Retrying #4 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:24.2326|DEBUG|Connection to AltTester(R) Server closed: [Code:1006, Reason:An exception has occurred while attempting to connect.].
+2026-07-22 12:07:24.2326|INFO|Driver disconnected An exception has occurred while attempting to connect.-1006. Clean: False
+2026-07-22 12:07:24.3346|DEBUG|Closed connection because AltTester.AltTesterSDK.Driver.ConnectionException: Connection closed by AltTester(R) Server with reason: An exception has occurred while attempting to connect..
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.CheckCloseMessage () [0x0008d] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:106 
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.Connect () [0x00188] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:209 
+2026-07-22 12:07:24.3346|DEBUG|Retrying #5 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:24.3362|DEBUG|Connection to AltTester(R) Server closed: [Code:1006, Reason:An exception has occurred while attempting to connect.].
+2026-07-22 12:07:24.3367|INFO|Driver disconnected An exception has occurred while attempting to connect.-1006. Clean: False
+2026-07-22 12:07:24.4383|DEBUG|Closed connection because AltTester.AltTesterSDK.Driver.ConnectionException: Connection closed by AltTester(R) Server with reason: An exception has occurred while attempting to connect..
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.CheckCloseMessage () [0x0008d] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:106 
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.Connect () [0x00188] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:209 
+2026-07-22 12:07:24.4393|DEBUG|Retrying #6 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:24.4411|DEBUG|Connection to AltTester(R) Server closed: [Code:1006, Reason:An exception has occurred while attempting to connect.].
+2026-07-22 12:07:24.4421|INFO|Driver disconnected An exception has occurred while attempting to connect.-1006. Clean: False
+2026-07-22 12:07:24.5442|DEBUG|Closed connection because AltTester.AltTesterSDK.Driver.ConnectionException: Connection closed by AltTester(R) Server with reason: An exception has occurred while attempting to connect..
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.CheckCloseMessage () [0x0008d] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:106 
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.Connect () [0x00188] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:209 
+2026-07-22 12:07:24.5462|DEBUG|Retrying #7 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:24.5483|DEBUG|Connection to AltTester(R) Server closed: [Code:1006, Reason:An exception has occurred while attempting to connect.].
+2026-07-22 12:07:24.5494|INFO|Driver disconnected An exception has occurred while attempting to connect.-1006. Clean: False
+2026-07-22 12:07:24.6514|DEBUG|Closed connection because AltTester.AltTesterSDK.Driver.ConnectionException: Connection closed by AltTester(R) Server with reason: An exception has occurred while attempting to connect..
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.CheckCloseMessage () [0x0008d] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:106 
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.Connect () [0x00188] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:209 
+2026-07-22 12:07:24.6514|DEBUG|Retrying #8 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:24.6526|DEBUG|Connection to AltTester(R) Server closed: [Code:1006, Reason:An exception has occurred while attempting to connect.].
+2026-07-22 12:07:24.6526|INFO|Driver disconnected An exception has occurred while attempting to connect.-1006. Clean: False
+2026-07-22 12:07:24.7545|DEBUG|Closed connection because AltTester.AltTesterSDK.Driver.ConnectionException: Connection closed by AltTester(R) Server with reason: An exception has occurred while attempting to connect..
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.CheckCloseMessage () [0x0008d] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:106 
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.Connect () [0x00188] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:209 
+2026-07-22 12:07:24.7545|DEBUG|Retrying #9 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:24.7560|DEBUG|Connection to AltTester(R) Server closed: [Code:1006, Reason:An exception has occurred while attempting to connect.].
+2026-07-22 12:07:24.7564|INFO|Driver disconnected An exception has occurred while attempting to connect.-1006. Clean: False
+2026-07-22 12:07:24.8580|DEBUG|Closed connection because AltTester.AltTesterSDK.Driver.ConnectionException: Connection closed by AltTester(R) Server with reason: An exception has occurred while attempting to connect..
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.CheckCloseMessage () [0x0008d] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:106 
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.Connect () [0x00188] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:209 
+2026-07-22 12:07:24.8593|DEBUG|Retrying #10 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:24.8607|DEBUG|Connection to AltTester(R) Server closed: [Code:1006, Reason:An exception has occurred while attempting to connect.].
+2026-07-22 12:07:24.8617|INFO|Driver disconnected An exception has occurred while attempting to connect.-1006. Clean: False
+2026-07-22 12:07:24.9638|DEBUG|Closed connection because AltTester.AltTesterSDK.Driver.ConnectionException: Connection closed by AltTester(R) Server with reason: An exception has occurred while attempting to connect..
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.CheckCloseMessage () [0x0008d] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:106 
+  at AltTester.AltTesterSDK.Driver.Communication.DriverWebSocketClient.Connect () [0x00188] in /Users/tejav/Downloads/EXAMPLES-CSharp-AWS-AltTrashCat/trashcat/TrashCat/Assets/AltTester-Unity-SDK/Assets/AltTester/Runtime/AltDriver/Communication/DriverWebSocketClient.cs:209 
+2026-07-22 12:07:24.9650|DEBUG|Retrying #11 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:24.9660|DEBUG|Connection error: A series of reconnecting has failed.
+2026-07-22 12:07:30.0087|DEBUG|Retrying #12 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:30.0116|DEBUG|Connection error: A series of reconnecting has failed.
+2026-07-22 12:07:35.0550|DEBUG|Retrying #13 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:35.0566|DEBUG|Connection error: A series of reconnecting has failed.
+2026-07-22 12:07:40.1031|DEBUG|Retrying #14 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:40.1074|DEBUG|Connection error: A series of reconnecting has failed.
+2026-07-22 12:07:45.1568|DEBUG|Retrying #15 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:45.1591|DEBUG|Connection error: A series of reconnecting has failed.
+2026-07-22 12:07:50.2059|DEBUG|Retrying #16 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:50.2070|DEBUG|Connection error: A series of reconnecting has failed.
+2026-07-22 12:07:55.3828|DEBUG|Retrying #17 to connect to: 'ws://127.0.0.1:13000/altws?appName=__default__&platform=unknown&platformVersion=unknown&deviceInstanceId=unknown&appId=unknown&driverType=csharp_2.3.0'.
+2026-07-22 12:07:55.3861|DEBUG|Connection error: A series of reconnecting has failed.

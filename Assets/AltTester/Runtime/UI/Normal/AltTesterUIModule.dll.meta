@@ -1,0 +1,94 @@
+fileFormatVersion: 2
+guid: a6d9be48354f4e0a87bfb8e79b25c408
+PluginImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  iconMap: {}
+  executionOrder: {}
+  defineConstraints:
+    - "UNITY_EDITOR || !UNITY_WEBGL"
+    - "UNITY_EDITOR || !UNITY_ANDROID"
+    - "UNITY_EDITOR || !UNITY_IOS"
+  isPreloaded: 0
+  isOverridable: 0
+  isExplicitlyReferenced: 0
+  validateReferences: 1
+  platformData:
+  - first:
+      : Any
+    second:
+      enabled: 0
+      settings:
+        Exclude Android: 1
+        Exclude Editor: 0
+        Exclude Linux64: 0
+        Exclude OSXUniversal: 0
+        Exclude Switch: 0
+        Exclude WebGL: 1
+        Exclude Win: 0
+        Exclude Win64: 0
+        Exclude iOS: 1
+  - first:
+      Android: Android
+    second:
+      enabled: 0
+      settings:
+        CPU: ARMv7
+  - first:
+      Editor: Editor
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+        DefaultValueInitialized: true
+        OS: AnyOS
+  - first:
+      Nintendo Switch: Switch
+    second:
+      enabled: 1
+      settings: {}
+  - first:
+      Standalone: Linux64
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+  - first:
+      Standalone: OSXUniversal
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+  - first:
+      Standalone: Win
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+  - first:
+      Standalone: Win64
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+  - first:
+      WebGL: WebGL
+    second:
+      enabled: 0
+      settings: {}
+  - first:
+      iPhone: iOS
+    second:
+      enabled: 0
+      settings:
+        CPU: ARM64
+  - first:
+      Windows Store Apps: WindowsStoreApps
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+
+  userData:
+  assetBundleName:
+  assetBundleVariant:
