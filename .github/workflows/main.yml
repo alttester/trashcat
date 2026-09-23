@@ -136,23 +136,38 @@ jobs:
 
           projectPath="$GITHUB_WORKSPACE/TrashCat"
 
-          "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod AddressablesBuilder.BuildAddressablesForCurrentPlatform -logFile buildAddressables.log -quit
+          # Runs a Unity method; on failure prints compiler errors and the log tail
+          run_unity() {
+            local method="$1" log="$2"
+            if ! "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod "$method" -logFile "$log" -quit; then
+              echo "::group::Compiler errors ($log)"
+              grep -E "error CS[0-9]+" "$log" | sort -u || echo "No C# compiler errors found"
+              echo "::endgroup::"
+              grep -E "error CS[0-9]+" "$log" | sort -u | head -20 | while IFS= read -r line; do echo "::error::$line"; done
+              echo "::group::Last 200 lines of $log"
+              tail -n 200 "$log"
+              echo "::endgroup::"
+              return 1
+            fi
+          }
+
+          run_unity AddressablesBuilder.BuildAddressablesForCurrentPlatform buildAddressables.log
 
           case "${{ matrix.platform }}" in
             "Windows")
-              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.WindowsBuildFromCommandLine -logFile buildWindows.log -quit
+              run_unity BuildTrashCat.WindowsBuildFromCommandLine buildWindows.log
               ;;
             "macOS")
-              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.MacBuildFromCommandLine -logFile buildMac.log -quit
+              run_unity BuildTrashCat.MacBuildFromCommandLine buildMac.log
               ;;
             "Android")
-              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.AndroidBuildFromCommandLine -logFile buildAndroid.log -quit
+              run_unity BuildTrashCat.AndroidBuildFromCommandLine buildAndroid.log
               ;;
             "WebGL")
-              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.WebGLBuildFromCommandLine -logFile buildWebGL.log -quit
+              run_unity BuildTrashCat.WebGLBuildFromCommandLine buildWebGL.log
               ;;
             "iOS")
-              "$UNITY_2021_3_HOME" -batchmode -stackTraceLogType None -projectPath "$projectPath" -executeMethod BuildTrashCat.IosBuildFromCommandLine -logFile buildiOS.log -quit
+              run_unity BuildTrashCat.IosBuildFromCommandLine buildiOS.log
               xcodebuild -project "${GITHUB_WORKSPACE}/TrashCat/TrashCat/Unity-iPhone.xcodeproj" -scheme Unity-iPhone -archivePath "${GITHUB_WORKSPACE}/TrashCat/TrashCat/Unity-iPhone.xcarchive" archive
               xcodebuild -exportArchive -archivePath "${GITHUB_WORKSPACE}/TrashCat/TrashCat/Unity-iPhone.xcarchive" -exportOptionsPlist $EXPORT_OPTIONS_LOCATION/export-options.plist -exportPath ./
               osascript -e 'tell app "Xcode" to quit'
