@@ -30,6 +30,7 @@ public class BuildTrashCat
         catch (Exception exception)
         {
             logger.Error(exception);
+            EditorApplication.Exit(1);
         }
 
     }
@@ -54,6 +55,7 @@ public class BuildTrashCat
         catch (Exception exception)
         {
             logger.Error(exception);
+            EditorApplication.Exit(1);
         }
 
     }
@@ -81,6 +83,7 @@ public class BuildTrashCat
         catch (Exception exception)
         {
             logger.Error(exception);
+            EditorApplication.Exit(1);
         }
 
     }
@@ -103,6 +106,7 @@ public class BuildTrashCat
         catch (Exception exception)
         {
             logger.Error(exception);
+            EditorApplication.Exit(1);
         }
     }
 
